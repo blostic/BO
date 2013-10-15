@@ -4,7 +4,7 @@ import java.util.Collections;
 
 public class Cuckoo {
 
-	private ArrayList<Nest> generateInitialPopulationOfNests(int n) {
+	private ArrayList<Nest>  generateInitialPopulationOfNests(int n) {
 		return null;
 	}
 
