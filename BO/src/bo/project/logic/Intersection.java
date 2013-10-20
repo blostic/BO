@@ -8,7 +8,7 @@ public class Intersection extends Closure {
 
 	private ArrayList<Road> entranceRoads;
 	private ArrayList<Double> escapeRoadProbability;
-
+	
 	public Intersection(double xCoordinate, double yCoordinate,
 			ArrayList<Road> escapeRoads, ArrayList<Road> entranceRoads,
 			ArrayList<Double> escapeRoadProbability) {
@@ -49,15 +49,5 @@ public class Intersection extends Closure {
 			vehicle.setdestination(this.escapeRoads.get(who).getStart(),
 					this.escapeRoads.get(who));
 		}
-	}
-
-	public static void main(String[] args) {
-		ArrayList<Double> array = new ArrayList<Double>();
-		array.add(0.3);
-		array.add(0.4);
-		array.add(0.2);
-		array.add(0.1);
-		Intersection inter = new Intersection(2, 3, null, null, array);
-		inter.randomTurn(null);
 	}
 }

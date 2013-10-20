@@ -50,5 +50,7 @@ public class Road {
 	public void addVehicle(Vehicle vehicle) {
 		this.vehicles.add(vehicle);
 	}
-
+	public void deleteVehicle(Vehicle vehicle){
+		this.vehicles.remove(vehicle);
+	}
 }
