@@ -10,6 +10,21 @@ public class Road {
 	private Closure start;
 	private Closure ends;
 	
+	public Closure getStart() {
+		return start;
+	}
+
+	public void setStart(Closure start) {
+		this.start = start;
+	}
+	public Closure getEnds() {
+		return ends;
+	}
+
+	public void setEnds(Closure ends) {
+		this.ends = ends;
+	}
+
 	public Road(int maxCapacity, double length, double permittedSpeed,
 			Closure start, Closure ends) {
 		super();

@@ -57,9 +57,10 @@ public class Vehicle {
 		return destination;
 	}
 
-	public void setdestination(Closure destination) {
+	public void setdestination(Closure destination,Road road) {
 		this.entry = this.destination;
 		this.destination = destination;
+		
 	}
 
 	public double getxCoordinate() {
