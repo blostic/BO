@@ -1,4 +1,4 @@
-package bo.project.FireflySwarming;
+package bo.project.fireflySwarming;
 
 import java.util.List;
 
