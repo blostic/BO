@@ -35,6 +35,18 @@ public class Road {
 		return trafficIntensity;
 	}
 	
+	public int getMaximalNumberOfVehicles(){
+		return maximalNumberOfVehicles;
+	}
+	
+	public int getMinimalWaitTime(){
+		return minimalWaitTime;
+	}
+	
+	public static double getAverageTime(){
+		return averageTime;
+	}
+	
 	//probujemy dodac pojazd, zwracamy czy sie udalo
 	public boolean addVehicle(Vehicle vehicle){
 		if(Vehicles.size()<maximalNumberOfVehicles){
@@ -45,6 +57,10 @@ public class Road {
 		else{
 			return false;
 		}
+	}
+	
+	public boolean isFull(){
+		return Vehicles.size()<maximalNumberOfVehicles;
 	}
 	
 	public Vehicle getFirstWaitingVehicle(){

@@ -7,6 +7,10 @@ public class Vehicle {
 		this.waitTime=0;
 	}
 	
+	public Vehicle(int waitTime){
+		this.waitTime=waitTime;
+	}
+	
 	public int getWaitTime(){
 		return waitTime;
 	}
