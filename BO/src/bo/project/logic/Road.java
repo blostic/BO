@@ -1,18 +1,21 @@
 package bo.project.logic;
 
 import java.util.ArrayDeque;
+import java.util.Iterator;
 
 public class Road {
-	protected ArrayDeque<Vehicle> Vehicles;
+	protected String ID;
+	protected ArrayDeque<Vehicle> vehicles;
 	protected int maximalNumberOfVehicles;
 	protected int minimalWaitTime;
 	protected int trafficIntensity; //natê¿enie ruchu - œrednia iloœæ samochodów wje¿d¿aj¹cych na ulicê w godzinê
 	protected boolean greenLight;
-	final static double averageTime = 0.5; /*sredni czas przejechania z srednia predkoscia sredniej 
+	final static double averageTime = 1; /*sredni czas przejechania z srednia predkoscia sredniej 
 										   dlugosci samochodu :D najs, nie? xD*/
 	
-	public Road(int maximalNumberOfVehicles, int trafficIntensity){
-		Vehicles = new ArrayDeque<Vehicle>(maximalNumberOfVehicles);
+	public Road(String ID, int maximalNumberOfVehicles, int trafficIntensity){
+		this.ID=ID;
+		vehicles = new ArrayDeque<Vehicle>(maximalNumberOfVehicles);
 		this.maximalNumberOfVehicles=maximalNumberOfVehicles;
 		minimalWaitTime=(int)(maximalNumberOfVehicles*averageTime);
 		this.trafficIntensity=trafficIntensity;
@@ -47,26 +50,22 @@ public class Road {
 		return averageTime;
 	}
 	
-	//probujemy dodac pojazd, zwracamy czy sie udalo
-	public boolean addVehicle(Vehicle vehicle){
-		if(Vehicles.size()<maximalNumberOfVehicles){
-			vehicle.resetWaitTime();
-			Vehicles.addLast(vehicle);
-			return true;
-		}
-		else{
-			return false;
-		}
+	public void addVehicle(Vehicle vehicle){
+		vehicles.addLast(vehicle);
 	}
 	
 	public boolean isFull(){
-		return Vehicles.size()<maximalNumberOfVehicles;
+		return vehicles.size()<maximalNumberOfVehicles;
+	}
+	
+	public boolean isEmpty(){
+		return vehicles.isEmpty();
 	}
 	
 	public Vehicle getFirstWaitingVehicle(){
-		if(!Vehicles.isEmpty()){
-			if(Vehicles.getFirst().getWaitTime()<minimalWaitTime){
-				return Vehicles.removeFirst();
+		if(!vehicles.isEmpty()){
+			if(vehicles.getFirst().getWaitTime()<minimalWaitTime){
+				return vehicles.removeFirst();
 			}
 		}
 		return null;
@@ -74,10 +73,27 @@ public class Road {
 	
 	public int getNumberOfWaiting(){
 		int numberOfWaiting = 0;
-		for(Vehicle el: Vehicles){
-			if(el.getWaitTime()<minimalWaitTime)
+		for(int i=0;i<vehicles.size();++i){
+			@SuppressWarnings("rawtypes")
+			Iterator it = vehicles.iterator();
+			Vehicle vehicle = (Vehicle) it.next();
+			if(vehicle.getWaitTime()<minimalWaitTime-(vehicles.size()-(i+1))*(minimalWaitTime/maximalNumberOfVehicles))
 				++numberOfWaiting;
 		}
 		return numberOfWaiting;
+	}
+	
+	public void moveVehiclesOnRoad(){
+		for(Vehicle vehicle: vehicles){
+			vehicle.increaseWaitTime(Simulator.getTimeInterval());
+		}
+	}
+	
+	public void printState(){
+		System.out.print(ID+" has "+vehicles.size()+" ,"+greenLight+"\n");
+		for(Vehicle vehicle: vehicles){
+			System.out.print(vehicle.getWaitTime()+" ");
+		}
+		System.out.print("\n");
 	}
 }

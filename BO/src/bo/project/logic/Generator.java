@@ -7,8 +7,8 @@ public class Generator extends Junction{
 	private boolean generateFlag;
 	Random random;
 	
-	public Generator(ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y){
-		super(entryRoads,awayRoads, x, y);
+	public Generator(int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y){
+		super(ID, entryRoads,awayRoads, x, y);
 		generateFlag=false;
 		random = new Random();
 	}
@@ -34,7 +34,9 @@ public class Generator extends Junction{
 		}
 		if(generateFlag){
 			for(Road road: entryRoads){
-				road.addVehicle(new Vehicle());
+				if(!road.isFull()){
+					road.addVehicle(new Vehicle());
+				}
 			}
 		}
 	}

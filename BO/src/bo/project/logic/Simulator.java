@@ -21,7 +21,7 @@ public class Simulator {
 		this.junctions=junctions;
 	}
 	
-	public static Simulator initialize(ArrayList<Junction> junctions, int simulationTimeInterval, int simulationTotalTime) throws Exception{
+	public static Simulator initialize(ArrayList<Junction> junctions, int simulationTimeInterval, int simulationTotalTime){
 		if(instance==null){
 			timeInterval=simulationTimeInterval;
 			totalTime=simulationTotalTime;
@@ -30,7 +30,7 @@ public class Simulator {
 			return instance;
 		}
 		else{
-			throw(new Exception());
+			return null;
 		}
 	} 
 	
@@ -38,15 +38,25 @@ public class Simulator {
 		for(Junction junction: junctions){
 			junction.addRandomVehicles();
 		}
+		printState();
 	}
 	
-	public void runSimulation(){
+	public int runSimulation(){
 		for(int currentTime=0;currentTime<totalTime;currentTime+=timeInterval){
 			for(Junction junction: junctions){
 				junction.checkStatus(currentTime);
 				junction.moveVehicles();
 			}
+			printState();
 		}
+		return totalWaitTime;
+	}
+	
+	private void printState(){
+		for(Junction junction: junctions){
+			junction.printState();
+		}
+		System.out.print("\n\n");
 	}
 	
 	public static int getTimeInterval(){
@@ -64,5 +74,4 @@ public class Simulator {
 	public static void increaseWaitTime(int timeToIncrease){
 		totalWaitTime+=timeToIncrease;
 	}
-	
 }

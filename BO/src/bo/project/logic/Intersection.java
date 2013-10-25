@@ -7,9 +7,9 @@ public class Intersection extends Junction{
 	protected int greenLightTime;	//czas w sekundach œwiecenia zielonego œwiat³a dla ulicy pod indeksem 0
 	protected int redLightTime;	//jw
 	
-	public Intersection(ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, 
+	public Intersection(int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, 
 			int greenLightTime, int redLightTime, int x, int y){
-		super(entryRoads, awayRoads, x, y);
+		super(ID, entryRoads, awayRoads, x, y);
 		this.greenLightTime=greenLightTime;
 		this.redLightTime=redLightTime;
 	}
@@ -49,7 +49,7 @@ public class Intersection extends Junction{
 	//jakos sobie funkcyjka ustalajaca gdzie pojedzie nasz pojazd z danej ulicy wejsciowej
 	private Road chooseRoad(Road entryRoad){
 		Random random = new Random();
-		int traffics[] = new int[3];
+		int traffics[] = new int[4];
 		int totalTraffic, tmp;
 		totalTraffic=0;
 		int entryRoadIndex=0;
@@ -84,12 +84,15 @@ public class Intersection extends Junction{
 					Simulator.increaseWaitTime(Simulator.getTimeInterval()*road.getNumberOfWaiting());
 				}
 				else{
-					awayRoad.addVehicle(road.getFirstWaitingVehicle());
+					Vehicle first = road.getFirstWaitingVehicle();
+					first.resetWaitTime();
+					awayRoad.addVehicle(first);
 				}
 			}
 			else{
 				Simulator.increaseWaitTime(Simulator.getTimeInterval()*road.getNumberOfWaiting());
 			}
+			road.moveVehiclesOnRoad();
 		}
 	}
 }
