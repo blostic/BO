@@ -17,7 +17,7 @@ public class Generator extends Junction{
 	//						trafficIntensity/3600 - ilosc samochodow na sekunde
 	//wiec powinno to nam dac ilosc samochodow w czasie przejazdu 1 samochodu, max 1 :)
 	public void checkStatus(int currentTime){
-		for(Road road: awayRoads){
+		for(Road road: escapeRoads){
 			if(random.nextDouble()<=(road.getTrafficIntensity()*Simulator.getTimeInterval())/(3600.0)){
 				generateFlag=true;
 			}
@@ -34,7 +34,7 @@ public class Generator extends Junction{
 			road.moveVehiclesOnRoad();	//przesuwam pozostale
 		}
 		if(generateFlag){
-			for(Road road: awayRoads){
+			for(Road road: escapeRoads){
 				if(!road.isFull()){
 					road.addVehicle(new Vehicle());
 				}

@@ -1,6 +1,5 @@
 package bo.project.logic;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Road {
@@ -78,10 +77,7 @@ public class Road {
 	public int getNumberOfWaiting(){
 		int numberOfWaiting = 0;
 		for(int i=0;i<vehicles.size();++i){
-			@SuppressWarnings("rawtypes")
-			Iterator it = vehicles.iterator();
-			Vehicle vehicle = (Vehicle) it.next();
-			if(vehicle.getWaitTime()<minimalWaitTime-(vehicles.size()-(i+1))*(minimalWaitTime/maximalNumberOfVehicles))
+			if(vehicles.get(i).getWaitTime()>=minimalWaitTime-i*averageTime)
 				++numberOfWaiting;
 		}
 		return numberOfWaiting;
@@ -99,5 +95,6 @@ public class Road {
 			System.out.print(vehicle.getWaitTime()+" ");
 		}
 		System.out.print("\n");
+		System.out.print(getNumberOfWaiting()+"\n");
 	}
 }

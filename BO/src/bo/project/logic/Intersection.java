@@ -53,9 +53,9 @@ public class Intersection extends Junction{
 		int totalTraffic, tmp;
 		totalTraffic=0;
 		int entryRoadIndex=0;
-		for(int i=0;i<4;++i){
+		for(int i=0;i<4;++i){	//zliczam natezenie sumaryczne i zapisuje sobie natezenia drog, dajac za ta droge 0
 			if(!entryRoad.equals(entryRoads.get(i))){
-				traffics[i]=awayRoads.get(i).getTrafficIntensity();
+				traffics[i]=escapeRoads.get(i).getTrafficIntensity();
 				totalTraffic+=traffics[i];
 			}
 			else{
@@ -73,7 +73,7 @@ public class Intersection extends Junction{
 				tmp-=traffics[i];
 			}
 		}
-		return awayRoads.get(tmp);
+		return escapeRoads.get(tmp);
 	}
 
 	public void moveVehicles() {
@@ -85,9 +85,10 @@ public class Intersection extends Junction{
 				}
 				else{
 					Vehicle first = road.getFirstWaitingVehicle();
-					System.out.print("first - "+first+"\n");
-					first.resetWaitTime();
-					awayRoad.addVehicle(first);
+					if(first!=null){		//nie ma samochodu ktory juz dojechal do skrzyzowania - nie robie nic, jest -przenosze
+						first.resetWaitTime();
+						awayRoad.addVehicle(first);
+					}
 				}
 			}
 			else{
