@@ -1,11 +1,11 @@
 package bo.project.logic;
 
-import java.util.ArrayDeque;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Road {
 	protected String ID;
-	protected ArrayDeque<Vehicle> vehicles;
+	protected LinkedList<Vehicle> vehicles;
 	protected int maximalNumberOfVehicles;
 	protected int minimalWaitTime;
 	protected int trafficIntensity; //natê¿enie ruchu - œrednia iloœæ samochodów wje¿d¿aj¹cych na ulicê w godzinê
@@ -15,7 +15,7 @@ public class Road {
 	
 	public Road(String ID, int maximalNumberOfVehicles, int trafficIntensity){
 		this.ID=ID;
-		vehicles = new ArrayDeque<Vehicle>(maximalNumberOfVehicles);
+		vehicles = new LinkedList<Vehicle>();
 		this.maximalNumberOfVehicles=maximalNumberOfVehicles;
 		minimalWaitTime=(int)(maximalNumberOfVehicles*averageTime);
 		this.trafficIntensity=trafficIntensity;
@@ -54,8 +54,12 @@ public class Road {
 		vehicles.addLast(vehicle);
 	}
 	
+	public void addVehicleFirst(Vehicle vehicle){
+		vehicles.addFirst(vehicle);
+	}
+	
 	public boolean isFull(){
-		return vehicles.size()<maximalNumberOfVehicles;
+		return vehicles.size()>=maximalNumberOfVehicles;
 	}
 	
 	public boolean isEmpty(){
@@ -64,7 +68,7 @@ public class Road {
 	
 	public Vehicle getFirstWaitingVehicle(){
 		if(!vehicles.isEmpty()){
-			if(vehicles.getFirst().getWaitTime()<minimalWaitTime){
+			if(vehicles.getFirst().getWaitTime()>=minimalWaitTime){
 				return vehicles.removeFirst();
 			}
 		}

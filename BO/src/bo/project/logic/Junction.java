@@ -22,19 +22,28 @@ public abstract class Junction implements IJunction {
 	//póŸniej je ustawiam jakoœ w czasie na tej drodze
 	public void addRandomVehicles() {
 		for(Road road: entryRoads){
-			if(road.isEmpty()){
-				Random random = new Random();
-				int lastWaitTime = 0;
-				for(int i=random.nextInt(road.getMaximalNumberOfVehicles());i>0;--i){
-					lastWaitTime = lastWaitTime + (int) Road.getAverageTime() + random.nextInt((int)((road.getMinimalWaitTime()-Road.getAverageTime()*(i-1)-lastWaitTime)*(1/Road.getAverageTime())));
-					road.addVehicle(new Vehicle(lastWaitTime));
-				}
+			Random random = new Random();
+			int lastWaitTime = 0;
+			for(int i=random.nextInt(road.getMaximalNumberOfVehicles());i>0;--i){
+				lastWaitTime = lastWaitTime + (int) Road.getAverageTime() + random.nextInt((int)((road.getMinimalWaitTime()-Road.getAverageTime()*(i-1)-lastWaitTime)*(1/Road.getAverageTime())));
+				road.addVehicleFirst(new Vehicle(lastWaitTime));
+			}
+		}
+		for(Road road: awayRoads){
+			Random random = new Random();
+			int lastWaitTime = 0;
+			for(int i=random.nextInt(road.getMaximalNumberOfVehicles());i>0;--i){
+				lastWaitTime = lastWaitTime + (int) Road.getAverageTime() + random.nextInt((int)((road.getMinimalWaitTime()-Road.getAverageTime()*(i-1)-lastWaitTime)*(1/Road.getAverageTime())));
+				road.addVehicleFirst(new Vehicle(lastWaitTime));
 			}
 		}
 	}
 	
 	public void printState(){
 		for(Road road: entryRoads){
+			road.printState();
+		}
+		for(Road road: awayRoads){
 			road.printState();
 		}
 	}

@@ -55,7 +55,7 @@ public class Intersection extends Junction{
 		int entryRoadIndex=0;
 		for(int i=0;i<4;++i){
 			if(!entryRoad.equals(entryRoads.get(i))){
-				traffics[i]=entryRoad.getTrafficIntensity();
+				traffics[i]=awayRoads.get(i).getTrafficIntensity();
 				totalTraffic+=traffics[i];
 			}
 			else{
@@ -65,12 +65,12 @@ public class Intersection extends Junction{
 		}
 		tmp = random.nextInt(totalTraffic);
 		for(int i=0;i<4;++i){
-			if(entryRoadIndex!=i && tmp<awayRoads.get(i).getTrafficIntensity()){
+			if(entryRoadIndex!=i && tmp<traffics[i]){
 				tmp=i;
 				break;
 			}
 			else{
-				tmp-=awayRoads.get(i).getTrafficIntensity();
+				tmp-=traffics[i];
 			}
 		}
 		return awayRoads.get(tmp);
@@ -78,13 +78,14 @@ public class Intersection extends Junction{
 
 	public void moveVehicles() {
 		for(Road road: entryRoads){
-			if(road.checkGreenLight()){
+			if(road.checkGreenLight() && !road.isEmpty()){
 				Road awayRoad=chooseRoad(road);
 				if(awayRoad.isFull()){
 					Simulator.increaseWaitTime(Simulator.getTimeInterval()*road.getNumberOfWaiting());
 				}
 				else{
 					Vehicle first = road.getFirstWaitingVehicle();
+					System.out.print("first - "+first+"\n");
 					first.resetWaitTime();
 					awayRoad.addVehicle(first);
 				}
