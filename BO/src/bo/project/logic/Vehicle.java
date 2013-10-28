@@ -33,6 +33,12 @@ public class Vehicle {
 		this.entry = entry;
 		this.road = road;
 		updateCoordinates();
+		road.addVehicle(this);
+		this.xCoordinate = entry.getxCoordinate();
+		this.yCoordinate = entry.getyCoordinate();
+		System.out.println("utworzylem samochod " + xCoordinate + " "
+				+ yCoordinate);
+		this.updateVehicle();
 	}
 
 	public void updateRoad(Road road) {
@@ -48,11 +54,15 @@ public class Vehicle {
 		double deltaY = destination.getyCoordinate() - entry.getyCoordinate();
 		this.xVelocity = deltaX / deltaY * speed;
 		this.yVelocity = deltaY / deltaX * speed;
+		this.roadTime = 0;
 	}
 
 	public void updateCoordinates() {
 		this.xCoordinate = xVelocity * roadTime;
 		this.yCoordinate = yVelocity * roadTime;
+		this.roadTime = this.roadTime + Manager.duration;
+		System.out.println("new coordinates: " + xCoordinate + " "
+				+ yCoordinate);
 	}
 
 	public double getWaitingTime() {

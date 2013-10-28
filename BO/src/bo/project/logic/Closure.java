@@ -2,19 +2,57 @@ package bo.project.logic;
 
 import java.util.ArrayList;
 
-
 public abstract class Closure {
 	private double xCoordinate;
 	private double yCoordinate;
-	public ArrayList<Road> escapeRoads;
-	
-	
-	public Closure(double xCoordinate, double yCoordinate,
-			ArrayList<Road> escapeRoads) {
+
+	protected ArrayList<Road> entranceRoads;
+	protected ArrayList<Road> escapeRoads;
+	protected ArrayList<Vehicle> participants;
+
+	public Closure(double xCoordinate, double yCoordinate) {
 		super();
+		this.entranceRoads = new ArrayList<Road>();
+		this.escapeRoads = new ArrayList<Road>();
 		this.xCoordinate = xCoordinate;
 		this.yCoordinate = yCoordinate;
-		this.escapeRoads = escapeRoads;
+	}
+
+	public void addEntranceRoads(Road road) {
+		this.entranceRoads.add(road);
+	}
+
+	public void addEscapeRoads(Road road) {
+		this.escapeRoads.add(road);
+	}
+
+	/*
+	 * Sprawdzam czy pojazd jest na skrzyzowaniu
+	 */
+
+	public boolean ifParticipant(Vehicle vehicle) {
+		return Math.sqrt((vehicle.getxCoordinate() - this.getxCoordinate())
+				* (vehicle.getxCoordinate() - this.getxCoordinate())
+				+ (vehicle.getxCoordinate() - this.getyCoordinate())
+				* (vehicle.getxCoordinate() - this.getyCoordinate())) < 1;
+	}
+
+	public ArrayList<Vehicle> findParticipants() {
+		this.participants = new ArrayList<Vehicle>();
+		for (Road road : entranceRoads) {
+			ArrayList<Vehicle> vehicleParticipants = new ArrayList<Vehicle>();
+			for (Vehicle vehicle : road.getVehicles()) {
+				if (ifParticipant(vehicle)) {
+					vehicleParticipants.add(vehicle);
+				}
+
+			}
+			for (Vehicle vehicle : vehicleParticipants) {
+				participants.add(vehicle);
+				road.deleteVehicle(vehicle);
+			}
+		}
+		return participants;
 	}
 
 	public double getxCoordinate() {
