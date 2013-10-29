@@ -8,8 +8,7 @@ public class Main {
 	public static void main(String[] args) {
 			
 		TrafficEditorFrame editor = new TrafficEditorFrame();
-		
-		editor.show();
+			editor.show();
 	}
 
 }

@@ -97,4 +97,16 @@ public class Intersection extends Junction{
 			road.moveVehiclesOnRoad();
 		}
 	}
+
+	@Override
+	public int getPositionX() {
+		// TODO Auto-generated method stub
+		return this.x;
+	}
+
+	@Override
+	public int getPositionY() {
+		// TODO Auto-generated method stub
+		return this.y;
+	}
 }
