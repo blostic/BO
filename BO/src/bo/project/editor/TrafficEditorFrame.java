@@ -2,6 +2,7 @@ package bo.project.editor;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -30,15 +33,20 @@ public class TrafficEditorFrame {
 	private LayoutManager layout2;
 	
 	private JPanel drawingArea;
-	private List<IJunction> junctions;
+	private ArrayList<Junction> junctions;
+	private ArrayList<Road> roads;
 	
 	public TrafficEditorFrame()
 	{
 		junctions = new ArrayList<>();
-		this.createView();
+		roads = new ArrayList<>();
 		
-		junctions.add(new Intersection(0, new ArrayList<Road>(), new ArrayList<Road>(), 0, 0, 5,20 ));
-		junctions.add(new Intersection(1, new ArrayList<Road>(), new ArrayList<Road>(), 0,0, 10 ,20 ));
+		Road sampleRoad = new Road("1",30, 5);
+		roads.add(sampleRoad);
+		junctions.add(new Intersection(0, roads, new ArrayList<Road>(), 0, 0, 7,20 ));
+		junctions.add(new Intersection(1, new ArrayList<Road>(), roads, 0,0, 50 ,40 ));
+		
+		this.createView();
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -57,7 +65,7 @@ public class TrafficEditorFrame {
 		
 		frame = new JFrame("Badania Operacyjne");
 		frame.setSize(400, 300);
-		drawingArea = new DrawingArea(junctions);
+		drawingArea = new DrawingArea(junctions,roads);
 		drawingArea.setSize(200, 200);
 		pane.add(drawingArea, BorderLayout.WEST);
 		
@@ -73,6 +81,46 @@ public class TrafficEditorFrame {
 		    });
 	}
 
+	private JPanel createOverallManagementPanel(){
+		JPanel panel = new JPanel();
+		
+		BoxLayout boxLayout = new BoxLayout(panel,  BoxLayout.PAGE_AXIS);
+		JButton button = createButton("Zacznij od nowa");
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		panel.add(button);
+		panel.add(Box.createRigidArea(new Dimension(0,5)));
+		
+		button = createButton("Zapisz");
+		button.addActionListener(new SaveModel());
+		panel.add(button);
+		panel.add(Box.createRigidArea(new Dimension(0,5)));
+		
+		button  = createButton("Wczytaj");
+		button.addActionListener(new LoadModel());
+		panel.add(button);
+		panel.add(Box.createRigidArea(new Dimension(0,5)));
+		
+		button = createButton("wyjdz");
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		panel.add(button);
+		//boxLayout.setSize(200,200);		
+		panel.add(Box.createRigidArea(new Dimension(10, 10)));
+		panel.setLayout(boxLayout);
+		
+		return panel;
+	}
 	private void createMenu() {
 		layout2 = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
@@ -84,32 +132,16 @@ public class TrafficEditorFrame {
 		c.anchor = GridBagConstraints.NORTH;
 		menuPane = new JPanel(layout2);
 		menuPane.add(createButton("dodaj skrzyzowanie"),c);
-		c.gridy = 1;
-		JButton button = createButton("zapisz uklad");
-		button.addActionListener(new SaveModel());
-		menuPane.add(button,c);
-		button = createButton("wczytaj uklad");
-		button.addActionListener(new LoadModel());
-		c.gridy = 2;
-		menuPane.add(button,c);
-		button = createButton("wyjdz");
-		button.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
-
-		c.gridy = 3;
-		menuPane.add(button,c);
 		menuPane.setSize(250, 300);
+		JPanel panel = createOverallManagementPanel();
+		c.gridy = 1;
+		menuPane.add(panel,c);
 		pane.add(menuPane,BorderLayout.EAST);
 	}
 	
 	private JButton createButton(String text){
 		JButton button = new JButton(text);
-		button.setSize(200, 50);
+		button.setSize(200, 20);
 		return button;
 	}
 	

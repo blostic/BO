@@ -1,6 +1,7 @@
 package bo.project.logic;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public abstract class Junction implements IJunction {
@@ -35,6 +36,14 @@ public abstract class Junction implements IJunction {
 		for(Road road: entryRoads){
 			road.printState();
 		}
+	}
+	
+	public List<Road> getEscapeRoads(){
+		return this.escapeRoads;
+	}
+	
+	public List<Road> getEnterRoads(){
+		return this.entryRoads;
 	}
 	
 }
