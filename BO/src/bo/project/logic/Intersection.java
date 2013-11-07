@@ -49,6 +49,20 @@ public class Intersection extends Junction{
 
 	/*
 	 * funkcja losuj¹ca drogê w któr¹ pojedzie samochód
+	 * 
+	 * mam 4 natezenia ruchu na ulicach i wiem, z jakiej ulicy wyjezdza samochod
+	 * zapamietuje sobie w talicy traffics natezenia pozostalych, dla tej na ktorej jestem daje 0
+	 * zapamietuje tez sume natezen pozostalych i indeks drogi na ktorej jestem
+	 * pozniej losuje liczbe z przedzialu 0..sumy natezen-1
+	 * przechodze po tablicy, sprawdzam czy wylosowana liczba jest mniejsza od wartosci w polu
+	 * jak tak - mam wylosowana droge
+	 * jak nie - zmniejszam wylosowana wartosc o natezenie drogi
+	 * 
+	 * czyli np jak mam traffics = [1, 0, 3, 4]
+	 * wylosowalem z 0-7 powiedzmy 2, tmp = 2
+	 * czy 2 mniejsze od 1? - nie, tmp = 1
+	 * czy 1 mniejsze od 0? (ulica na ktorej jestem, nie moge wylosowac) - nie, tmp = 1
+	 * czy 1 mniejsze od 3? - tak, wylosowalem 3 ulice
 	 */
 	private Road chooseRoad(Road entryRoad){
 		Random random = new Random();
