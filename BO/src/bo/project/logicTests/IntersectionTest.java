@@ -36,10 +36,10 @@ public class IntersectionTest {
 
 	@Test
 	public void testCheckStatus() {
-		assertTrue(tester.checkStatus(0, 1));
-		assertTrue(tester.checkStatus(29, 1));
-		assertFalse(tester.checkStatus(30, 1));
-		assertTrue(tester.checkStatus(60, 1));
+		assertTrue(tester.checkStatus(0));
+		assertTrue(tester.checkStatus(29));
+		assertFalse(tester.checkStatus(30));
+		assertTrue(tester.checkStatus(60));
 	}
 
 	@Test
