@@ -13,12 +13,16 @@ public class Generator extends Junction{
 		random = new Random();
 	}
 	
-	//dziwny warunek w ifie: timeInterval - czas przejazdu jednego samochodu
-	//						trafficIntensity/3600 - ilosc samochodow na sekunde
-	//wiec powinno to nam dac ilosc samochodow w czasie przejazdu 1 samochodu, max 1 :)
-	public void checkStatus(int currentTime){
+	/*
+	 * losuje czy powinienem dodawac nowe pojazdy
+	 * 
+	 * dziwny warunek w ifie: timeInterval - czas przejazdu jednego samochodu
+	 * trafficIntensity/3600 - ilosc samochodow na sekunde wiec powinno to nam dac
+	 *  ilosc samochodow w czasie przejazdu 1 samochodu, max 1 :)
+	 */
+	public void checkStatus(int currentTime, int timeInterval){
 		for(Road road: escapeRoads){
-			if(random.nextDouble()<=(road.getTrafficIntensity()*Simulator.getTimeInterval())/(3600.0)){
+			if(random.nextDouble()<=(road.getTrafficIntensity()*timeInterval)/(3600.0)){
 				generateFlag=true;
 			}
 			else{
@@ -27,11 +31,14 @@ public class Generator extends Junction{
 		}
 	}
 
-
-	public void moveVehicles() {
+	/*
+	 * Usuwam z modelu wszystkie samochody, które dojecha³y na jego koniec 
+	 * Dodaje nowe samochody, jeœli jest taka potrzeba
+	 */
+	public void moveVehicles(int timeInterval) {
 		for(Road road: entryRoads){
 			road.getFirstWaitingVehicle(); //pobieramy pierwszy czekajacy na wyjazd i go od razu gubimy :)
-			road.moveVehiclesOnRoad();	//przesuwam pozostale
+			road.moveVehiclesOnRoad(timeInterval);	//przesuwam pozostale
 		}
 		if(generateFlag){
 			for(Road road: escapeRoads){

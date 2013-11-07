@@ -1,7 +1,8 @@
 package bo.project.logic;
 
 public class Vehicle {
-	protected int waitTime;
+	private int waitTime;
+	private boolean isWaiting;
 	
 	public Vehicle(){
 		this.waitTime=0;
@@ -21,5 +22,17 @@ public class Vehicle {
 	
 	public void resetWaitTime(){
 		waitTime=0;
+	}
+	
+	public void markAsWaiting(){
+		isWaiting=true;
+	}
+	
+	public void resetWaiting(){
+		isWaiting=false;
+	}
+	
+	public boolean isWaiting(){
+		return isWaiting;
 	}
 }

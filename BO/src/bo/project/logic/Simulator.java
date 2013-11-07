@@ -2,72 +2,32 @@ package bo.project.logic;
 
 import java.util.ArrayList;
 
-/*
- * generalnie ta klasa wyszla mi magiczna, to jest sam symulator
- * pseudo singleton, zeby nie zrobic dwoch
- * dzieci junction sobie pobieraja z niej wartosci statycznie jak potrzebuja
- * to pewnie bardzo zle rozwiazanie, ale tak wyszlo w praniu, jak chcecie poprawcie :D
- */
-
-public class Simulator {
-	private static volatile Simulator instance = null;
-	
+public class Simulator {	
 	private ArrayList<Junction> junctions;
-	private static int timeInterval;	//czas przejechania 1 samochodu przez skrzy¿owanie
-	private static int totalTime;
+	private int timeInterval;	//czas przejechania 1 samochodu przez skrzy¿owanie
+	private int totalTime;
 	private static int totalWaitTime;
 	
-	private Simulator(ArrayList<Junction> junctions){
-		this.junctions=junctions;
-	}
-	
-	public static Simulator initialize(ArrayList<Junction> junctions, int simulationTimeInterval, int simulationTotalTime){
-		if(instance==null){
+	public Simulator(ArrayList<Junction> junctions, int simulationTimeInterval, int simulationTotalTime){
 			timeInterval=simulationTimeInterval;
 			totalTime=simulationTotalTime;
 			totalWaitTime=0;
-			instance=new Simulator(junctions);
-			return instance;
-		}
-		else{
-			return null;
-		}
+			this.junctions=junctions;
 	} 
 	
 	public void initializeVehiclesOnRoads(){
 		for(Junction junction: junctions){
 			junction.addRandomVehicles();
 		}
-		printState();
 	}
 	
 	public int runSimulation(){
 		for(int currentTime=0;currentTime<totalTime;currentTime+=timeInterval){
 			for(Junction junction: junctions){
-				junction.checkStatus(currentTime);
-				junction.moveVehicles();
+				junction.checkStatus(currentTime, timeInterval);
+				junction.moveVehicles(timeInterval);
 			}
-			printState();
 		}
-		return totalWaitTime;
-	}
-	
-	private void printState(){
-		for(Junction junction: junctions){
-			junction.printState();
-		}
-		System.out.print("\n\n");
-	}
-	
-	public static int getTimeInterval(){
-		return timeInterval;
-	}
-	
-	public static int getTotalTime(){
-		return totalTime;
-	}
-	
-	public static int getTotalWaitTime(){
 		return totalWaitTime;
 	}
 	

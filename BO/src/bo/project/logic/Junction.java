@@ -3,7 +3,7 @@ package bo.project.logic;
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class Junction implements IJunction {
+public abstract class Junction implements IJunction{
 	protected int ID;
 	protected ArrayList<Road> entryRoads;	//ulice entry i away pod tymi samymi indeksami sa takie same
 	protected ArrayList<Road> escapeRoads;	//ulice z rowna reszta dzielenia przez 2 sa ROWNOLEGLE
@@ -31,10 +31,6 @@ public abstract class Junction implements IJunction {
 		}
 	}
 	
-	public void printState(){
-		for(Road road: entryRoads){
-			road.printState();
-		}
-	}
+	
 	
 }

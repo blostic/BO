@@ -1,16 +1,16 @@
 package bo.project.logic;
-
 import java.util.LinkedList;
 
 public class Road {
-	protected String ID;
-	protected LinkedList<Vehicle> vehicles;
-	protected int maximalNumberOfVehicles;
-	protected int minimalWaitTime;
-	protected int trafficIntensity; //natê¿enie ruchu - œrednia iloœæ samochodów wje¿d¿aj¹cych na ulicê w godzinê
-	protected boolean greenLight;
+	private String ID;
+	private LinkedList<Vehicle> vehicles;
+	private int maximalNumberOfVehicles;
+	private int minimalWaitTime;
+	private int trafficIntensity; //natê¿enie ruchu - œrednia iloœæ samochodów wje¿d¿aj¹cych na ulicê w godzinê
+	private boolean greenLight;
 	final static double averageTime = 1; /*sredni czas przejechania z srednia predkoscia sredniej 
-										   dlugosci samochodu :D najs, nie? xD*/
+										   dlugosci samochodu*/
+	
 	
 	public Road(String ID, int maximalNumberOfVehicles, int trafficIntensity){
 		this.ID=ID;
@@ -65,9 +65,13 @@ public class Road {
 		return vehicles.isEmpty();
 	}
 	
+	/*
+	 * zwraca pierwszy samochód który czeka na skrzy¿owaniu
+	 * jeœli takiego nie ma - zwraca null
+	 */
 	public Vehicle getFirstWaitingVehicle(){
 		if(!vehicles.isEmpty()){
-			if(vehicles.getFirst().getWaitTime()>=minimalWaitTime){
+			if(vehicles.getFirst().isWaiting()){
 				return vehicles.removeFirst();
 			}
 		}
@@ -76,25 +80,25 @@ public class Road {
 	
 	public int getNumberOfWaiting(){
 		int numberOfWaiting = 0;
-		for(int i=0;i<vehicles.size();++i){
-			if(vehicles.get(i).getWaitTime()>=minimalWaitTime-i*averageTime)
+		for(Vehicle vehicle: vehicles){
+			if(vehicle.isWaiting())
 				++numberOfWaiting;
 		}
 		return numberOfWaiting;
 	}
 	
-	public void moveVehiclesOnRoad(){
-		for(Vehicle vehicle: vehicles){
-			vehicle.increaseWaitTime(Simulator.getTimeInterval());
+	/*
+	 * przesuwa samochody na ulicy (zwiêksza czas)
+	 * sprawdza czy samochód stoi w kolejce przed skrzy¿owaniem, jeœli tak - oznacza go
+	 */
+	public void moveVehiclesOnRoad(int timeInterval){
+		Vehicle vehicle;
+		for(int i=0;i<vehicles.size();++i){
+			vehicle=vehicles.get(i);
+			vehicle.increaseWaitTime(timeInterval);
+			if(vehicle.getWaitTime()>=minimalWaitTime-i*averageTime){
+				vehicle.markAsWaiting();
+			}
 		}
-	}
-	
-	public void printState(){
-		System.out.print(ID+" has "+vehicles.size()+" ,"+greenLight+"\n");
-		for(Vehicle vehicle: vehicles){
-			System.out.print(vehicle.getWaitTime()+" ");
-		}
-		System.out.print("\n");
-		System.out.print(getNumberOfWaiting()+"\n");
 	}
 }

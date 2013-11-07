@@ -29,9 +29,10 @@ public class Intersection extends Junction{
 	public int getRedLightTime(){
 		return redLightTime;
 	}
-	
-	//ustalam które ulice maj¹ jakie œwiat³o w danym momencie
-	public void checkStatus(int currentTime){
+	/*
+	 * ustalam które ulice maj¹ jakie œwiat³o w danym momencie
+	 */
+	public void checkStatus(int currentTime, int timeInterval){
 		if(currentTime%(greenLightTime+redLightTime)<=greenLightTime){
 			for(int i=0;i<4;i+=2){
 				entryRoads.get(i).setGreenLight();
@@ -46,7 +47,9 @@ public class Intersection extends Junction{
 		}
 	}
 
-	//jakos sobie funkcyjka ustalajaca gdzie pojedzie nasz pojazd z danej ulicy wejsciowej
+	/*
+	 * funkcja losuj¹ca drogê w któr¹ pojedzie samochód
+	 */
 	private Road chooseRoad(Road entryRoad){
 		Random random = new Random();
 		int traffics[] = new int[4];
@@ -76,25 +79,26 @@ public class Intersection extends Junction{
 		return escapeRoads.get(tmp);
 	}
 
-	public void moveVehicles() {
+	public void moveVehicles(int timeInterval) {
 		for(Road road: entryRoads){
 			if(road.checkGreenLight() && !road.isEmpty()){
 				Road awayRoad=chooseRoad(road);
 				if(awayRoad.isFull()){
-					Simulator.increaseWaitTime(Simulator.getTimeInterval()*road.getNumberOfWaiting());
+					Simulator.increaseWaitTime(timeInterval*road.getNumberOfWaiting());
 				}
 				else{
 					Vehicle first = road.getFirstWaitingVehicle();
 					if(first!=null){		//nie ma samochodu ktory juz dojechal do skrzyzowania - nie robie nic, jest -przenosze
 						first.resetWaitTime();
+						first.resetWaiting();
 						awayRoad.addVehicle(first);
 					}
 				}
 			}
 			else{
-				Simulator.increaseWaitTime(Simulator.getTimeInterval()*road.getNumberOfWaiting());
+				Simulator.increaseWaitTime(timeInterval*road.getNumberOfWaiting());
 			}
-			road.moveVehiclesOnRoad();
+			road.moveVehiclesOnRoad(timeInterval); //aktualizuje czasy przejazdów samochodów, które pozostaj¹ na drodze
 		}
 	}
 }
