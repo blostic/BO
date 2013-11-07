@@ -29,21 +29,25 @@ public class Intersection extends Junction{
 	public int getRedLightTime(){
 		return redLightTime;
 	}
+	
 	/*
 	 * ustalam które ulice maj¹ jakie œwiat³o w danym momencie
+	 * zwracam true jeœli maj¹ œwiat³a zielone drogi o parzystym modulo 2
 	 */
-	public void checkStatus(int currentTime, int timeInterval){
-		if(currentTime%(greenLightTime+redLightTime)<=greenLightTime){
+	public boolean checkStatus(int currentTime, int timeInterval){
+		if(currentTime%(greenLightTime+redLightTime)<greenLightTime){
 			for(int i=0;i<4;i+=2){
 				entryRoads.get(i).setGreenLight();
 				entryRoads.get(i+1).setRedLight();
-			}			
+			}	
+			return true;
 		}
 		else{
 			for(int i=0;i<4;i+=2){
 				entryRoads.get(i).setRedLight();
 				entryRoads.get(i+1).setGreenLight();
 			}
+			return false;
 		}
 	}
 

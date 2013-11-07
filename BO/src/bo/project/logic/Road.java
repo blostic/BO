@@ -8,7 +8,7 @@ public class Road {
 	private int minimalWaitTime;
 	private int trafficIntensity; //natê¿enie ruchu - œrednia iloœæ samochodów wje¿d¿aj¹cych na ulicê w godzinê
 	private boolean greenLight;
-	final static double averageTime = 1; /*sredni czas przejechania z srednia predkoscia sredniej 
+	private double averageTime = 1; /*sredni czas przejechania z srednia predkoscia sredniej 
 										   dlugosci samochodu*/
 	
 	
@@ -45,7 +45,7 @@ public class Road {
 		return minimalWaitTime;
 	}
 	
-	public static double getAverageTime(){
+	public double getAverageTime(){
 		return averageTime;
 	}
 	
@@ -53,6 +53,9 @@ public class Road {
 		vehicles.addLast(vehicle);
 	}
 	
+	/*
+	 * uzywane tylko przy losowaniu na poczatku samochodow
+	 */
 	public void addVehicleFirst(Vehicle vehicle){
 		vehicles.addFirst(vehicle);
 	}
@@ -100,5 +103,13 @@ public class Road {
 				vehicle.markAsWaiting();
 			}
 		}
+	}
+	
+	public void printState(){
+		System.out.print(ID+" has "+vehicles.size()+" vehicles: ");
+		for(Vehicle vehicle: vehicles){
+			System.out.print(vehicle.getWaitTime()+" "+vehicle.isWaiting()+"| ");
+		}
+		System.out.println();
 	}
 }

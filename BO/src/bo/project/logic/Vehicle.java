@@ -6,6 +6,7 @@ public class Vehicle {
 	
 	public Vehicle(){
 		this.waitTime=0;
+		this.isWaiting=false;
 	}
 	
 	public Vehicle(int waitTime){

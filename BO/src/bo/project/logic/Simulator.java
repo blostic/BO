@@ -17,7 +17,7 @@ public class Simulator {
 	
 	public void initializeVehiclesOnRoads(){
 		for(Junction junction: junctions){
-			junction.addRandomVehicles();
+			junction.addRandomVehicles(timeInterval);
 		}
 	}
 	
@@ -27,11 +27,19 @@ public class Simulator {
 				junction.checkStatus(currentTime, timeInterval);
 				junction.moveVehicles(timeInterval);
 			}
+			printState();
 		}
 		return totalWaitTime;
 	}
 	
 	public static void increaseWaitTime(int timeToIncrease){
 		totalWaitTime+=timeToIncrease;
+	}
+	
+	private void printState(){
+		for(Junction junction: junctions){
+			junction.printState();
+		}
+		System.out.println();
 	}
 }

@@ -18,19 +18,25 @@ public abstract class Junction implements IJunction{
 		this.y=y;
 	}
 	
-	//losuje sobie ileœ samochodów, nie wa¿ne ile na ka¿dej drodze bo w koñcu siê samo ustabilizuje
-	//póŸniej je ustawiam jakoœ w czasie na tej drodze
-	public void addRandomVehicles() {
+	/*
+	 * dodaje na ka¿d¹ ulicê sta³¹ liczbê samochodów, zale¿n¹ od natê¿enia ruchu
+	 * dla uproszczenia dodaje je na pocz¹tek skrzy¿owania wszystkie
+	 * jak to okarze siê problemem, mo¿na bêdzie pokombinowaæ coœ
+	 */
+	public void addRandomVehicles(int timeInterval) {
 		for(Road road: entryRoads){
-			Random random = new Random();
-			int lastWaitTime = 0;
-			for(int i=random.nextInt(road.getMaximalNumberOfVehicles());i>0;--i){
-				lastWaitTime = lastWaitTime + (int) Road.getAverageTime() + random.nextInt((int)((road.getMinimalWaitTime()-Road.getAverageTime()*(i-1)-lastWaitTime)*(1/Road.getAverageTime())));
-				road.addVehicleFirst(new Vehicle(lastWaitTime));
+			for(int i=0;i<((double)(road.getTrafficIntensity()*timeInterval)/3600.0)*road.getMaximalNumberOfVehicles();++i){
+				Vehicle vehicle = new Vehicle(road.getMinimalWaitTime());
+				vehicle.markAsWaiting();
+				road.addVehicle(vehicle);
 			}
 		}
 	}
 	
-	
+	public void printState(){
+		for(Road road: entryRoads){
+			road.printState();
+		}
+	}
 	
 }

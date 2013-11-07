@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Generator extends Junction{
-	private boolean generateFlag;
-	Random random;
+	private boolean generateFlag;	
 	
 	public Generator(int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y){
 		super(ID, entryRoads,awayRoads, x, y);
-		generateFlag=false;
-		random = new Random();
+		generateFlag=false;		
+	}
+	
+	public void setUpGenerationArray(int traffic){
+		
 	}
 	
 	/*
@@ -20,7 +22,8 @@ public class Generator extends Junction{
 	 * trafficIntensity/3600 - ilosc samochodow na sekunde wiec powinno to nam dac
 	 *  ilosc samochodow w czasie przejazdu 1 samochodu, max 1 :)
 	 */
-	public void checkStatus(int currentTime, int timeInterval){
+	public boolean checkStatus(int currentTime, int timeInterval){
+		Random random = new Random();
 		for(Road road: escapeRoads){
 			if(random.nextDouble()<=(road.getTrafficIntensity()*timeInterval)/(3600.0)){
 				generateFlag=true;
@@ -29,6 +32,7 @@ public class Generator extends Junction{
 				generateFlag=false;
 			}
 		}
+		return generateFlag;
 	}
 
 	/*
