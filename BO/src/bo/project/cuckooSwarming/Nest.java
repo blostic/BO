@@ -2,6 +2,8 @@ package bo.project.cuckooSwarming;
 
 import java.util.Random;
 
+import bo.project.logic.Simulator;
+
 public class Nest implements Comparable<Nest> {
 
 	public Solution solution;
@@ -29,14 +31,14 @@ public class Nest implements Comparable<Nest> {
 		return tmp.intValue();
 	}
 
-	public static Nest generateRandomNest(int problemSize) {
+	public static Nest generateRandomNest(Simulator simulator, int problemSize  ) {
 		Nest nest = new Nest();
 		Random rand = new Random();
 		for (int i = 0; i < problemSize; i++) {
 			nest.solution.greenLightsArray[i] = rand.nextDouble() * 100;
 			nest.solution.redLightsArray[i] = rand.nextDouble() * 100;
 		}
-		nest.energy = Cuckoo.energy(nest.solution);
+		nest.energy = Cuckoo.energy(simulator,nest.solution);
 		return nest;
 	}
 }
