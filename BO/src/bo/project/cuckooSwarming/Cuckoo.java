@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.Random;
 
 import bo.project.logic.Simulator;
-import bo.project.cuckooSwarming.*;
 
 public class Cuckoo {
 
@@ -34,7 +33,7 @@ public class Cuckoo {
 	}
 
 	/**
-	 * Cuckoo Constructor; 
+	 * Cuckoo Constructor;
 	 * 
 	 * @param simulator
 	 */
@@ -60,32 +59,40 @@ public class Cuckoo {
 		}
 		return bestSolution;
 	}
-	
+
 	/**
 	 * 
 	 * @param population
 	 * @return
 	 */
-	
+
 	private Solution findBestSolution(ArrayList<Nest> population) {
-		Collections.sort(population);		
-		if(population.size()>0){
-			return population.get(population.size()-1).solution;
+		Collections.sort(population);
+		if (population.size() > 0) {
+			return population.get(population.size() - 1).solution;
 		}
 		return null;
 	}
 
+	/**
+	 * Function replace fraction of worst solutions. I assumed that population
+	 * list have been sorted!! (functions is called only right after
+	 * findBestSolution, which call a Collection.Sort method.
+	 * 
+	 * @param population
+	 * @param fraction
+	 */
 	private void replaceWorstFraction(ArrayList<Nest> population,
 			double fraction) {
-		for (int i = 0; i < population.size()*fraction; i++) {
+		for (int i = 0; i < population.size() * fraction; i++) {
 			population.remove(i);
-			population.add(Nest.generateRandomNest(simulator,simulationSize));
-		}	
+			population.add(Nest.generateRandomNest(simulator, simulationSize));
+		}
 	}
 
 	/**
-	 * To calculate that value of energy, I'm using function from Simulator called runSimulation.
-	 * Solutions with lower energy are better.
+	 * To calculate that value of energy, I'm using function from Simulator
+	 * called runSimulation. Solutions with lower energy are better.
 	 * 
 	 * @param simulator
 	 * @param solution
@@ -101,7 +108,7 @@ public class Cuckoo {
 	 * @param population
 	 * @return Return random Nest from population
 	 */
-	
+
 	private Nest randomNest(ArrayList<Nest> population) {
 		Random rand = new Random();
 		return population.get(rand.nextInt(population.size()));
