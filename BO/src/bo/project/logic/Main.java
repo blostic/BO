@@ -47,6 +47,9 @@ public class Main {
 		
 		Simulator simulator = new Simulator(intersections, generators, 1, 2);
 		simulator.initializeVehiclesOnRoads();
-		System.out.print(simulator.runSimulation());
+		double redLightsArray[] = {30};
+		double greenLightsArray[] = {30} ;
+
+		System.out.print(simulator.runSimulation(redLightsArray,greenLightsArray));
 	}
 }

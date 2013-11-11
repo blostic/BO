@@ -40,14 +40,15 @@ public class Simulator {
 		}
 	}
 
-	public void setLights(int[] greenLights, int[] redLights) {
+	public void setLights(double[] greenLights, double[] redLights) {
 		for (int i = 0; i < intersections.size(); ++i) {
 			intersections.get(i).setGreenLightTime(greenLights[i]);
 			intersections.get(i).setRedLightTime(redLights[i]);
 		}
 	}
 
-	public int runSimulation() {
+	public int runSimulation(double[] greenLights, double[] redLights) {
+		this.setLights(greenLights, redLights);
 		for (int currentTime = 0; currentTime < totalTime; currentTime += timeInterval) {
 			for (Generator generator : generators) {
 				generator.checkStatus(currentTime, timeInterval);

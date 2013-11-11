@@ -65,11 +65,10 @@ public class Cuckoo {
 
 	private void replaceWorstFraction(ArrayList<Nest> population,
 			double fraction) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
-	private double energy(Solution solution) {
+	public static double energy(Solution solution) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

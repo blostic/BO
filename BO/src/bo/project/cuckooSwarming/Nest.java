@@ -31,6 +31,7 @@ public class Nest implements Comparable<Nest> {
 			nest.solution.greenLightsArray[i]= rand.nextDouble() * 10 ;
 			nest.solution.redLightsArray[i] = rand.nextDouble() * 10;
 		}
+		nest.energy = Cuckoo.energy(nest.solution);
 		return nest;
 	}
 }

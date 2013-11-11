@@ -21,11 +21,11 @@ public class Intersection extends Junction {
 		this.redLightTime = redLightTime;
 	}
 
-	public void setGreenLightTime(int newTime) {
+	public void setGreenLightTime(double newTime) {
 		this.greenLightTime = newTime;
 	}
 
-	public void setRedLightTime(int newTime) {
+	public void setRedLightTime(double newTime) {
 		this.redLightTime = newTime;
 	}
 
