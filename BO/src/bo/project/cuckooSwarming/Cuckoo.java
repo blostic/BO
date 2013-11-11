@@ -2,6 +2,7 @@ package bo.project.cuckooSwarming;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import bo.project.logic.Simulator;
 
@@ -12,7 +13,7 @@ public class Cuckoo {
 	/*
 	 * Number of Intersection in simulating problem.
 	 */
-	
+	private static ArrayList<Nest> population;
 	private int simulationSize;
 	
 	/**
@@ -41,7 +42,7 @@ public class Cuckoo {
 	}
 
 	public Solution cuckooSearch(int MaxGenerations) {
-		ArrayList<Nest> population = generateInitialPopulationOfNests(10,this.simulationSize);
+		population = generateInitialPopulationOfNests(10,this.simulationSize);
 		int t = 0;
 		Solution bestSolution = null;
 		while (t < MaxGenerations) {
@@ -74,16 +75,12 @@ public class Cuckoo {
 	}
 
 	private Nest randomNest(ArrayList<Nest> population) {
-		// TODO Auto-generated method stub
-		return null;
+		Random rand = new Random();
+		return population.get(rand.nextInt(population.size()));
 	}
 
 	private Solution generateRandomLevySolution() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	public static void main(String[] args) {
-
 	}
 }
