@@ -1,100 +1,96 @@
 package bo.project.logic;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Road {
-	protected String ID;
-	protected LinkedList<Vehicle> vehicles;
-	protected int maximalNumberOfVehicles;
-	protected int minimalWaitTime;
-	protected int trafficIntensity; //natê¿enie ruchu - œrednia iloœæ samochodów wje¿d¿aj¹cych na ulicê w godzinê
-	protected boolean greenLight;
-	final static double averageTime = 1; /*sredni czas przejechania z srednia predkoscia sredniej 
-										   dlugosci samochodu :D najs, nie? xD*/
-	
-	public Road(String ID, int maximalNumberOfVehicles, int trafficIntensity){
-		this.ID=ID;
-		vehicles = new LinkedList<Vehicle>();
-		this.maximalNumberOfVehicles=maximalNumberOfVehicles;
-		minimalWaitTime=(int)(maximalNumberOfVehicles*averageTime);
-		this.trafficIntensity=trafficIntensity;
-		greenLight=false;
+
+	/*
+	 * Potrzebne przy skrzyzowaniu aby nie iterowac po wszystkich pojazdach
+	 */
+
+	private ArrayList<Vehicle> vehicles;
+
+	private Color color;
+	private int maxCapacity;
+	private double permittedSpeed;
+	private Closure start;
+	private Closure ends;
+
+	/**
+	 * Skoro rozrozniamy drogi wchodzace na skrzyzowanie i wychodzace ze
+	 * skrzyzowania nie ma sensu przetrzymywac informacji o kolorze w
+	 * skrzyzowaniach. To drooga bedzie posiadala kolor oraz metody
+	 * odpowiedzialne za zmiane koloru (jakkolwiek beda one wywolywane z poziomu
+	 * skrzyzowan). Po podjechaniu do skrzyzowania (sprawdzenie odleglosci od
+	 * skrzyz.) pojazd nie bedzie zmienial swojego polozenia do momentu zmiany
+	 * koloru drogi na zielny
+	 */
+
+	public Road(int maxCapacity, double permittedSpeed, Closure start,
+			Closure ends) {
+		super();
+		this.maxCapacity = maxCapacity;
+		this.permittedSpeed = permittedSpeed;
+		this.start = start;
+		this.ends = ends;
+		this.ends.addEntranceRoads(this);
+		this.start.addEscapeRoads(this);
+		this.vehicles = new ArrayList<Vehicle>();
 	}
 
-	public boolean checkGreenLight(){
-		return greenLight;
+	public void setVehicles(ArrayList<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
-	
-	public void setGreenLight(){
-		greenLight=true;
+
+	public ArrayList<Vehicle> getVehicles() {
+		return vehicles;
 	}
-	
-	public void setRedLight(){
-		greenLight=false;
+
+	public Closure getStart() {
+		return start;
 	}
-	
-	public int getTrafficIntensity(){
-		return trafficIntensity;
+
+	public void setStart(Closure start) {
+		this.start = start;
 	}
-	
-	public int getMaximalNumberOfVehicles(){
-		return maximalNumberOfVehicles;
+
+	public Closure getEnds() {
+		return ends;
 	}
-	
-	public int getMinimalWaitTime(){
-		return minimalWaitTime;
+
+	public void setEnds(Closure ends) {
+		this.ends = ends;
 	}
-	
-	public static double getAverageTime(){
-		return averageTime;
+
+	public int getMaxCapacity() {
+		return maxCapacity;
 	}
-	
-	public void addVehicle(Vehicle vehicle){
-		vehicles.addLast(vehicle);
+
+	public Color getColor() {
+		return color;
 	}
-	
-	public void addVehicleFirst(Vehicle vehicle){
-		vehicles.addFirst(vehicle);
-	}
-	
-	public boolean isFull(){
-		return vehicles.size()>=maximalNumberOfVehicles;
-	}
-	
-	public boolean isEmpty(){
-		return vehicles.isEmpty();
-	}
-	
-	public Vehicle getFirstWaitingVehicle(){
-		if(!vehicles.isEmpty()){
-			if(vehicles.getFirst().getWaitTime()>=minimalWaitTime){
-				return vehicles.removeFirst();
-			}
-		}
-		return null;
-	}
-	
-	public int getNumberOfWaiting(){
-		int numberOfWaiting = 0;
-		for(int i=0;i<vehicles.size();++i){
-			if(vehicles.get(i).getWaitTime()>=minimalWaitTime-i*averageTime)
-				++numberOfWaiting;
-		}
-		return numberOfWaiting;
-	}
-	
-	public void moveVehiclesOnRoad(){
-		for(Vehicle vehicle: vehicles){
-			vehicle.increaseWaitTime(Simulator.getTimeInterval());
+
+	public void changeColor() {
+		if (this.color.equals(Color.RED)) {
+			this.color = Color.GREEN;
+		} else {
+			this.color = Color.RED;
 		}
 	}
-	
-	public void printState(){
-		System.out.print(ID+" has "+vehicles.size()+" ,"+greenLight+"\n");
-		for(Vehicle vehicle: vehicles){
-			System.out.print(vehicle.getWaitTime()+" ");
-		}
-		System.out.print("\n");
-		System.out.print(getNumberOfWaiting()+"\n");
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public double getPermittedSpeed() {
+		return permittedSpeed;
+	}
+
+	public void addVehicle(Vehicle vehicle) {
+		this.vehicles.add(vehicle);
+	}
+
+	public void deleteVehicle(Vehicle vehicle) {
+		this.vehicles.remove(vehicle);
 	}
 }

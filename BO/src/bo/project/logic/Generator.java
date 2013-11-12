@@ -1,58 +1,42 @@
 package bo.project.logic;
 
-import java.util.ArrayList;
 import java.util.Random;
 
-public class Generator extends Junction{
-	private boolean generateFlag;
-	Random random;
-	
-	public Generator(int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y){
-		super(ID, entryRoads,awayRoads, x, y);
-		generateFlag=false;
-		random = new Random();
-	}
-	
-	//dziwny warunek w ifie: timeInterval - czas przejazdu jednego samochodu
-	//						trafficIntensity/3600 - ilosc samochodow na sekunde
-	//wiec powinno to nam dac ilosc samochodow w czasie przejazdu 1 samochodu, max 1 :)
-	public void checkStatus(int currentTime){
-		for(Road road: escapeRoads){
-			if(random.nextDouble()<=(road.getTrafficIntensity()*Simulator.getTimeInterval())/(3600.0)){
-				generateFlag=true;
-			}
-			else{
-				generateFlag=false;
-			}
-		}
+public class Generator extends Closure {
+
+	public Generator(double xCoordinate, double yCoordinate,
+			double performance) {
+		super(xCoordinate, yCoordinate);
+		this.performance = (performance > 1.0) ? 1.0 : performance;
 	}
 
+	/**
+	 * Performance definiuje jaka jest "wydajność" generatora (samochod/sekunda)
+	 * - max 1
+	 */
 
-	public void moveVehicles() {
-		for(Road road: entryRoads){
-			road.getFirstWaitingVehicle(); //pobieramy pierwszy czekajacy na wyjazd i go od razu gubimy :)
-			road.moveVehiclesOnRoad();	//przesuwam pozostale
-		}
-		if(generateFlag){
-			for(Road road: escapeRoads){
-				if(!road.isFull()){
-					road.addVehicle(new Vehicle());
-				}
+	private double performance;
+
+	public double getPerformance() {
+		return performance;
+	}
+
+	public void setPerformance(double performance) {
+		this.performance = performance;
+	}
+
+	public Vehicle generate() {
+		Random rand = new Random();
+		System.out.println(escapeRoads.size());
+		if (rand.nextDouble() < performance) {
+			Road road = escapeRoads.get(rand.nextInt(escapeRoads.size()));
+			if (road.getEnds().equals(this)) {
+				return new Vehicle(road.getStart(), this, road);
+			} else {
+				return new Vehicle(road.getEnds(), this, road);
 			}
 		}
+		return null;
 	}
 
-	@Override
-	public int getPositionX() {
-		// TODO Auto-generated method stub
-		return this.x;
-	}
-
-	@Override
-	public int getPositionY() {
-		// TODO Auto-generated method stub
-		return this.y;
-	}
-	
-	
 }

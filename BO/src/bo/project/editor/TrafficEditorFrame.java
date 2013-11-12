@@ -33,18 +33,25 @@ public class TrafficEditorFrame {
 	private LayoutManager layout2;
 	
 	private JPanel drawingArea;
-	private ArrayList<Junction> junctions;
+	private ArrayList<Closure> closures;
 	private ArrayList<Road> roads;
 	
 	public TrafficEditorFrame()
 	{
-		junctions = new ArrayList<>();
+		closures = new ArrayList<>();
 		roads = new ArrayList<>();
-		
-		Road sampleRoad = new Road("1",30, 5);
+		int [] array = new int[10];
+		ArrayList<Double> outProbability  = new ArrayList<>();
+		Closure start = new Intersection(20.0f, 50.0f, outProbability,array );
+		Closure ends = new Intersection(50.0f, 50.0f,outProbability,array );
+		Closure generator = new Generator(100.0f,75.0f,0.5f);
+		Road sampleRoad = new Road(10, 20, start, ends);
+		Road sampleRoad2 = new Road(20, 10, start, generator);
+		closures.add(start);
+		closures.add(ends);
+		closures.add(generator);
 		roads.add(sampleRoad);
-		junctions.add(new Intersection(0, roads, new ArrayList<Road>(), 0, 0, 7,20 ));
-		junctions.add(new Intersection(1, new ArrayList<Road>(), roads, 0,0, 50 ,40 ));
+		roads.add(sampleRoad2);
 		
 		this.createView();
 	}
@@ -65,9 +72,11 @@ public class TrafficEditorFrame {
 		
 		frame = new JFrame("Badania Operacyjne");
 		frame.setSize(400, 300);
-		drawingArea = new DrawingArea(junctions,roads);
+		drawingArea = new DrawingArea(closures,roads,frame.WIDTH,frame.HEIGHT);
 		drawingArea.setSize(200, 200);
 		pane.add(drawingArea, BorderLayout.WEST);
+		
+		drawingArea.addMouseListener(new DrawingAreaMouseListener((DrawingArea) drawingArea));
 		
 		createMenu();
 		frame.setContentPane(pane);

@@ -1,112 +1,108 @@
 package bo.project.logic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
-public class Intersection extends Junction{
-	protected int greenLightTime;	//czas w sekundach œwiecenia zielonego œwiat³a dla ulicy pod indeksem 0
-	protected int redLightTime;	//jw
-	
-	public Intersection(int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, 
-			int greenLightTime, int redLightTime, int x, int y){
-		super(ID, entryRoads, awayRoads, x, y);
-		this.greenLightTime=greenLightTime;
-		this.redLightTime=redLightTime;
-	}
-	
-	public void setGreenLightTime(int newTime){
-		this.greenLightTime=newTime;
-	}
-	
-	public void setRedLightTime(int newTime){
-		this.redLightTime=newTime;
-	}
-	
-	public int getGreenLightTime(){
-		return greenLightTime;
-	}
-	
-	public int getRedLightTime(){
-		return redLightTime;
-	}
-	
-	//ustalam które ulice maj¹ jakie œwiat³o w danym momencie
-	public void checkStatus(int currentTime){
-		if(currentTime%(greenLightTime+redLightTime)<=greenLightTime){
-			for(int i=0;i<4;i+=2){
-				entryRoads.get(i).setGreenLight();
-				entryRoads.get(i+1).setRedLight();
-			}			
+public class Intersection extends Closure {
+
+	private ArrayList<Double> escapeRoadProbability;
+	/*
+	 * Time okresla czas przez ktory drogi 1 i 3 maja kolor zielony (komorka 0 )
+	 * drogi 2,4 maja kolor zielony (komorka 1)
+	 */
+
+	private int[] time;
+
+	/*
+	 * Clock jest odliczany w dÃ³Å‚, po przejsiu do zera ustawiany jest na wartosc
+	 * time2 lub time2, w zaleznosci od stanu current
+	 */
+
+	private int clock;
+	private int curent = 0;
+
+	public Intersection(double xCoordinate, double yCoordinate,
+			ArrayList<Double> escapeRoadProbability, int[] time) {
+
+		super(xCoordinate, yCoordinate);
+		this.escapeRoadProbability = escapeRoadProbability;
+		Iterator<Double> it = escapeRoadProbability.iterator();
+		this.escapeRoadProbability = new ArrayList<Double>();
+		double previos = 0;
+		while (it.hasNext()) {
+			previos += it.next();
+			this.escapeRoadProbability.add(previos);
 		}
-		else{
-			for(int i=0;i<4;i+=2){
-				entryRoads.get(i).setRedLight();
-				entryRoads.get(i+1).setGreenLight();
+		this.time = time;
+		this.clock = time[0];
+	}
+
+	public void initialize(){
+		/*
+		 * zainicjowanie kolorkow
+		 */
+		int foo=0;
+		for(Road road: this.entranceRoads){
+			if(foo%2==0){
+				road.setColor(Color.GREEN);				
+			}else{
+				road.setColor(Color.RED);
 			}
+			foo++;
+		}
+	}	
+	/*
+	 * Funkcja odpowiedzialna za zarzÄ…dzanie skrzyzowaniem
+	 */
+
+	public void manageIntersection() {
+		this.findParticipants();
+		for (Vehicle vehicle : this.participants) {
+			for (Road road : this.entranceRoads) {
+				if (road.getColor().equals(Color.GREEN)) {
+					this.randomTurn(vehicle);
+				}
+			}
+		}
+		this.clock--;
+		if (clock == 0) {
+			this.curent = (this.curent++) % 2;
+			this.clock = time[this.curent];
+			this.changeTrafficLights();
 		}
 	}
 
-	//jakos sobie funkcyjka ustalajaca gdzie pojedzie nasz pojazd z danej ulicy wejsciowej
-	private Road chooseRoad(Road entryRoad){
-		Random random = new Random();
-		int traffics[] = new int[4];
-		int totalTraffic, tmp;
-		totalTraffic=0;
-		int entryRoadIndex=0;
-		for(int i=0;i<4;++i){	//zliczam natezenie sumaryczne i zapisuje sobie natezenia drog, dajac za ta droge 0
-			if(!entryRoad.equals(entryRoads.get(i))){
-				traffics[i]=escapeRoads.get(i).getTrafficIntensity();
-				totalTraffic+=traffics[i];
-			}
-			else{
-				entryRoadIndex=i;
-				traffics[i]=0;
-			}
+	private void changeTrafficLights() {
+		for (Road road : this.entranceRoads) {
+			road.changeColor();
 		}
-		tmp = random.nextInt(totalTraffic);
-		for(int i=0;i<4;++i){
-			if(entryRoadIndex!=i && tmp<traffics[i]){
-				tmp=i;
+	}
+
+	/*
+	 * randomTurn ma prawidlowy rozklad prawdopodobienstwa dziÄ™ki zastosowanie
+	 * dystrybuanty
+	 */
+
+	public void randomTurn(Vehicle vehicle) {
+		Double rand = new Random().nextDouble();
+		int who = 0;
+		for (double d : this.escapeRoadProbability) {
+			System.out.println("d = " + d + " rand = " + rand);
+			if (d > rand) {
+				System.out.println(who);
 				break;
 			}
-			else{
-				tmp-=traffics[i];
-			}
+			who++;
 		}
-		return escapeRoads.get(tmp);
-	}
+		Closure closure = this.escapeRoads.get(who).getEnds();
 
-	public void moveVehicles() {
-		for(Road road: entryRoads){
-			if(road.checkGreenLight() && !road.isEmpty()){
-				Road awayRoad=chooseRoad(road);
-				if(awayRoad.isFull()){
-					Simulator.increaseWaitTime(Simulator.getTimeInterval()*road.getNumberOfWaiting());
-				}
-				else{
-					Vehicle first = road.getFirstWaitingVehicle();
-					if(first!=null){		//nie ma samochodu ktory juz dojechal do skrzyzowania - nie robie nic, jest -przenosze
-						first.resetWaitTime();
-						awayRoad.addVehicle(first);
-					}
-				}
-			}
-			else{
-				Simulator.increaseWaitTime(Simulator.getTimeInterval()*road.getNumberOfWaiting());
-			}
-			road.moveVehiclesOnRoad();
+		if (closure.equals(this)) {
+			vehicle.setdestination(this.escapeRoads.get(who).getEnds(),
+					this.escapeRoads.get(who));
+		} else {
+			vehicle.setdestination(this.escapeRoads.get(who).getStart(),
+					this.escapeRoads.get(who));
 		}
-	}
-
-	@Override
-	public int getPositionX() {
-		// TODO Auto-generated method stub
-		return this.x;
-	}
-
-	@Override
-	public int getPositionY() {
-		// TODO Auto-generated method stub
-		return this.y;
 	}
 }

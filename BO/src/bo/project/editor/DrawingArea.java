@@ -2,15 +2,13 @@ package bo.project.editor;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.ItemListener;
 import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
-
-import bo.project.logic.IJunction;
-import bo.project.logic.Junction;
+import bo.project.logic.Closure;
+import bo.project.logic.Generator;
+import bo.project.logic.Intersection;
 import bo.project.logic.Road;
 
 public class DrawingArea extends JPanel {
@@ -19,49 +17,53 @@ public class DrawingArea extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private List<Junction> junctions;
+	private List<Closure> closures;
 	private List<Road> roads;
+	private double offsetX;
+	private double offsetY;
 	
-	public DrawingArea(List<Junction> junctions, List<Road> roads){
-		this.setSize(300, 300);
-		this.junctions = junctions;
+	public DrawingArea(List<Closure> junctions, List<Road> roads, int parentWidth, int parentHeigth){
+		this.setSize(parentWidth-200, parentHeigth);
+		this.closures = junctions;
 		this.roads = roads;
-		this.setBorder(BorderFactory.createLineBorder(Color.BLUE,2,true));
+		offsetX = 0;
+		offsetY = 0;
 	}
-	
 	
 	@Override
 	public void paintComponent(Graphics g) {
-		 g.setClip(0, 0, 100, 400);
-	     //super.paintComponent(g);    
+		 g.setClip(0, 0, 400, 400);
+	     super.paintComponent(g);    
 		 
-		 for(Junction junction : junctions){
-			 int x = junction.getPositionX();
-			 int y = junction.getPositionY();
-			List<Road> escapeRoads = junction.getEscapeRoads();
+		 for(Closure closure : closures){
+			 double x = closure.getxCoordinate();
+			 double y = closure.getyCoordinate();
+			 List<Road> escapeRoads = closure.getEscapeRoads();
 			 g.setColor(Color.yellow);
 			 for(Road road : escapeRoads){
-				 Junction dstJunction = getDestinationJuniction(road);
-				 if(dstJunction == null)
+				 Closure destination = road.getEnds();
+				 if(destination == null)
 					 continue;
-				 int dstX = dstJunction.getPositionX();
-				 int dstY = dstJunction.getPositionY();
-				 g.drawLine(x, y, dstX, dstY);
+				 double dstX = destination.getxCoordinate();
+				 double dstY = destination.getyCoordinate();
+				 g.drawLine((int)(x-offsetX), (int)(y-offsetY), (int)(dstX-offsetX), (int)(dstY-offsetY));
 			 }
-			 g.setColor(Color.red);
-			 g.drawRect(x-1, y-1, 3, 3);
+			 if(closure.getClass().equals(Generator.class)){
+				 g.setColor(Color.red);
+			 }
+			 else if(closure.getClass().equals(Intersection.class)){
+				 g.setColor(Color.black);
+			 }
+			 g.drawRect((int)(x-1 - offsetX), (int)(y-1 - offsetY), 3, 3);
 		 }
+		 
+		 if(backGroundColor!=null)
+			 g.drawRect(0, 0, 200, 100);
    }
-	
-	private Junction getDestinationJuniction(Road road){
-		for(Junction junction : junctions){
-			List<Road> enterRoads = junction.getEnterRoads();
-			for(Road tmpRoad : enterRoads){
-				if(tmpRoad.equals(road)){
-					return junction;
-				}
-			}
-		}
-		return null;
+
+	private Color backGroundColor;
+	public void setBackgroundStatic(Color color) {
+		// TODO Auto-generated method stub
+		this.backGroundColor = color;
 	}
 }
