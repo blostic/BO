@@ -6,9 +6,10 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import bo.project.logic.Closure;
+
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
+import bo.project.logic.Junction;
 import bo.project.logic.Road;
 
 public class DrawingArea extends JPanel {
@@ -17,12 +18,12 @@ public class DrawingArea extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private List<Closure> closures;
+	private List<Junction> closures;
 	private List<Road> roads;
 	private double offsetX;
 	private double offsetY;
 	
-	public DrawingArea(List<Closure> junctions, List<Road> roads, int parentWidth, int parentHeigth){
+	public DrawingArea(List<Junction> junctions, List<Road> roads, int parentWidth, int parentHeigth){
 		this.setSize(parentWidth-200, parentHeigth);
 		this.closures = junctions;
 		this.roads = roads;
@@ -35,17 +36,26 @@ public class DrawingArea extends JPanel {
 		 g.setClip(0, 0, 400, 400);
 	     super.paintComponent(g);    
 		 
-		 for(Closure closure : closures){
-			 double x = closure.getxCoordinate();
-			 double y = closure.getyCoordinate();
+		 for(Junction closure : closures){
+			 double x = closure.getXCoordinate();
+			 double y = closure.getYCoordinate();
 			 List<Road> escapeRoads = closure.getEscapeRoads();
 			 g.setColor(Color.yellow);
 			 for(Road road : escapeRoads){
-				 Closure destination = road.getEnds();
+				 Junction destination = null;
+				 
+				 for(Junction end : closures){
+					 List<Road> entryRoads = end.getEntryRoads();
+					 if(entryRoads.contains(road)){
+						 destination = end;
+						 break;
+					 }
+				 }
+
 				 if(destination == null)
 					 continue;
-				 double dstX = destination.getxCoordinate();
-				 double dstY = destination.getyCoordinate();
+				 double dstX = destination.getXCoordinate();
+				 double dstY = destination.getYCoordinate();
 				 g.drawLine((int)(x-offsetX), (int)(y-offsetY), (int)(dstX-offsetX), (int)(dstY-offsetY));
 			 }
 			 if(closure.getClass().equals(Generator.class)){

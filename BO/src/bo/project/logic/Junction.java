@@ -1,6 +1,7 @@
 package bo.project.logic;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public abstract class Junction {
@@ -19,6 +20,21 @@ public abstract class Junction {
 		this.escapeRoads = awayRoads;
 		this.xCoordinate = xCoordinate;
 		this.yCoordinate = yCoordinate;
+	}
+	
+	public int getXCoordinate(){
+		return xCoordinate;
+	}
+	
+	public List<Road> getEscapeRoads(){
+		return escapeRoads;
+	}
+	
+	public List<Road> getEntryRoads(){
+		return entryRoads;
+	}
+	public int getYCoordinate(){
+		return yCoordinate;
 	}
 
 	/*

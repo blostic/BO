@@ -33,7 +33,7 @@ public class TrafficEditorFrame {
 	private LayoutManager layout2;
 	
 	private JPanel drawingArea;
-	private ArrayList<Closure> closures;
+	private ArrayList<Junction> closures;
 	private ArrayList<Road> roads;
 	
 	public TrafficEditorFrame()
@@ -41,17 +41,42 @@ public class TrafficEditorFrame {
 		closures = new ArrayList<>();
 		roads = new ArrayList<>();
 		int [] array = new int[10];
-		ArrayList<Double> outProbability  = new ArrayList<>();
-		Closure start = new Intersection(20.0f, 50.0f, outProbability,array );
-		Closure ends = new Intersection(50.0f, 50.0f,outProbability,array );
-		Closure generator = new Generator(100.0f,75.0f,0.5f);
-		Road sampleRoad = new Road(10, 20, start, ends);
-		Road sampleRoad2 = new Road(20, 10, start, generator);
+
+		Road firstRoad = new Road("road_x",10,20);
+		Road secondRoad = new Road("road_a",10,20);
+		Road thirdRoad = new Road("road_c",10,20);
+		// (int ID, ArrayList<Road> entryRoads,
+		//ArrayList<Road> awayRoads, double greenLightTime, double redLightTime,
+		//int xCoordinate, int yCoordinate) 
+		
+		ArrayList<Road> out3 = new ArrayList();
+		ArrayList<Road> in3 = new ArrayList();
+		out3.add(thirdRoad);
+		in3.add(secondRoad);
+		
+		ArrayList<Road> out2 = new ArrayList();
+		ArrayList<Road> in2 = new ArrayList();
+		out2.add(secondRoad);
+		in2.add(firstRoad);
+		
+		ArrayList<Road> out1 = new ArrayList();
+		ArrayList<Road> in1 = new ArrayList();
+		out1.add(firstRoad);
+		in1.add(thirdRoad);
+		
+		Junction start = new Intersection(2, in2, out2, 1.0f, 2.0f,100,100);
+		Junction ends = new Intersection(3, in3, out3, 2.0f, 4.0f, 200,150);
+		
+		//(int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y){
+		Junction generator = new Generator(1, in1, out1,50,100);
+
+
 		closures.add(start);
 		closures.add(ends);
 		closures.add(generator);
-		roads.add(sampleRoad);
-		roads.add(sampleRoad2);
+		roads.add(firstRoad);
+		roads.add(secondRoad);
+		roads.add(thirdRoad);
 		
 		this.createView();
 	}
