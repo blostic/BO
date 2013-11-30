@@ -2,9 +2,9 @@ package bo.project.editor;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import bo.project.logic.Generator;
@@ -19,14 +19,17 @@ public class DrawingArea extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private List<Junction> closures;
-	private List<Road> roads;
 	private double offsetX;
 	private double offsetY;
+	
+	public void moveMap(Point offset){
+		offsetX += offset.getX();
+		offsetY += offset.getY();
+	}
 	
 	public DrawingArea(List<Junction> junctions, List<Road> roads, int parentWidth, int parentHeigth){
 		this.setSize(parentWidth-200, parentHeigth);
 		this.closures = junctions;
-		this.roads = roads;
 		offsetX = 0;
 		offsetY = 0;
 	}
@@ -34,8 +37,13 @@ public class DrawingArea extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		 g.setClip(0, 0, 400, 400);
-	     super.paintComponent(g);    
-		 
+	     super.paintComponent(g); 
+	    
+	     if(backGroundColor!=null){
+
+			 g.drawRect(0, 0, 200, 100);
+	     }
+	     
 		 for(Junction closure : closures){
 			 double x = closure.getXCoordinate();
 			 double y = closure.getYCoordinate();
@@ -67,13 +75,11 @@ public class DrawingArea extends JPanel {
 			 g.drawRect((int)(x-1 - offsetX), (int)(y-1 - offsetY), 3, 3);
 		 }
 		 
-		 if(backGroundColor!=null)
-			 g.drawRect(0, 0, 200, 100);
    }
 
 	private Color backGroundColor;
 	public void setBackgroundStatic(Color color) {
-		// TODO Auto-generated method stub
+
 		this.backGroundColor = color;
 	}
 }

@@ -10,8 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.ImageObserver;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -40,8 +40,6 @@ public class TrafficEditorFrame {
 	{
 		closures = new ArrayList<>();
 		roads = new ArrayList<>();
-		int [] array = new int[10];
-
 		Road firstRoad = new Road("road_x",10,20);
 		Road secondRoad = new Road("road_a",10,20);
 		Road thirdRoad = new Road("road_c",10,20);
@@ -49,18 +47,18 @@ public class TrafficEditorFrame {
 		//ArrayList<Road> awayRoads, double greenLightTime, double redLightTime,
 		//int xCoordinate, int yCoordinate) 
 		
-		ArrayList<Road> out3 = new ArrayList();
-		ArrayList<Road> in3 = new ArrayList();
+		ArrayList<Road> out3 = new ArrayList<Road>();
+		ArrayList<Road> in3 = new ArrayList<Road>();
 		out3.add(thirdRoad);
 		in3.add(secondRoad);
 		
-		ArrayList<Road> out2 = new ArrayList();
-		ArrayList<Road> in2 = new ArrayList();
+		ArrayList<Road> out2 = new ArrayList<Road>();
+		ArrayList<Road> in2 = new ArrayList<Road>();
 		out2.add(secondRoad);
 		in2.add(firstRoad);
 		
-		ArrayList<Road> out1 = new ArrayList();
-		ArrayList<Road> in1 = new ArrayList();
+		ArrayList<Road> out1 = new ArrayList<Road>();
+		ArrayList<Road> in1 = new ArrayList<Road>();
 		out1.add(firstRoad);
 		in1.add(thirdRoad);
 		
@@ -69,7 +67,6 @@ public class TrafficEditorFrame {
 		
 		//(int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y){
 		Junction generator = new Generator(1, in1, out1,50,100);
-
 
 		closures.add(start);
 		closures.add(ends);
@@ -97,11 +94,12 @@ public class TrafficEditorFrame {
 		
 		frame = new JFrame("Badania Operacyjne");
 		frame.setSize(400, 300);
-		drawingArea = new DrawingArea(closures,roads,frame.WIDTH,frame.HEIGHT);
+		drawingArea = new DrawingArea(closures,roads,ImageObserver.WIDTH,ImageObserver.HEIGHT);
 		drawingArea.setSize(200, 200);
 		pane.add(drawingArea, BorderLayout.WEST);
 		
-		drawingArea.addMouseListener(new DrawingAreaMouseListener((DrawingArea) drawingArea));
+		DrawingAreaMouseListener mouseListener = new DrawingAreaMouseListener((DrawingArea)drawingArea);
+		pane.addMouseListener(mouseListener);
 		
 		createMenu();
 		frame.setContentPane(pane);
@@ -155,6 +153,7 @@ public class TrafficEditorFrame {
 		
 		return panel;
 	}
+	
 	private void createMenu() {
 		layout2 = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
