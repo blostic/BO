@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import bo.project.logic.Intersection;
 import bo.project.logic.Simulator;
 
 public class Cuckoo {
@@ -17,7 +18,7 @@ public class Cuckoo {
 	private int simulationSize;
 
 	/**
-	 * Function generates initial solutions for prosimulator,blem. Solutions are
+	 * Function generates initial solutions for simulator problem. Solutions are
 	 * generated using random numbers.
 	 * 
 	 * @param numberOfSolution
@@ -48,8 +49,8 @@ public class Cuckoo {
 		int t = 0;
 		Solution bestSolution = null;
 		while (t < MaxGenerations) {
-			Solution solution = generateRandomLevySolution();
 			Nest nest = randomNest(population);
+			Solution solution = generateRandomLevySolution(nest.solution);
 			if (nest.energy - energy(this.simulator, solution) < 0) {
 				nest.solution = solution;
 			}
@@ -113,9 +114,48 @@ public class Cuckoo {
 		Random rand = new Random();
 		return population.get(rand.nextInt(population.size()));
 	}
+	
+	/**
+	 * Function which generates a length of levy flight
+	 * @param alpha corresponds to dispersion of drawn numbers.  
+	 * @return
+	 */
+	
+	public double levy(double alpha) {
+		Random random = new Random();
+		double ur = random.nextDouble();
+		if (random.nextInt(2) != 1) {
+			return 1/ Math.pow(ur, 1 / alpha);
+		} else {
+			return -1 / Math.pow(ur, 1 / alpha);
+		}
+	}
 
-	private Solution generateRandomLevySolution() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Function take one parameter - solution - and performs a random Levy
+	 * Flight on the solution attributes (arrays of red and green times on
+	 * intersections). Function preserves time of lighting greater than 0
+	 * 
+	 * @param solution
+	 * @return solution after levy flight
+	 */
+	public Solution generateRandomLevySolution(Solution solution) {
+		for (int i = 0; i < solution.greenLightsArray.length; i++) {
+			solution.greenLightsArray[i] += levy( 1.001);
+			if (solution.greenLightsArray[i] < 0)
+				solution.greenLightsArray[i] = 0.1;
+			solution.redLightsArray[i] += levy( 1.001);
+			if (solution.redLightsArray[i] < 0)
+				solution.redLightsArray[i] = 0.1;
+		}
+		return solution;
+	}
+
+	public static void main(String[] args) {
+		Cuckoo coo = new Cuckoo(new Simulator(new ArrayList<Intersection>(),
+				null, 0, 0));
+		for (int i = 0; i < 100; i++) {
+			System.out.println(coo.levy( 1.001));
+		}
 	}
 }
