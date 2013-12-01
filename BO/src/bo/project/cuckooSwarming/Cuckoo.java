@@ -150,12 +150,4 @@ public class Cuckoo {
 		}
 		return solution;
 	}
-
-	public static void main(String[] args) {
-		Cuckoo coo = new Cuckoo(new Simulator(new ArrayList<Intersection>(),
-				null, 0, 0));
-		for (int i = 0; i < 100; i++) {
-			System.out.println(coo.levy( 1.001));
-		}
-	}
 }
