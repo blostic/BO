@@ -100,7 +100,7 @@ public class TrafficEditorFrame {
 		
 		DrawingAreaMouseListener mouseListener = new DrawingAreaMouseListener((DrawingArea)drawingArea);
 		pane.addMouseListener(mouseListener);
-		
+		pane.addMouseMotionListener(mouseListener);
 		createMenu();
 		frame.setContentPane(pane);
 		

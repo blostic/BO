@@ -18,18 +18,24 @@ public class DrawingArea extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private List<Junction> closures;
+	private List<Junction> junctions;
 	private double offsetX;
 	private double offsetY;
+	// jakies tryby nie wiem co - mozna to jeszcze dalej wystawic:)
+	private int mode = 0;
 	
-	public void moveMap(Point offset){
+	public int getActualMode(){
+		return mode;
+	}
+	
+	public void moveTmpMap(Point offset){
 		offsetX += offset.getX();
 		offsetY += offset.getY();
 	}
 	
 	public DrawingArea(List<Junction> junctions, List<Road> roads, int parentWidth, int parentHeigth){
 		this.setSize(parentWidth-200, parentHeigth);
-		this.closures = junctions;
+		this.junctions = junctions;
 		offsetX = 0;
 		offsetY = 0;
 	}
@@ -37,22 +43,26 @@ public class DrawingArea extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		 g.setClip(0, 0, 400, 400);
-	     super.paintComponent(g); 
-	    
-	     if(backGroundColor!=null){
-
-			 g.drawRect(0, 0, 200, 100);
-	     }
+		 super.paintComponent(g);
 	     
-		 for(Junction closure : closures){
+		 for(Junction closure : junctions){
 			 double x = closure.getXCoordinate();
 			 double y = closure.getYCoordinate();
 			 List<Road> escapeRoads = closure.getEscapeRoads();
+
+			 if(closure.getClass().equals(Generator.class)){
+				 g.setColor(Color.red);
+			 }
+			 else if(closure.getClass().equals(Intersection.class)){
+				 g.setColor(Color.black);
+			 }
+			 g.drawRect((int)(x-1 - offsetX), (int)(y-1 - offsetY), 3, 3);
+			 
 			 g.setColor(Color.yellow);
 			 for(Road road : escapeRoads){
 				 Junction destination = null;
 				 
-				 for(Junction end : closures){
+				 for(Junction end : junctions){
 					 List<Road> entryRoads = end.getEntryRoads();
 					 if(entryRoads.contains(road)){
 						 destination = end;
@@ -66,20 +76,11 @@ public class DrawingArea extends JPanel {
 				 double dstY = destination.getYCoordinate();
 				 g.drawLine((int)(x-offsetX), (int)(y-offsetY), (int)(dstX-offsetX), (int)(dstY-offsetY));
 			 }
-			 if(closure.getClass().equals(Generator.class)){
-				 g.setColor(Color.red);
-			 }
-			 else if(closure.getClass().equals(Intersection.class)){
-				 g.setColor(Color.black);
-			 }
-			 g.drawRect((int)(x-1 - offsetX), (int)(y-1 - offsetY), 3, 3);
 		 }
-		 
    }
 
-	private Color backGroundColor;
-	public void setBackgroundStatic(Color color) {
-
-		this.backGroundColor = color;
+	public void addElement(Junction junction) {
+		junctions.add(junction);
+		 
 	}
 }
