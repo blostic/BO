@@ -9,6 +9,7 @@ public class DrawingAreaMouseListener implements MouseListener {
 
 	private DrawingArea area;
 	private Point startPoint;
+	public String which = null;		//Co ma rysowac
 	public DrawingAreaMouseListener(DrawingArea area){
 		this.area = area;
 	}
@@ -18,6 +19,9 @@ public class DrawingAreaMouseListener implements MouseListener {
 		
 		area.setBackground(Color.white);
 		area.setBackgroundStatic(Color.white);
+		if(which == "Generator"){
+			e.getX();
+		}
 	}
 
 	@Override
