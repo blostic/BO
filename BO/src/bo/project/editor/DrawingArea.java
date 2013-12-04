@@ -11,6 +11,7 @@ import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
 import bo.project.logic.Junction;
 import bo.project.logic.Road;
+import bo.project.logic.Vehicle;
 
 public class DrawingArea extends JPanel {
 
@@ -62,7 +63,7 @@ public class DrawingArea extends JPanel {
 			 }
 			 g.drawRect((int)(x-1 - offsetX), (int)(y-1 - offsetY), 3, 3);
 			 
-			 g.setColor(Color.yellow);
+			
 			 for(Road road : escapeRoads){
 				 Junction destination = null;
 				 
@@ -78,6 +79,11 @@ public class DrawingArea extends JPanel {
 					 continue;
 				 double dstX = destination.getXCoordinate();
 				 double dstY = destination.getYCoordinate();
+				 g.setColor(Color.green);
+				 for(Vehicle veh : road.getVehicles()){
+					 g.drawRect((int)(x-1 - offsetX), (int)(y-1 - offsetY), 3, 3);
+				 }
+				 g.setColor(Color.yellow);
 				 g.drawLine((int)(x-offsetX), (int)(y-offsetY), (int)(dstX-offsetX), (int)(dstY-offsetY));
 			 }
 		 }
@@ -86,5 +92,12 @@ public class DrawingArea extends JPanel {
 	public void addElement(Junction junction) {
 		junctions.add(junction);
 		 
+	}
+
+	public Point getRealPosition(Point endPoint) {
+		endPoint.x = (int) (endPoint.x + offsetX);
+		endPoint.y = (int) (endPoint.y + offsetY);
+		
+		return endPoint;
 	}
 }

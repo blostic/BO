@@ -17,10 +17,8 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 	private DrawingArea area;
 	private Point startPoint;
 	private Point lastPoint;
-	private int mode;
 	public DrawingAreaMouseListener(DrawingArea area){
 		this.area = area;
-		mode = 0;
 	}
 	
 	@Override
@@ -42,7 +40,6 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 	@Override
 	public void mousePressed(MouseEvent e) {
 		startPoint = e.getPoint();
-		mode = 1;
 		lastPoint = e.getPoint();
 	}
 
@@ -53,10 +50,9 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 		//int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y
 		ArrayList<Road> entryRoads = new ArrayList<Road>();
 		ArrayList<Road> awayRoads = new ArrayList<Road>();
-		Generator generator = new Generator(6,entryRoads, awayRoads,endPoint.x,endPoint.y);
+		Point offset = area.getRealPosition(endPoint);
+		Generator generator = new Generator(6,entryRoads, awayRoads,offset.x,offset.y);
 		area.addElement(generator);
-		endPoint.x = (int) (endPoint.getX() -startPoint.getX());
-		endPoint.y = (int) (endPoint.getY() -startPoint.getY());
 	}
 	
 	private void addIntersectionAt(MouseEvent e){
@@ -65,10 +61,9 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 		//int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y
 		ArrayList<Road> entryRoads = new ArrayList<Road>();
 		ArrayList<Road> awayRoads = new ArrayList<Road>();
-		Intersection generator = new Intersection(7,entryRoads, awayRoads,10,20,endPoint.x,endPoint.y);
+		Point offset = area.getRealPosition(endPoint);
+		Intersection generator = new Intersection(7,entryRoads, awayRoads,10,20,offset.x,offset.y);
 		area.addElement(generator);
-		endPoint.x = (int) (endPoint.getX() -startPoint.getX());
-		endPoint.y = (int) (endPoint.getY() -startPoint.getY());
 	}
 
 	@Override
@@ -105,7 +100,6 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
         parent.invalidate();
         parent.revalidate();
         parent.repaint();
-        mode = 0;
 	}
 
 	@Override

@@ -35,6 +35,9 @@ public class TrafficEditorFrame {
 	private JPanel drawingArea;
 	private ArrayList<Junction> closures;
 	private ArrayList<Road> roads;
+	private ArrayList<Intersection> intersections;
+	private ArrayList<Generator> generators;
+	private Simulator simulator;
 	
 	public TrafficEditorFrame()
 	{
@@ -43,9 +46,6 @@ public class TrafficEditorFrame {
 		Road firstRoad = new Road("road_x",10,20);
 		Road secondRoad = new Road("road_a",10,20);
 		Road thirdRoad = new Road("road_c",10,20);
-		// (int ID, ArrayList<Road> entryRoads,
-		//ArrayList<Road> awayRoads, double greenLightTime, double redLightTime,
-		//int xCoordinate, int yCoordinate) 
 		
 		ArrayList<Road> out3 = new ArrayList<Road>();
 		ArrayList<Road> in3 = new ArrayList<Road>();
@@ -62,20 +62,26 @@ public class TrafficEditorFrame {
 		out1.add(firstRoad);
 		in1.add(thirdRoad);
 		
+		intersections = new ArrayList<Intersection>();
+		generators = new ArrayList<Generator>();
 		Junction start = new Intersection(2, in2, out2, 1.0f, 2.0f,100,100);
 		Junction ends = new Intersection(3, in3, out3, 2.0f, 4.0f, 200,150);
-		
+		intersections.add((Intersection) start);
+		intersections.add((Intersection) ends);
 		//(int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y){
 		Junction generator = new Generator(1, in1, out1,50,100);
-
+		generators.add((Generator) generator);
+		
 		closures.add(start);
 		closures.add(ends);
 		closures.add(generator);
 		roads.add(firstRoad);
 		roads.add(secondRoad);
 		roads.add(thirdRoad);
-		
 		this.createView();
+		double [] lights = new double[intersections.size()];
+		simulator = new Simulator(intersections,generators,10,1000);
+		
 	}
 	
 	@SuppressWarnings("deprecation")

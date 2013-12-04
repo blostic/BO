@@ -1,5 +1,6 @@
 package bo.project.logic;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Road {
 	private String ID;
@@ -112,4 +113,9 @@ public class Road {
 		}
 		System.out.println();
 	}
+	
+	public List<Vehicle> getVehicles(){
+		return vehicles;
+	}
+	
 }
