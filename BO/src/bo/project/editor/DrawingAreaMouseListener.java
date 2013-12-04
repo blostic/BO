@@ -9,6 +9,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import bo.project.logic.Generator;
+import bo.project.logic.Intersection;
 import bo.project.logic.Road;
 
 public class DrawingAreaMouseListener implements MouseListener,MouseMotionListener {
@@ -24,10 +25,6 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-		if(e.getButton() == MouseEvent.BUTTON3){
-			mode = (mode + 1) % 3;
-		}
 		
 	}
 
@@ -68,7 +65,7 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 		//int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y
 		ArrayList<Road> entryRoads = new ArrayList<Road>();
 		ArrayList<Road> awayRoads = new ArrayList<Road>();
-		Generator generator = new Generator(6,entryRoads, awayRoads,endPoint.x,endPoint.y);
+		Intersection generator = new Intersection(7,entryRoads, awayRoads,10,20,endPoint.x,endPoint.y);
 		area.addElement(generator);
 		endPoint.x = (int) (endPoint.getX() -startPoint.getX());
 		endPoint.y = (int) (endPoint.getY() -startPoint.getY());
@@ -77,6 +74,7 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if(e.getButton() == MouseEvent.BUTTON3){
+			area.incActualMode();
 			return;
 		}
 		
@@ -112,13 +110,15 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
-		
+		int areaMode = area.getActualMode();
+		if(areaMode == 0){
 			Point punkt = arg0.getPoint();
 			Point punkt2 = arg0.getPoint();
 			punkt.x = (int) (punkt.getX() - lastPoint.getX());
 			punkt.y = (int) (punkt.getY() - lastPoint.getY());
 			area.moveTmpMap(punkt);
 			lastPoint = punkt2;
+		}
 		
 	}
 

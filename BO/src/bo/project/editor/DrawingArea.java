@@ -24,6 +24,10 @@ public class DrawingArea extends JPanel {
 	// jakies tryby nie wiem co - mozna to jeszcze dalej wystawic:)
 	private int mode = 0;
 	
+	public void incActualMode(){
+		mode = (mode + 1) % 3;
+	}
+	
 	public int getActualMode(){
 		return mode;
 	}
