@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 import bo.project.logic.*;
+import bo.project.logic.Simulator;
 
 public class TrafficEditorFrame {
 
