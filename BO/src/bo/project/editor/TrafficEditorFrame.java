@@ -33,11 +33,15 @@ public class TrafficEditorFrame {
 	private LayoutManager layout2;
 	
 	private JPanel drawingArea;
+	private DrawingAreaMouseListener mouseListener;
 	private ArrayList<Junction> closures;
 	private ArrayList<Road> roads;
 	private ArrayList<Intersection> intersections;
 	private ArrayList<Generator> generators;
 	private Simulator simulator;
+	private int generatorID = 1;
+	private int junctionID = 1;
+	private int roadID = 1;
 	
 	public TrafficEditorFrame()
 	{
@@ -99,14 +103,15 @@ public class TrafficEditorFrame {
 		pane.setBorder(border);
 		
 		frame = new JFrame("Badania Operacyjne");
-		frame.setSize(400, 300);
+		frame.setSize(600, 400);
+		//frame.setBackground(Color.cyan);
 		drawingArea = new DrawingArea(closures,roads,ImageObserver.WIDTH,ImageObserver.HEIGHT);
-		drawingArea.setSize(200, 200);
+		drawingArea.setSize(300, 300);
 		pane.add(drawingArea, BorderLayout.WEST);
 		
 		DrawingAreaMouseListener mouseListener = new DrawingAreaMouseListener((DrawingArea)drawingArea);
 		pane.addMouseListener(mouseListener);
-		pane.addMouseMotionListener(mouseListener);
+		//pane.addMouseMotionListener(mouseListener);
 		createMenu();
 		frame.setContentPane(pane);
 		
@@ -123,7 +128,43 @@ public class TrafficEditorFrame {
 		JPanel panel = new JPanel();
 		
 		BoxLayout boxLayout = new BoxLayout(panel,  BoxLayout.PAGE_AXIS);
-		JButton button = createButton("Zacznij od nowa");
+		JButton button;
+		panel.add(Box.createRigidArea(new Dimension(0,5)));
+		button = createButton("Dodaj Generator");
+		button.setSize(200, 20);
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				mouseListener.which = "Generator";
+			}
+		});
+		panel.add(button);
+		panel.add(Box.createRigidArea(new Dimension(0,5)));
+		button = createButton("Dodaj Skrzyzowanie");
+		button.setSize(200, 20);
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				mouseListener.which = "Junction";
+			}
+		});
+		panel.add(button);
+		panel.add(Box.createRigidArea(new Dimension(0,5)));
+		button = createButton("Dodaj Droge");
+		button.setSize(200, 20);
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				mouseListener.which = "Road";
+			}
+		});
+		panel.add(button);
+		panel.add(Box.createRigidArea(new Dimension(0,5)));
+		button = createButton("Zacznij od nowa");
+		button.setSize(200, 20);
 		button.addActionListener(new ActionListener() {
 			
 			@Override
@@ -135,6 +176,7 @@ public class TrafficEditorFrame {
 		panel.add(Box.createRigidArea(new Dimension(0,5)));
 		
 		button = createButton("Zapisz");
+		button.setSize(200, 20);
 		button.addActionListener(new SaveModel());
 		panel.add(button);
 		panel.add(Box.createRigidArea(new Dimension(0,5)));
@@ -144,7 +186,7 @@ public class TrafficEditorFrame {
 		panel.add(button);
 		panel.add(Box.createRigidArea(new Dimension(0,5)));
 		
-		button = createButton("wyjdz");
+		button = createButton("Wyjdz");
 		button.addActionListener(new ActionListener() {
 			
 			@Override
@@ -170,8 +212,11 @@ public class TrafficEditorFrame {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTH;
 		menuPane = new JPanel(layout2);
-		menuPane.add(createButton("dodaj skrzyzowanie"),c);
+//		menuPane.add(createButton("Dodaj generator"), c);
+//		menuPane.add(createButton("Dodaj skrzyzowanie"),c);
+		
 		menuPane.setSize(250, 300);
+		menuPane.setBackground(Color.lightGray);
 		JPanel panel = createOverallManagementPanel();
 		c.gridy = 1;
 		menuPane.add(panel,c);
@@ -182,6 +227,10 @@ public class TrafficEditorFrame {
 		JButton button = new JButton(text);
 		button.setSize(200, 20);
 		return button;
+	}
+	
+	public void addNewGenerator(int x, int y){		//Zrobic przeszukiwanie okolicy dla poczatkow i koncow drog
+		
 	}
 	
 }

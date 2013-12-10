@@ -1,5 +1,6 @@
 package bo.project.editor;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -16,6 +17,7 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 
 	private DrawingArea area;
 	private Point startPoint;
+	public String which = null;		//Co ma rysowac
 	private Point lastPoint;
 	public DrawingAreaMouseListener(DrawingArea area){
 		this.area = area;
@@ -24,6 +26,10 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
+		area.setBackground(Color.white);
+		if(which == "Generator"){
+			e.getX();
+		}
 	}
 
 	@Override

@@ -19,6 +19,8 @@ public class DrawingArea extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private List<Junction> closures;
+	private List<Road> roads;
 	private List<Junction> junctions;
 	private double offsetX;
 	private double offsetY;
@@ -40,6 +42,8 @@ public class DrawingArea extends JPanel {
 	
 	public DrawingArea(List<Junction> junctions, List<Road> roads, int parentWidth, int parentHeigth){
 		this.setSize(parentWidth-200, parentHeigth);
+		this.closures = junctions;
+		this.roads = roads;
 		this.junctions = junctions;
 		offsetX = 0;
 		offsetY = 0;
