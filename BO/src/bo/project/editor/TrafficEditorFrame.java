@@ -110,9 +110,9 @@ public class TrafficEditorFrame {
 		drawingArea.setSize(300, 300);
 		pane.add(drawingArea, BorderLayout.WEST);
 		
-		DrawingAreaMouseListener mouseListener = new DrawingAreaMouseListener((DrawingArea)drawingArea);
+		mouseListener = new DrawingAreaMouseListener((DrawingArea)drawingArea);
 		pane.addMouseListener(mouseListener);
-		//pane.addMouseMotionListener(mouseListener);
+		pane.addMouseMotionListener(mouseListener);
 		createMenu();
 		frame.setContentPane(pane);
 		
