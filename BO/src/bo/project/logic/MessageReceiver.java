@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import bo.project.message.MessageMock;
+import bo.project.message.Message;
 import bo.project.message.MessageType;
 
 public class MessageReceiver extends Thread{
@@ -41,7 +41,7 @@ public class MessageReceiver extends Thread{
 		}
 	}
 	
-	public MessageMock getRequest() {
+	public Message getRequest() {
 		return this.requestQueue.pollRequest();
 	}
 
@@ -53,7 +53,7 @@ public class MessageReceiver extends Thread{
 				out = new ObjectOutputStream(clientSocket.getOutputStream());
 				in = new ObjectInputStream(clientSocket.getInputStream());				
 				
-				MessageMock message = (MessageMock) in.readObject();
+				Message message = (Message) in.readObject();
 				
 				if (message.getType() == MessageType.SOL_REQUEST) {
 					System.out.println("[Server] Request received.");
@@ -64,7 +64,7 @@ public class MessageReceiver extends Thread{
 					out.writeObject(message);
 				} else if (message.getType() == MessageType.SOL_ASK) {
 					System.out.println("[Server] Ask received.");
-					MessageMock response = responseQueue.getById(message.getId());
+					Message response = responseQueue.getById(message.getId());
 					if (response != null) {
 						out.writeObject(response);
 					} else {
@@ -80,12 +80,12 @@ public class MessageReceiver extends Thread{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
-				/*try {
+				try {
 					clientSocket.close();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}*/
+				}
 			}
 		}
 	}

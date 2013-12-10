@@ -6,24 +6,24 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import bo.project.message.MessageMock;
+import bo.project.message.Message;
 
 public class RequestQueue {
 
-	private Queue<MessageMock> queue;
+	private Queue<Message> queue;
 	private int maxQueueSize;
 	private Lock lock;
 	private Condition emptyQueue, fullQueue;
 	
 	public RequestQueue (int queueMaxSize) {
 		this.maxQueueSize = queueMaxSize;
-		this.queue = new LinkedList<MessageMock>();
+		this.queue = new LinkedList<Message>();
 		this.lock = new ReentrantLock();
 		this.emptyQueue = lock.newCondition();
 		this.fullQueue = lock.newCondition();
 	}
 	
-	public MessageMock pollRequest() {
+	public Message pollRequest() {
 		lock.lock();
 		try {
 			while (queue.isEmpty()) {
@@ -41,7 +41,7 @@ public class RequestQueue {
 		}
 	}
 	
-	public void addRequest(MessageMock request) {
+	public void addRequest(Message request) {
 		lock.lock();
 		try {
 			while (queue.size() == this.maxQueueSize) {

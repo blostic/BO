@@ -6,7 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import bo.project.message.MessageMock;
+import bo.project.message.Message;
 import bo.project.message.MessageType;
 
 public class ServerProxy {
@@ -17,7 +17,7 @@ public class ServerProxy {
 	private String host = "localhost";
 	private int port = 6000;
 	
-	public MessageMock sendMessage(MessageMock message) {
+	public Message sendMessage(Message message) {
 		try {
 			socket = new Socket(this.host, this.port);
 			out = new ObjectOutputStream(socket.getOutputStream());
@@ -26,7 +26,7 @@ public class ServerProxy {
 			out.writeObject(message);
 			System.out.println("[Client] Message sent");
 			
-			return (MessageMock) in.readObject();
+			return (Message) in.readObject();
 		} catch (UnknownHostException e) {
 			System.err.println("[ServerProxy error] Cannot connect - unknown host.");
 			return null;
@@ -46,8 +46,8 @@ public class ServerProxy {
 		}
 	}
 	
-	public MessageMock askForSolution(int id) {
-		MessageMock message = new MessageMock();
+	public Message askForSolution(int id) {
+		Message message = new Message();
 		message.setType(MessageType.SOL_ASK);
 		return sendMessage(message);
 	}
