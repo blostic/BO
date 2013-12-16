@@ -1,6 +1,8 @@
 package bo.project.logic;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public abstract class Junction {
@@ -19,6 +21,13 @@ public abstract class Junction {
 		this.escapeRoads = awayRoads;
 		this.xCoordinate = xCoordinate;
 		this.yCoordinate = yCoordinate;
+		
+		for (Road r : this.entryRoads) {
+			r.setEndCoordinates(xCoordinate, yCoordinate);
+		}
+		for (Road r : this.escapeRoads) {
+			r.setStartCoordinates(xCoordinate, yCoordinate);
+		}
 	}
 
 	/*
@@ -36,6 +45,15 @@ public abstract class Junction {
 				road.addVehicle(vehicle);
 			}
 		}
+	}
+	
+	public List<Vehicle> getWaitingVehicles() {
+		List<Vehicle> waitingVehicles = new LinkedList<Vehicle>();
+		for (Road r : entryRoads) {
+			r.updateVehiclesPositions();
+			waitingVehicles.addAll(r.getVehicles());
+		}
+		return waitingVehicles;
 	}
 
 	public void printState() {

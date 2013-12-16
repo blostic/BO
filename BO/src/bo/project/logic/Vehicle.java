@@ -3,6 +3,7 @@ package bo.project.logic;
 public class Vehicle {
 	private int waitTime;
 	private boolean isWaiting;
+	private int x,y;
 	
 	public Vehicle(){
 		this.waitTime=0;
@@ -35,5 +36,21 @@ public class Vehicle {
 	
 	public boolean isWaiting(){
 		return isWaiting;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
 	}
 }

@@ -1,18 +1,20 @@
 package bo.project.logic;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Simulator {
-	private ArrayList<Intersection> intersections;
-	private ArrayList<Generator> generators;
-	private int timeInterval;
+	protected ArrayList<Intersection> intersections;
+	protected ArrayList<Generator> generators;
+	protected int timeInterval;
 
 	/*
 	 * czas przejechania 1 samochodu przez skrzyzowanie
 	 */
 
-	private int totalTime;
-	private static int totalWaitTime;
+	protected int totalTime;
+	protected static int totalWaitTime;
 
 	/*
 	 * Rozmiar problemu = liczba skrzyzowan;
@@ -58,10 +60,12 @@ public class Simulator {
 				intersection.checkStatus(currentTime);
 				intersection.moveVehicles(timeInterval);
 			}
-			// printState();
+			// printState()
+			
 		}
 		return totalWaitTime;
 	}
+
 
 	public static void increaseWaitTime(int timeToIncrease) {
 		totalWaitTime += timeToIncrease;
