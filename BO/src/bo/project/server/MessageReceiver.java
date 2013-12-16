@@ -44,6 +44,10 @@ public class MessageReceiver extends Thread{
         public Message getRequest() {
                 return this.requestQueue.pollRequest();
         }
+        
+        public void addResponse(Message response) {
+        	this.responseQueue.addResponse(response);
+        }
 
         @Override
         public void run() {

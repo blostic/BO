@@ -48,6 +48,22 @@ public class Simulator {
 			intersections.get(i).setRedLightTime(redLights[i]);
 		}
 	}
+	
+	public double[] getGreenLights() {
+		double[] greenLights = new double[intersections.size()];
+		for (int i = 0; i < intersections.size(); ++i) {
+			greenLights[i] = intersections.get(i).getGreenLightTime();
+		}
+		return greenLights;
+	}
+	
+	public double[] getRedLights() {
+		double[] redLights = new double[intersections.size()];
+		for (int i = 0; i < intersections.size(); ++i) {
+			redLights[i] = intersections.get(i).getRedLightTime();
+		}
+		return redLights;
+	}
 
 	public int runSimulation(double[] greenLights, double[] redLights) {
 		this.setLights(greenLights, redLights);

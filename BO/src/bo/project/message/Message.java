@@ -1,8 +1,12 @@
 package bo.project.message;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
-import bo.project.logic.*;
+
+import bo.project.logic.Generator;
+import bo.project.logic.Intersection;
+import bo.project.logic.Road;
 
 public class Message implements Serializable {
 
@@ -13,15 +17,15 @@ public class Message implements Serializable {
         private int id;
         private MessageType type;
         
-        private List<Intersection> intersections;
-        private List<Generator> generators;
-        private List<Road> roads;
+        private ArrayList<Intersection> intersections;
+        private ArrayList<Generator> generators;
+        private ArrayList<Road> roads;
         
         private int simulationTimeInterval;
         private double[] greenLights, redLights;
         
-        public void setTrafficData(List<Intersection> intersections, List<Generator> generators, 
-        		List<Road> roads, int simulationTimeInterval) {
+        public void setTrafficData(ArrayList<Intersection> intersections, ArrayList<Generator> generators, 
+        		ArrayList<Road> roads, int simulationTimeInterval) {
         	this.intersections = intersections;
         	this.generators = generators;
         	this.roads = roads;
@@ -57,15 +61,15 @@ public class Message implements Serializable {
                 this.type = type;
         }
         
-        public List<Intersection> getIntersections() {
+        public ArrayList<Intersection> getIntersections() {
         	return this.intersections;
         }
         
-        public List<Generator> getGenerators() {
+        public ArrayList<Generator> getGenerators() {
         	return this.generators;
         }
         
-        public List<Road> getRoads() {
+        public ArrayList<Road> getRoads() {
         	return this.roads;
         }
         
