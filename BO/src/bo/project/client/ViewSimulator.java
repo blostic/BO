@@ -14,15 +14,13 @@ public class ViewSimulator extends Simulator {
 	private int currentTime = 0;
 	
 	public ViewSimulator(ArrayList<Intersection> intersections,
-			ArrayList<Generator> generators, int simulationTimeInterval) {
+			ArrayList<Generator> generators, int simulationTimeInterval,
+			double[] greenLights, double[] redLights) {
 		super(intersections,generators,simulationTimeInterval,0);
+		this.setLights(greenLights, redLights);
 		
 	}
 	
-	
-	/* 
-	 * FIRST INITIALIZE WITH setLights()!
-	 */
 	private void iterateSimulation() {
 		
 		for (Generator generator : generators) {

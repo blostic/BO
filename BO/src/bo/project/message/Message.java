@@ -32,6 +32,14 @@ public class Message implements Serializable {
         	this.greenLights = greenLights;
         	this.redLights = redLights;
         }
+        
+        public double[] getGreenLights() {
+        	return this.greenLights;
+        }
+        
+        public double[] getRedLights() {
+        	return this.redLights;
+        }
        
         public int getId() {
                 return id;

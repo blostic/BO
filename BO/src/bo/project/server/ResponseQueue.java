@@ -7,6 +7,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import bo.project.message.Message;
+import bo.project.message.MessageType;
 
 public class ResponseQueue {
 
@@ -22,7 +23,7 @@ public class ResponseQueue {
                 this.emptyQueue = lock.newCondition();
         }
         
-        public Message pollRequest() {
+        public Message pollResponse() {
                 lock.lock();
                 try {
                         while (queue.isEmpty()) {
@@ -39,14 +40,15 @@ public class ResponseQueue {
                 }
         }
         
-        public void addRequest(Message request) {
+        public void addResponse(Message response) {
                 lock.lock();
                 try {
+                		
                         if (queue.size() == maxQueueSize) {
                                 queue.remove(0);
                         }
                         
-                        queue.add(request);
+                        queue.add(response);
                         emptyQueue.signal();
                 } finally {
                         lock.unlock();
