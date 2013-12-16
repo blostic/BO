@@ -1,8 +1,13 @@
 package bo.project.logic;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Road {
+public class Road implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String ID;
 	private LinkedList<Vehicle> vehicles;
 	private int maximalNumberOfVehicles;

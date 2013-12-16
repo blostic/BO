@@ -18,8 +18,13 @@ public class ViewSimulator extends Simulator {
 		super(intersections,generators,simulationTimeInterval,0);
 		
 	}
-
+	
+	
+	/* 
+	 * FIRST INITIALIZE WITH setLights()!
+	 */
 	private void iterateSimulation() {
+		
 		for (Generator generator : generators) {
 			generator.checkStatus(currentTime, timeInterval);
 			generator.moveVehicles(timeInterval);

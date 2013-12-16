@@ -18,7 +18,7 @@ public class Message implements Serializable {
         private List<Road> roads;
         
         private int simulationTimeInterval;
-        
+        private double[] greenLights, redLights;
         
         public void setTrafficData(List<Intersection> intersections, List<Generator> generators, 
         		List<Road> roads, int simulationTimeInterval) {
@@ -26,6 +26,11 @@ public class Message implements Serializable {
         	this.generators = generators;
         	this.roads = roads;
         	this.simulationTimeInterval = simulationTimeInterval;
+        }
+        
+        public void setResult(double[] greenLights, double[] redLights) {
+        	this.greenLights = greenLights;
+        	this.redLights = redLights;
         }
        
         public int getId() {

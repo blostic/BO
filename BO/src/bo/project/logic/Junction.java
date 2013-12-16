@@ -1,11 +1,16 @@
 package bo.project.logic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public abstract class Junction {
+public abstract class Junction implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected int ID;
 	protected ArrayList<Road> entryRoads; // ulice entry i away pod tymi samymi
 											// indeksami sa takie same
