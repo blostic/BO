@@ -34,6 +34,21 @@ public abstract class Junction implements Serializable {
 			r.setStartCoordinates(xCoordinate, yCoordinate);
 		}
 	}
+	
+	public int getXCoordinate(){
+		return xCoordinate;
+	}
+	
+	public List<Road> getEscapeRoads(){
+		return escapeRoads;
+	}
+	
+	public List<Road> getEntryRoads(){
+		return entryRoads;
+	}
+	public int getYCoordinate(){
+		return yCoordinate;
+	}
 
 	/*
 	 * dodaje na ka�d� ulic� sta�� liczb� samochod�w, zale�n� od nat�enia ruchu
