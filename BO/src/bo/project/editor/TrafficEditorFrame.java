@@ -21,8 +21,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import bo.project.editor.DrawingAreaMouseListener.DrawingAreaListenerCommand;
 import bo.project.logic.*;
-import bo.project.logic.Simulator;
 
 public class TrafficEditorFrame {
 
@@ -137,7 +137,10 @@ public class TrafficEditorFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				mouseListener.which = "Generator";
+				if(mouseListener.command == DrawingAreaListenerCommand.NONE)
+					mouseListener.command = DrawingAreaListenerCommand.GENERATOR;
+				else
+					mouseListener.command = DrawingAreaListenerCommand.NONE;
 			}
 		});
 		panel.add(button);
@@ -148,7 +151,10 @@ public class TrafficEditorFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				mouseListener.which = "Junction";
+				if(mouseListener.command == DrawingAreaListenerCommand.NONE)
+					mouseListener.command = DrawingAreaListenerCommand.INTERSECTION;
+				else
+					mouseListener.command = DrawingAreaListenerCommand.NONE;
 			}
 		});
 		panel.add(button);
@@ -159,7 +165,10 @@ public class TrafficEditorFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				mouseListener.which = "Road";
+				if(mouseListener.command == DrawingAreaListenerCommand.NONE)
+					mouseListener.command = DrawingAreaListenerCommand.ROAD;
+				else
+					mouseListener.command = DrawingAreaListenerCommand.NONE;
 			}
 		});
 		panel.add(button);

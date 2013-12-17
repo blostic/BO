@@ -15,21 +15,21 @@ import bo.project.logic.Road;
 
 public class DrawingAreaMouseListener implements MouseListener,MouseMotionListener {
 
+	public enum DrawingAreaListenerCommand {NONE, GENERATOR, INTERSECTION, ROAD};
+	
 	private DrawingArea area;
 	private Point startPoint;
-	public String which = null;		//Co ma rysowac
+	public DrawingAreaListenerCommand command;
 	private Point lastPoint;
 	public DrawingAreaMouseListener(DrawingArea area){
 		this.area = area;
+		command = DrawingAreaListenerCommand.NONE;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
 		area.setBackground(Color.white);
-		if(which == "Generator"){
-			e.getX();
-		}
 	}
 
 	@Override
@@ -78,18 +78,18 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 			area.incActualMode();
 			return;
 		}
-		
-		int areaMode = area.getActualMode();
-		switch(areaMode){
-			case 0:
-				
-				break;
-			case 1:
+
+
+		switch(command){
+			
+			case GENERATOR:{
 				addGeneratorAt(e);
 				break;
-			case 2:
+			}
+			case INTERSECTION:{
 				addIntersectionAt(e);
 				break;
+			}
 			default:
 				
 				break;
