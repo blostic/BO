@@ -39,7 +39,7 @@ public class TrafficEditorFrame {
 	private ArrayList<Road> roads;
 	private ArrayList<Intersection> intersections;
 	private ArrayList<Generator> generators;
-	//private Simulator simulator;
+	private Simulator simulator;
 	
 	public TrafficEditorFrame()
 	{
@@ -188,11 +188,11 @@ public class TrafficEditorFrame {
 		panel.add(button, cons);
 		
 		button = createButton("Zapisz");
-		button.addActionListener(new SaveModel());
+		button.addActionListener(new SaveModel(this));
 		panel.add(button, cons);
 		
 		button  = createButton("Wczytaj");
-		button.addActionListener(new LoadModel());
+		button.addActionListener(new LoadModel(this));
 		panel.add(button, cons);
 		
 		button = createButton("Wyjdz");
@@ -238,6 +238,14 @@ public class TrafficEditorFrame {
 	
 	public void addNewGenerator(int x, int y){		//Zrobic przeszukiwanie okolicy dla poczatkow i koncow drog
 		
+	}
+
+	public Simulator getSimulator() {
+		return simulator;
+	}
+
+	public void setSimulator(Simulator simulator) {
+		this.simulator = simulator;
 	}
 	
 }
