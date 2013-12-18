@@ -12,12 +12,13 @@ import java.io.OutputStream;
 import javax.swing.JFileChooser;
 
 public class LoadModel implements ActionListener {
-	
+
 	TrafficEditorFrame frame;
-	public LoadModel( TrafficEditorFrame frame) {
+
+	public LoadModel(TrafficEditorFrame frame) {
 		this.frame = frame;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		final JFileChooser fc = new JFileChooser();
@@ -35,5 +36,5 @@ public class LoadModel implements ActionListener {
 
 		}
 
-
+	}
 }
