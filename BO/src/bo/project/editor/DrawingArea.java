@@ -19,9 +19,12 @@ public class DrawingArea extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private List<Junction> closures;
-	private List<Road> roads;
+
 	private List<Junction> junctions;
+	
+	public List<Junction> getJunctions(){
+		return junctions;
+	}
 	private double offsetX;
 	private double offsetY;
 	// jakies tryby nie wiem co - mozna to jeszcze dalej wystawic:)
@@ -40,10 +43,8 @@ public class DrawingArea extends JPanel {
 		offsetY += offset.getY();
 	}
 	
-	public DrawingArea(List<Junction> junctions, List<Road> roads, int parentWidth, int parentHeigth){
+	public DrawingArea(List<Junction> junctions, int parentWidth, int parentHeigth){
 		this.setSize(parentWidth-200, parentHeigth);
-		this.closures = junctions;
-		this.roads = roads;
 		this.junctions = junctions;
 		offsetX = 0;
 		offsetY = 0;
@@ -85,7 +86,8 @@ public class DrawingArea extends JPanel {
 				 double dstY = destination.getYCoordinate();
 				 g.setColor(Color.green);
 				 for(Vehicle veh : road.getVehicles()){
-					 g.drawRect((int)(x-1 - offsetX), (int)(y-1 - offsetY), 3, 3);
+					 
+					 g.drawRect((int)(veh.getX() - offsetX), (int)(veh.getY() - offsetY), 3, 3);
 				 }
 				 g.setColor(Color.yellow);
 				 g.drawLine((int)(x-offsetX), (int)(y-offsetY), (int)(dstX-offsetX), (int)(dstY-offsetY));

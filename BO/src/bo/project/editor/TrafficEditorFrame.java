@@ -39,10 +39,7 @@ public class TrafficEditorFrame {
 	private ArrayList<Road> roads;
 	private ArrayList<Intersection> intersections;
 	private ArrayList<Generator> generators;
-	private Simulator simulator;
-	private int generatorID = 1;
-	private int junctionID = 1;
-	private int roadID = 1;
+	//private Simulator simulator;
 	
 	public TrafficEditorFrame()
 	{
@@ -51,6 +48,10 @@ public class TrafficEditorFrame {
 		Road firstRoad = new Road("road_x",10,20);
 		Road secondRoad = new Road("road_a",10,20);
 		Road thirdRoad = new Road("road_c",10,20);
+		Vehicle auto = new Vehicle();
+		auto.setX(50);
+		auto.setY(100);
+		firstRoad.addVehicle(auto);
 		
 		ArrayList<Road> out3 = new ArrayList<Road>();
 		ArrayList<Road> in3 = new ArrayList<Road>();
@@ -84,8 +85,8 @@ public class TrafficEditorFrame {
 		roads.add(secondRoad);
 		roads.add(thirdRoad);
 		this.createView();
-		double [] lights = new double[intersections.size()];
-		simulator = new Simulator(intersections,generators,10,1000);
+		//double [] lights = new double[intersections.size()];
+		//simulator = new Simulator(intersections,generators,10,1000);
 		
 	}
 	
@@ -106,7 +107,7 @@ public class TrafficEditorFrame {
 		frame = new JFrame("Badania Operacyjne");
 		frame.setSize(600, 400);
 		//frame.setBackground(Color.cyan);
-		drawingArea = new DrawingArea(closures,roads,ImageObserver.WIDTH,ImageObserver.HEIGHT);
+		drawingArea = new DrawingArea(closures,ImageObserver.WIDTH,ImageObserver.HEIGHT);
 		drawingArea.setSize(300, 300);
 		pane.add(drawingArea, BorderLayout.WEST);
 		
@@ -137,7 +138,7 @@ public class TrafficEditorFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(mouseListener.command == DrawingAreaListenerCommand.NONE)
+				if(mouseListener.command != DrawingAreaListenerCommand.GENERATOR)
 					mouseListener.command = DrawingAreaListenerCommand.GENERATOR;
 				else
 					mouseListener.command = DrawingAreaListenerCommand.NONE;
@@ -151,7 +152,7 @@ public class TrafficEditorFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(mouseListener.command == DrawingAreaListenerCommand.NONE)
+				if(mouseListener.command != DrawingAreaListenerCommand.INTERSECTION)
 					mouseListener.command = DrawingAreaListenerCommand.INTERSECTION;
 				else
 					mouseListener.command = DrawingAreaListenerCommand.NONE;
@@ -165,7 +166,7 @@ public class TrafficEditorFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(mouseListener.command == DrawingAreaListenerCommand.NONE)
+				if(mouseListener.command != DrawingAreaListenerCommand.ROAD)
 					mouseListener.command = DrawingAreaListenerCommand.ROAD;
 				else
 					mouseListener.command = DrawingAreaListenerCommand.NONE;

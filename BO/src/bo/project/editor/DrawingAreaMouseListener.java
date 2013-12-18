@@ -8,9 +8,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
+import bo.project.logic.Junction;
 import bo.project.logic.Road;
 
 public class DrawingAreaMouseListener implements MouseListener,MouseMotionListener {
@@ -18,7 +20,8 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 	public enum DrawingAreaListenerCommand {NONE, GENERATOR, INTERSECTION, ROAD};
 	
 	private DrawingArea area;
-	private Point startPoint;
+//	private Point startPoint;
+	private Junction startElement;
 	public DrawingAreaListenerCommand command;
 	private Point lastPoint;
 	public DrawingAreaMouseListener(DrawingArea area){
@@ -45,7 +48,7 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		startPoint = e.getPoint();
+	//	startPoint = e.getPoint();
 		lastPoint = e.getPoint();
 	}
 
@@ -90,6 +93,10 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 				addIntersectionAt(e);
 				break;
 			}
+			case ROAD:{
+				addRoad(e);
+				break;
+			}
 			default:
 				
 				break;
@@ -106,6 +113,42 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
         parent.invalidate();
         parent.revalidate();
         parent.repaint();
+	}
+
+	private void addRoad(MouseEvent e) {
+		Point offset = area.getRealPosition(e.getPoint());
+		if(startElement == null)
+		{
+			List<Junction> junctions = area.getJunctions();
+			for(Junction junction : junctions){
+				if(junction.getXCoordinate() -3 <= offset.getX() && junction.getXCoordinate() + 3 >= offset.getX()
+						&& junction.getYCoordinate() -3 <= offset.getY() && junction.getYCoordinate() + 3 >= offset.getY()){
+					startElement = junction;
+					break;
+				}
+			}
+			return;
+		}
+		else{
+			List<Junction> junctions = area.getJunctions();
+			for(Junction junction : junctions){
+				if(junction.getXCoordinate() -3 <= offset.getX() && junction.getXCoordinate() + 3 >= offset.getX()
+						&& junction.getYCoordinate() -3 <= offset.getY() && junction.getYCoordinate() + 3 >= offset.getY()){
+					Junction endElement = junction;
+					if(endElement == startElement)
+						return;
+					
+					Road road = new Road("road_int",10,10);
+					List<Road> roads = endElement.getEntryRoads();
+					roads.add(road);
+					roads = startElement.getEscapeRoads();
+					roads.add(road);
+					startElement = null;
+					break;
+				}
+			}
+			return;
+		}
 	}
 
 	@Override
