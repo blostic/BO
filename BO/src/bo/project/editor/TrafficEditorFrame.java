@@ -129,11 +129,16 @@ public class TrafficEditorFrame {
 	private JPanel createOverallManagementPanel(){
 		JPanel panel = new JPanel();
 		
-		BoxLayout boxLayout = new BoxLayout(panel,  BoxLayout.PAGE_AXIS);
+		panel.setLayout(new GridBagLayout());
+		GridBagConstraints cons = new GridBagConstraints();
+		cons.fill = GridBagConstraints.HORIZONTAL;
+		cons.weightx = 1;
+		cons.gridx = 0;
+		
+		panel.setMinimumSize(new Dimension(100, 500));
 		JButton button;
 		panel.add(Box.createRigidArea(new Dimension(0,5)));
 		button = createButton("Dodaj Generator");
-		button.setSize(200, 20);
 		button.addActionListener(new ActionListener() {
 			
 			@Override
@@ -144,10 +149,9 @@ public class TrafficEditorFrame {
 					mouseListener.command = DrawingAreaListenerCommand.NONE;
 			}
 		});
-		panel.add(button);
+		panel.add(button, cons);
 		panel.add(Box.createRigidArea(new Dimension(0,5)));
 		button = createButton("Dodaj Skrzyzowanie");
-		button.setSize(200, 20);
 		button.addActionListener(new ActionListener() {
 			
 			@Override
@@ -158,10 +162,9 @@ public class TrafficEditorFrame {
 					mouseListener.command = DrawingAreaListenerCommand.NONE;
 			}
 		});
-		panel.add(button);
+		panel.add(button, cons);
 		panel.add(Box.createRigidArea(new Dimension(0,5)));
 		button = createButton("Dodaj Droge");
-		button.setSize(200, 20);
 		button.addActionListener(new ActionListener() {
 			
 			@Override
@@ -172,10 +175,9 @@ public class TrafficEditorFrame {
 					mouseListener.command = DrawingAreaListenerCommand.NONE;
 			}
 		});
-		panel.add(button);
+		panel.add(button, cons);
 		panel.add(Box.createRigidArea(new Dimension(0,5)));
 		button = createButton("Zacznij od nowa");
-		button.setSize(200, 20);
 		button.addActionListener(new ActionListener() {
 			
 			@Override
@@ -183,19 +185,15 @@ public class TrafficEditorFrame {
 				
 			}
 		});
-		panel.add(button);
-		panel.add(Box.createRigidArea(new Dimension(0,5)));
+		panel.add(button, cons);
 		
 		button = createButton("Zapisz");
-		button.setSize(200, 20);
 		button.addActionListener(new SaveModel());
-		panel.add(button);
-		panel.add(Box.createRigidArea(new Dimension(0,5)));
+		panel.add(button, cons);
 		
 		button  = createButton("Wczytaj");
 		button.addActionListener(new LoadModel());
-		panel.add(button);
-		panel.add(Box.createRigidArea(new Dimension(0,5)));
+		panel.add(button, cons);
 		
 		button = createButton("Wyjdz");
 		button.addActionListener(new ActionListener() {
@@ -205,10 +203,8 @@ public class TrafficEditorFrame {
 				System.exit(0);
 			}
 		});
-		panel.add(button);
-		//boxLayout.setSize(200,200);		
-		panel.add(Box.createRigidArea(new Dimension(10, 10)));
-		panel.setLayout(boxLayout);
+		panel.add(button, cons);
+		//boxLayout.setSize(200,200);
 		
 		return panel;
 	}

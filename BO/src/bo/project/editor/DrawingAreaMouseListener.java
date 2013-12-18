@@ -121,8 +121,8 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 		{
 			List<Junction> junctions = area.getJunctions();
 			for(Junction junction : junctions){
-				if(junction.getXCoordinate() -3 <= offset.getX() && junction.getXCoordinate() + 3 >= offset.getX()
-						&& junction.getYCoordinate() -3 <= offset.getY() && junction.getYCoordinate() + 3 >= offset.getY()){
+				if(junction.getXCoordinate() -9 <= offset.getX() && junction.getXCoordinate() + 9 >= offset.getX()
+						&& junction.getYCoordinate() -9 <= offset.getY() && junction.getYCoordinate() + 9 >= offset.getY()){
 					startElement = junction;
 					break;
 				}
@@ -132,8 +132,8 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 		else{
 			List<Junction> junctions = area.getJunctions();
 			for(Junction junction : junctions){
-				if(junction.getXCoordinate() -3 <= offset.getX() && junction.getXCoordinate() + 3 >= offset.getX()
-						&& junction.getYCoordinate() -3 <= offset.getY() && junction.getYCoordinate() + 3 >= offset.getY()){
+				if(junction.getXCoordinate() -9 <= offset.getX() && junction.getXCoordinate() + 9 >= offset.getX()
+						&& junction.getYCoordinate() -9 <= offset.getY() && junction.getYCoordinate() + 9 >= offset.getY()){
 					Junction endElement = junction;
 					if(endElement == startElement)
 						return;
