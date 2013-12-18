@@ -3,13 +3,15 @@ package bo.project.editor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.InputStream;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
 
 import javax.swing.JFileChooser;
+
+import bo.project.logic.Simulator;
 
 public class LoadModel implements ActionListener {
 
@@ -26,15 +28,17 @@ public class LoadModel implements ActionListener {
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			try {
 				File selectedFile = fc.getSelectedFile();
-				OutputStream file = new FileOutputStream(selectedFile);
-				ObjectOutput output = new ObjectOutputStream(file);
-				output.writeObject(frame.getSimulator());
-				output.close();
+				InputStream file = new FileInputStream(selectedFile);
+				ObjectInput input = new ObjectInputStream(file);
+				this.frame.setSimulator((Simulator) input.readObject());
+				input.close();
+
 			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
 
 		}
-
 	}
 }
