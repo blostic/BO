@@ -15,23 +15,27 @@ import bo.project.logic.Intersection;
 import bo.project.logic.Junction;
 import bo.project.logic.Road;
 
-public class DrawingAreaMouseListener implements MouseListener,MouseMotionListener {
+public class DrawingAreaMouseListener implements MouseListener,
+		MouseMotionListener {
 
-	public enum DrawingAreaListenerCommand {NONE, GENERATOR, INTERSECTION, ROAD};
-	
+	public enum DrawingAreaListenerCommand {
+		NONE, GENERATOR, INTERSECTION, ROAD
+	};
+
 	private DrawingArea area;
-//	private Point startPoint;
+	// private Point startPoint;
 	private Junction startElement;
 	public DrawingAreaListenerCommand command;
 	private Point lastPoint;
-	public DrawingAreaMouseListener(DrawingArea area){
+
+	public DrawingAreaMouseListener(DrawingArea area) {
 		this.area = area;
 		command = DrawingAreaListenerCommand.NONE;
 	}
-	
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
+
 		area.setBackground(Color.white);
 	}
 
@@ -43,102 +47,100 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 	@Override
 	public void mouseExited(MouseEvent e) {
 
-
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-	//	startPoint = e.getPoint();
+		// startPoint = e.getPoint();
 		lastPoint = e.getPoint();
 	}
 
-	private void addGeneratorAt(MouseEvent e){
-		
+	private void addGeneratorAt(MouseEvent e) {
+
 		Point endPoint = e.getPoint();
-		
-		//int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y
+
 		ArrayList<Road> entryRoads = new ArrayList<Road>();
 		ArrayList<Road> awayRoads = new ArrayList<Road>();
 		Point offset = area.getRealPosition(endPoint);
-		Generator generator = new Generator(6,entryRoads, awayRoads,offset.x,offset.y);
-		area.addElement(generator);
+		Generator generator = new Generator(entryRoads, awayRoads, offset.x,
+				offset.y);
+		area.getSimulator().getGenerators().add(generator);
 	}
-	
-	private void addIntersectionAt(MouseEvent e){
+
+	private void addIntersectionAt(MouseEvent e) {
 		Point endPoint = e.getPoint();
-		
-		//int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y
+
 		ArrayList<Road> entryRoads = new ArrayList<Road>();
 		ArrayList<Road> awayRoads = new ArrayList<Road>();
 		Point offset = area.getRealPosition(endPoint);
-		Intersection generator = new Intersection(entryRoads, awayRoads,10,20,offset.x,offset.y);
-		area.addElement(generator);
+		Intersection intersection = new Intersection(entryRoads, awayRoads, 10,
+				20, offset.x, offset.y);
+		area.getSimulator().getIntersections().add(intersection);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		if(e.getButton() == MouseEvent.BUTTON3){
+		if (e.getButton() == MouseEvent.BUTTON3) {
 			area.incActualMode();
 			return;
 		}
-
-
-		switch(command){
-			
-			case GENERATOR:{
-				addGeneratorAt(e);
-				break;
-			}
-			case INTERSECTION:{
-				addIntersectionAt(e);
-				break;
-			}
-			case ROAD:{
-				addRoad(e);
-				break;
-			}
-			default:
-				
-				break;
+		switch (command) {
+		case GENERATOR: {
+			addGeneratorAt(e);
+			break;
 		}
-		
-		
-		
-		area.repaint(new Rectangle(0,0,area.getWidth(), area.getHeight()));
+		case INTERSECTION: {
+			addIntersectionAt(e);
+			break;
+		}
+		case ROAD: {
+			addRoad(e);
+			break;
+		}
+		default:
+
+			break;
+		}
+
+		area.repaint(new Rectangle(0, 0, area.getWidth(), area.getHeight()));
 		area.invalidate();
-        area.revalidate();
-        area.repaint();
-       
-        Container parent = area.getParent();
-        parent.invalidate();
-        parent.revalidate();
-        parent.repaint();
+		area.revalidate();
+		area.repaint();
+
+		Container parent = area.getParent();
+		parent.invalidate();
+		parent.revalidate();
+		parent.repaint();
 	}
 
 	private void addRoad(MouseEvent e) {
 		Point offset = area.getRealPosition(e.getPoint());
-		if(startElement == null)
-		{
-			List<Junction> junctions = area.getJunctions();
-			for(Junction junction : junctions){
-				if(junction.getXCoordinate() -9 <= offset.getX() && junction.getXCoordinate() + 9 >= offset.getX()
-						&& junction.getYCoordinate() -9 <= offset.getY() && junction.getYCoordinate() + 9 >= offset.getY()){
+		ArrayList<Junction> junctions = new ArrayList<Junction>();
+		junctions.addAll(area.getSimulator().getGenerators());
+		junctions.addAll(area.getSimulator().getIntersections());
+		
+		if (startElement == null) {
+			for (Junction junction : junctions) {
+				if (junction.getXCoordinate() - 9 <= offset.getX()
+						&& junction.getXCoordinate() + 9 >= offset.getX()
+						&& junction.getYCoordinate() - 9 <= offset.getY()
+						&& junction.getYCoordinate() + 9 >= offset.getY()) {
 					startElement = junction;
 					break;
 				}
 			}
 			return;
-		}
-		else{
-			List<Junction> junctions = area.getJunctions();
-			for(Junction junction : junctions){
-				if(junction.getXCoordinate() -9 <= offset.getX() && junction.getXCoordinate() + 9 >= offset.getX()
-						&& junction.getYCoordinate() -9 <= offset.getY() && junction.getYCoordinate() + 9 >= offset.getY()){
+		} else {
+			for (Junction junction : junctions) {
+				if (junction.getXCoordinate() - 9 <= offset.getX()
+						&& junction.getXCoordinate() + 9 >= offset.getX()
+						&& junction.getYCoordinate() - 9 <= offset.getY()
+						&& junction.getYCoordinate() + 9 >= offset.getY()) {
 					Junction endElement = junction;
-					if(endElement == startElement)
+					if (endElement == startElement)
 						return;
-					
-					Road road = new Road(10,10);
+
+					Road road = new Road(10, 10);
 					List<Road> roads = endElement.getEntryRoads();
 					roads.add(road);
 					roads = startElement.getEscapeRoads();
@@ -154,7 +156,7 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		int areaMode = area.getActualMode();
-		if(areaMode == 0){
+		if (areaMode == 0) {
 			Point punkt = arg0.getPoint();
 			Point punkt2 = arg0.getPoint();
 			punkt.x = (int) (punkt.getX() - lastPoint.getX());
@@ -162,12 +164,12 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 			area.moveTmpMap(punkt);
 			lastPoint = punkt2;
 		}
-		
+
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-		
+
 	}
 
 }

@@ -7,7 +7,7 @@ import java.util.Random;
 public class Generator extends Junction{
 	private boolean generateFlag;	
 	
-	public Generator(int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y){
+	public Generator(ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y){
 		super(entryRoads,awayRoads, x, y);
 		generateFlag=false;		
 	}

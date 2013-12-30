@@ -6,6 +6,22 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class Simulator implements Serializable{
 	protected ArrayList<Intersection> intersections;
+	public ArrayList<Intersection> getIntersections() {
+		return intersections;
+	}
+
+	public void setIntersections(ArrayList<Intersection> intersections) {
+		this.intersections = intersections;
+	}
+
+	public ArrayList<Generator> getGenerators() {
+		return generators;
+	}
+
+	public void setGenerators(ArrayList<Generator> generators) {
+		this.generators = generators;
+	}
+
 	protected ArrayList<Generator> generators;
 	protected int timeInterval;
 
