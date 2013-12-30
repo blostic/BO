@@ -18,6 +18,18 @@ public class Road implements Serializable{
 	private int startX, startY;
 	private int endX, endY;
 	
+	public int getStartXCoordinate(){
+		return startX;
+	}
+	public int getStartYCoordinate(){
+		return startY;
+	}
+	public int getEndXCoordinate(){
+		return endX;
+	}
+	public int getEndYCoordinate(){
+		return endY;
+	}
 	
 	public Road(int maximalNumberOfVehicles, int trafficIntensity){
 		vehicles = new LinkedList<Vehicle>();

@@ -136,6 +136,9 @@ public class DrawingAreaMouseListener implements MouseListener,
 						return;
 
 					Road road = new Road(10, 10);
+					road.setStartCoordinates(startElement.getXCoordinate(), startElement.getYCoordinate());
+					road.setEndCoordinates(endElement.getXCoordinate(), endElement.getYCoordinate());
+					
 					List<Road> roads = endElement.getEntryRoads();
 					roads.add(road);
 					roads = startElement.getEscapeRoads();
