@@ -114,6 +114,7 @@ public class DrawingAreaMouseListener implements MouseListener,
 	}
 
 	private void addRoad(MouseEvent e) {
+		
 		Point offset = area.getRealPosition(e.getPoint());
 		ArrayList<Junction> junctions = new ArrayList<Junction>();
 		junctions.addAll(area.getSimulator().getGenerators());
@@ -121,20 +122,14 @@ public class DrawingAreaMouseListener implements MouseListener,
 		
 		if (startElement == null) {
 			for (Junction junction : junctions) {
-				if (junction.getXCoordinate() - 9 <= offset.getX()
-						&& junction.getXCoordinate() + 9 >= offset.getX()
-						&& junction.getYCoordinate() - 9 <= offset.getY()
-						&& junction.getYCoordinate() + 9 >= offset.getY()) {
+				if (checkIfIntersect(junction,offset)) {
 					startElement = junction;
 					break;
 				}
 			}
 		} else {
 			for (Junction junction : junctions) {
-				if (junction.getXCoordinate() - 9 <= offset.getX()
-						&& junction.getXCoordinate() + 9 >= offset.getX()
-						&& junction.getYCoordinate() - 9 <= offset.getY()
-						&& junction.getYCoordinate() + 9 >= offset.getY()) {
+				if (checkIfIntersect(junction,offset)) {
 					Junction endElement = junction;
 					if (endElement == startElement)
 						return;
@@ -151,14 +146,21 @@ public class DrawingAreaMouseListener implements MouseListener,
 		}
 	}
 
+	private Boolean checkIfIntersect(Junction junction, Point offset){
+		return junction.getXCoordinate() - 9 <= offset.getX()
+				&& junction.getXCoordinate() + 9 >= offset.getX()
+				&& junction.getYCoordinate() - 9 <= offset.getY()
+				&& junction.getYCoordinate() + 9 >= offset.getY();
+	}
+	
 	@Override
 	public void mouseDragged(MouseEvent arg0) {
 		int areaMode = area.getActualMode();
 		if (areaMode == 0) {
 			Point punkt = arg0.getPoint();
 			Point punkt2 = arg0.getPoint();
-			punkt.x = (int) (punkt.getX() - lastPoint.getX());
-			punkt.y = (int) (punkt.getY() - lastPoint.getY());
+			punkt.x = -(int) (punkt.getX() - lastPoint.getX());
+			punkt.y = -(int) (punkt.getY() - lastPoint.getY());
 			area.moveTmpMap(punkt);
 			lastPoint = punkt2;
 		}

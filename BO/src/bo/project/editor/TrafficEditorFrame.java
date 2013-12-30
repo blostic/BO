@@ -136,13 +136,15 @@ public class TrafficEditorFrame {
 		panel.add(button, cons);
 		panel.add(Box.createRigidArea(new Dimension(0, 5)));
 		button = createButton("Zacznij od nowa");
-		button.addActionListener(new ActionListener() {
+		button.addActionListener(new ClearButtonActionListener(simulator,drawingArea));
+		
+		/*new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
 
-			}
-		});
+		}
+	}*/
 		panel.add(button, cons);
 
 		button = createButton("Zapisz");
