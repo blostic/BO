@@ -38,55 +38,29 @@ public class TrafficEditorFrame {
 
 	private JPanel drawingArea;
 	private DrawingAreaMouseListener mouseListener;
-	private ArrayList<Road> roads;
 	private Simulator simulator;
 
 	public TrafficEditorFrame() {
 		this.simulator = new Simulator(new ArrayList<Intersection>(),
 				new ArrayList<Generator>(), 1, 100);
 
-		roads = new ArrayList<>();
-		Road firstRoad = new Road(10, 20);
-		Road secondRoad = new Road(10, 20);
-		Road thirdRoad = new Road(10, 20);
 		Vehicle auto = new Vehicle();
 		auto.setX(50);
 		auto.setY(100);
-		firstRoad.addVehicle(auto);
-
-		ArrayList<Road> out3 = new ArrayList<Road>();
-		ArrayList<Road> in3 = new ArrayList<Road>();
-		out3.add(thirdRoad);
-		in3.add(secondRoad);
-
-		ArrayList<Road> out2 = new ArrayList<Road>();
-		ArrayList<Road> in2 = new ArrayList<Road>();
-		out2.add(secondRoad);
-		in2.add(firstRoad);
-
-		ArrayList<Road> out1 = new ArrayList<Road>();
-		ArrayList<Road> in1 = new ArrayList<Road>();
-		out1.add(firstRoad);
-		in1.add(thirdRoad);
-
-		Intersection start = new Intersection(in2, out2, 1.0f, 2.0f, 100, 100);
-		Intersection end = new Intersection(in3, out3, 2.0f, 4.0f, 200, 150);
+		
+		Intersection start = new Intersection(new ArrayList<Road>(), new ArrayList<Road>(), 1.0f, 2.0f, 100, 100);
+		Intersection end = new Intersection(new ArrayList<Road>(), new ArrayList<Road>(), 2.0f, 4.0f, 200, 150);
 		this.simulator.getIntersections().add((Intersection) start);
 		this.simulator.getIntersections().add((Intersection) end);
-		// (int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int
-		// x, int y){
-		Generator generator = new Generator(in1, out1, 50, 100);
+		
+		Generator generator = new Generator(new ArrayList<Road>(), new ArrayList<Road>(), 50, 100);
 		this.simulator.getGenerators().add(generator);
 		this.simulator.getGenerators().add(generator);
 		this.simulator.getIntersections().add(start);
 		this.simulator.getIntersections().add(end);
-		roads.add(firstRoad);
-		roads.add(secondRoad);
-		roads.add(thirdRoad);
-		this.createView();
-		// double [] lights = new double[intersections.size()];
-		// simulator = new Simulator(intersections,generators,10,1000);
 
+		this.createView();
+		
 	}
 
 	@SuppressWarnings("deprecation")

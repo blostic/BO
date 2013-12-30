@@ -129,7 +129,6 @@ public class DrawingAreaMouseListener implements MouseListener,
 					break;
 				}
 			}
-			return;
 		} else {
 			for (Junction junction : junctions) {
 				if (junction.getXCoordinate() - 9 <= offset.getX()
@@ -149,7 +148,6 @@ public class DrawingAreaMouseListener implements MouseListener,
 					break;
 				}
 			}
-			return;
 		}
 	}
 
