@@ -6,8 +6,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.LayoutManager;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.ImageObserver;
@@ -20,12 +18,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import bo.project.editor.DrawingAreaMouseListener.DrawingAreaListenerCommand;
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
-import bo.project.logic.Road;
 import bo.project.logic.Simulator;
-import bo.project.logic.Vehicle;
 
 public class TrafficEditorFrame {
 
@@ -97,42 +92,18 @@ public class TrafficEditorFrame {
 		JButton button;
 		panel.add(Box.createRigidArea(new Dimension(0, 5)));
 		button = createButton("Dodaj Generator");
-		button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (mouseListener.command != DrawingAreaListenerCommand.GENERATOR)
-					mouseListener.command = DrawingAreaListenerCommand.GENERATOR;
-				else
-					mouseListener.command = DrawingAreaListenerCommand.NONE;
-			}
-		});
+		button.addActionListener(new AddGeneratorButtonMouseListener(mouseListener));
+		
 		panel.add(button, cons);
 		panel.add(Box.createRigidArea(new Dimension(0, 5)));
 		button = createButton("Dodaj Skrzyzowanie");
-		button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (mouseListener.command != DrawingAreaListenerCommand.INTERSECTION)
-					mouseListener.command = DrawingAreaListenerCommand.INTERSECTION;
-				else
-					mouseListener.command = DrawingAreaListenerCommand.NONE;
-			}
-		});
+		button.addActionListener(new AddJunctionButtonMouseListener(mouseListener));
+		
 		panel.add(button, cons);
 		panel.add(Box.createRigidArea(new Dimension(0, 5)));
 		button = createButton("Dodaj Droge");
-		button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				if (mouseListener.command != DrawingAreaListenerCommand.ROAD)
-					mouseListener.command = DrawingAreaListenerCommand.ROAD;
-				else
-					mouseListener.command = DrawingAreaListenerCommand.NONE;
-			}
-		});
+		button.addActionListener(new AddRoadButtonMouseListener(mouseListener));
+		
 		panel.add(button, cons);
 		panel.add(Box.createRigidArea(new Dimension(0, 5)));
 		button = createButton("Zacznij od nowa");
@@ -156,16 +127,10 @@ public class TrafficEditorFrame {
 		panel.add(button, cons);
 
 		button = createButton("Wyjdz");
-		button.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
+		button.addActionListener(new ExitActionListener());
+		
 		panel.add(button, cons);
-		// boxLayout.setSize(200,200);
-
+	
 		return panel;
 	}
 
@@ -179,9 +144,7 @@ public class TrafficEditorFrame {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.anchor = GridBagConstraints.NORTH;
 		menuPane = new JPanel(layout2);
-		// menuPane.add(createButton("Dodaj generator"), c);
-		// menuPane.add(createButton("Dodaj skrzyzowanie"),c);
-
+		
 		menuPane.setSize(250, 300);
 		menuPane.setBackground(Color.lightGray);
 		JPanel panel = createOverallManagementPanel();

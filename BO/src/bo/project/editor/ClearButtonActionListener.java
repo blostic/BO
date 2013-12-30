@@ -7,7 +7,6 @@ import java.util.List;
 
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
-import bo.project.logic.Junction;
 import bo.project.logic.Road;
 import bo.project.logic.Simulator;
 
