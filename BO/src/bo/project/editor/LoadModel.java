@@ -10,15 +10,16 @@ import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import bo.project.logic.Simulator;
 
 public class LoadModel implements ActionListener {
 
-	TrafficEditorFrame frame;
+	TrafficEditorFrame trafficEditorFrame;
 
-	public LoadModel(TrafficEditorFrame frame) {
-		this.frame = frame;
+	public LoadModel(TrafficEditorFrame trafficEditorFrame) {
+		this.trafficEditorFrame = trafficEditorFrame;
 	}
 
 	/*
@@ -35,8 +36,11 @@ public class LoadModel implements ActionListener {
 				File selectedFile = fc.getSelectedFile();
 				InputStream file = new FileInputStream(selectedFile);
 				ObjectInput input = new ObjectInputStream(file);
-				this.frame.setSimulator((Simulator) input.readObject());
-				System.out.println("wczytalem "+this.frame.getSimulator());
+				Simulator simulator = (Simulator) input.readObject();
+				this.trafficEditorFrame.setSimulator(simulator);
+				JOptionPane.showMessageDialog(trafficEditorFrame.drawingArea,
+						"Konfiguracja została pomyślnie wczytana",
+						"Wczytywanie...", JOptionPane.PLAIN_MESSAGE);
 				input.close();
 
 			} catch (IOException e) {

@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  * @author piotr
@@ -39,6 +40,9 @@ public class SaveModel implements ActionListener {
 				ObjectOutput output = new ObjectOutputStream(file);
 				output.writeObject(trafficEditorFrame.getSimulator());
 				output.close();
+				JOptionPane.showMessageDialog(trafficEditorFrame.drawingArea,
+						"Konfiguracja została pomyślnie zapisana",
+						"Zapisywanie...", JOptionPane.PLAIN_MESSAGE);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

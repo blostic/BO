@@ -30,6 +30,8 @@ public class DrawingArea extends JPanel {
 
 	public void setSimulator(Simulator simulator) {
 		this.simulator = simulator;
+		
+		this.repaint();
 	}
 
 	private double offsetX;
@@ -59,7 +61,7 @@ public class DrawingArea extends JPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		g.setClip(0, 0, 400, 400);
+		g.setClip(0, 0, 1700, 1000);
 		super.paintComponent(g);
 		ArrayList<Junction> junctions = new ArrayList<Junction>();
 		junctions.addAll(simulator.getGenerators());

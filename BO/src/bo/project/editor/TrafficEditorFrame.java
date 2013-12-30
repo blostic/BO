@@ -36,29 +36,13 @@ public class TrafficEditorFrame {
 	private JFrame frame;
 	private LayoutManager layout2;
 
-	private JPanel drawingArea;
+	public DrawingArea drawingArea;
 	private DrawingAreaMouseListener mouseListener;
 	private Simulator simulator;
 
 	public TrafficEditorFrame() {
 		this.simulator = new Simulator(new ArrayList<Intersection>(),
 				new ArrayList<Generator>(), 1, 100);
-
-		Vehicle auto = new Vehicle();
-		auto.setX(50);
-		auto.setY(100);
-		
-		Intersection start = new Intersection(new ArrayList<Road>(), new ArrayList<Road>(), 1.0f, 2.0f, 100, 100);
-		Intersection end = new Intersection(new ArrayList<Road>(), new ArrayList<Road>(), 2.0f, 4.0f, 200, 150);
-		this.simulator.getIntersections().add((Intersection) start);
-		this.simulator.getIntersections().add((Intersection) end);
-		
-		Generator generator = new Generator(new ArrayList<Road>(), new ArrayList<Road>(), 50, 100);
-		this.simulator.getGenerators().add(generator);
-		this.simulator.getGenerators().add(generator);
-		this.simulator.getIntersections().add(start);
-		this.simulator.getIntersections().add(end);
-
 		this.createView();
 		
 	}
@@ -210,17 +194,13 @@ public class TrafficEditorFrame {
 		return button;
 	}
 
-	public void addNewGenerator(int x, int y) { // Zrobic przeszukiwanie okolicy
-												// dla poczatkow i koncow drog
-
-	}
-
 	public Simulator getSimulator() {
 		return simulator;
 	}
 
 	public void setSimulator(Simulator simulator) {
 		this.simulator = simulator;
+		this.drawingArea.setSimulator(simulator);
 	}
 
 }
