@@ -21,6 +21,11 @@ public class LoadModel implements ActionListener {
 		this.frame = frame;
 	}
 
+	/*
+	 * Method is used to load a state of intersections from a file. It loads an
+	 * object of Simulator, which contains all valuable information.
+	 */
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		final JFileChooser fc = new JFileChooser();

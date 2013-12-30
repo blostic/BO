@@ -11,12 +11,22 @@ import java.io.OutputStream;
 
 import javax.swing.JFileChooser;
 
-public class SaveModel implements ActionListener {
-	private TrafficEditorFrame frame;
+/**
+ * @author piotr
+ * 
+ */
 
-	public SaveModel(TrafficEditorFrame frame) {
-		this.frame = frame;
+public class SaveModel implements ActionListener {
+	private TrafficEditorFrame trafficEditorFrame;
+
+	public SaveModel(TrafficEditorFrame trafficEditorFrame) {
+		this.trafficEditorFrame = trafficEditorFrame;
 	}
+
+	/*
+	 * Method is used to save a state of intersections into a file. It saves an
+	 * object of Simulator, which contains all valuable information.
+	 */
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -27,7 +37,7 @@ public class SaveModel implements ActionListener {
 				File selectedFile = fc.getSelectedFile();
 				OutputStream file = new FileOutputStream(selectedFile);
 				ObjectOutput output = new ObjectOutputStream(file);
-				output.writeObject(frame.getSimulator());
+				output.writeObject(trafficEditorFrame.getSimulator());
 				output.close();
 			} catch (IOException e) {
 				e.printStackTrace();
