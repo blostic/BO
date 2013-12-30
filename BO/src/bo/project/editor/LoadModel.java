@@ -31,6 +31,7 @@ public class LoadModel implements ActionListener {
 				InputStream file = new FileInputStream(selectedFile);
 				ObjectInput input = new ObjectInputStream(file);
 				this.frame.setSimulator((Simulator) input.readObject());
+				System.out.println(this.frame.getSimulator());
 				input.close();
 
 			} catch (IOException e) {
