@@ -1,6 +1,5 @@
 package bo.project.editor.listeners;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -37,7 +36,6 @@ public class DrawingAreaMouseListener implements MouseListener,
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
-		area.setBackground(Color.white);
 	}
 
 	@Override
