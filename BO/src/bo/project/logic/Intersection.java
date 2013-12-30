@@ -3,6 +3,7 @@ package bo.project.logic;
 import java.util.ArrayList;
 import java.util.Random;
 
+@SuppressWarnings("serial")
 public class Intersection extends Junction {
 
 	/*
@@ -13,10 +14,10 @@ public class Intersection extends Junction {
 	protected double greenLightTime;
 	protected double redLightTime;
 
-	public Intersection(int ID, ArrayList<Road> entryRoads,
+	public Intersection(ArrayList<Road> entryRoads,
 			ArrayList<Road> awayRoads, double greenLightTime, double redLightTime,
 			int xCoordinate, int yCoordinate) {
-		super(ID, entryRoads, awayRoads, xCoordinate, yCoordinate);
+		super(entryRoads, awayRoads, xCoordinate, yCoordinate);
 		this.greenLightTime = greenLightTime;
 		this.redLightTime = redLightTime;
 	}

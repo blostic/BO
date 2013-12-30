@@ -1,6 +1,9 @@
 package bo.project.logic;
 
-public class Vehicle {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Vehicle implements Serializable{
 	private int waitTime;
 	private boolean isWaiting;
 	private int x,y;

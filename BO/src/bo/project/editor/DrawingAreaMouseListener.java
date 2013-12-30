@@ -71,7 +71,7 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 		ArrayList<Road> entryRoads = new ArrayList<Road>();
 		ArrayList<Road> awayRoads = new ArrayList<Road>();
 		Point offset = area.getRealPosition(endPoint);
-		Intersection generator = new Intersection(7,entryRoads, awayRoads,10,20,offset.x,offset.y);
+		Intersection generator = new Intersection(entryRoads, awayRoads,10,20,offset.x,offset.y);
 		area.addElement(generator);
 	}
 
@@ -138,7 +138,7 @@ public class DrawingAreaMouseListener implements MouseListener,MouseMotionListen
 					if(endElement == startElement)
 						return;
 					
-					Road road = new Road("road_int",10,10);
+					Road road = new Road(10,10);
 					List<Road> roads = endElement.getEntryRoads();
 					roads.add(road);
 					roads = startElement.getEscapeRoads();

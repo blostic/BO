@@ -1,10 +1,10 @@
 package bo.project.logic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
-public class Simulator {
+@SuppressWarnings("serial")
+public class Simulator implements Serializable{
 	protected ArrayList<Intersection> intersections;
 	protected ArrayList<Generator> generators;
 	protected int timeInterval;

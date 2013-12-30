@@ -1,19 +1,18 @@
 package bo.project.logicTests;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import bo.project.logic.*;
+import bo.project.logic.Road;
+import bo.project.logic.Vehicle;
 
 public class RoadTest {
 	Road road;
 	
 	@Before
 	public void setUp() throws Exception {
-		road = new Road("0", 10, 2200);
+		road = new Road(10, 2200);
 	}
 
 	@Test

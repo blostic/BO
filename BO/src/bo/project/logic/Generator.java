@@ -1,15 +1,14 @@
 package bo.project.logic;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 
+@SuppressWarnings("serial")
 public class Generator extends Junction{
 	private boolean generateFlag;	
 	
 	public Generator(int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y){
-		super(ID, entryRoads,awayRoads, x, y);
+		super(entryRoads,awayRoads, x, y);
 		generateFlag=false;		
 	}
 	
@@ -38,8 +37,8 @@ public class Generator extends Junction{
 	}
 
 	/*
-	 * Usuwam z modelu wszystkie samochody, które dojecha³y na jego koniec 
-	 * Dodaje nowe samochody, jeœli jest taka potrzeba
+	 * Usuwam z modelu wszystkie samochody, ktï¿½re dojechaï¿½y na jego koniec 
+	 * Dodaje nowe samochody, jeï¿½li jest taka potrzeba
 	 */
 	public void moveVehicles(int timeInterval) {
 		for(Road road: entryRoads){

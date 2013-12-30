@@ -45,9 +45,9 @@ public class TrafficEditorFrame {
 	{
 		closures = new ArrayList<>();
 		roads = new ArrayList<>();
-		Road firstRoad = new Road("road_x",10,20);
-		Road secondRoad = new Road("road_a",10,20);
-		Road thirdRoad = new Road("road_c",10,20);
+		Road firstRoad = new Road(10,20);
+		Road secondRoad = new Road(10,20);
+		Road thirdRoad = new Road(10,20);
 		Vehicle auto = new Vehicle();
 		auto.setX(50);
 		auto.setY(100);
@@ -70,8 +70,8 @@ public class TrafficEditorFrame {
 		
 		intersections = new ArrayList<Intersection>();
 		generators = new ArrayList<Generator>();
-		Junction start = new Intersection(2, in2, out2, 1.0f, 2.0f,100,100);
-		Junction ends = new Intersection(3, in3, out3, 2.0f, 4.0f, 200,150);
+		Junction start = new Intersection(in2, out2, 1.0f, 2.0f,100,100);
+		Junction ends = new Intersection(in3, out3, 2.0f, 4.0f, 200,150);
 		intersections.add((Intersection) start);
 		intersections.add((Intersection) ends);
 		//(int ID, ArrayList<Road> entryRoads, ArrayList<Road> awayRoads, int x, int y){

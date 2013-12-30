@@ -4,14 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
+@SuppressWarnings("serial")
 public abstract class Junction implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	protected int ID;
+
 	protected ArrayList<Road> entryRoads; // ulice entry i away pod tymi samymi
 											// indeksami sa takie same
 	protected ArrayList<Road> escapeRoads; // ulice z rowna reszta dzielenia
@@ -19,9 +18,8 @@ public abstract class Junction implements Serializable {
 	protected int xCoordinate; // wspolrzedne
 	protected int yCoordinate;
 
-	public Junction(int ID, ArrayList<Road> entryRoads,
+	public Junction(ArrayList<Road> entryRoads,
 			ArrayList<Road> awayRoads, int xCoordinate, int yCoordinate) {
-		this.ID = ID;
 		this.entryRoads = entryRoads;
 		this.escapeRoads = awayRoads;
 		this.xCoordinate = xCoordinate;

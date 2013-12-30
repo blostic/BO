@@ -3,14 +3,13 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class Road implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private String ID;
-	private LinkedList<Vehicle> vehicles;
 	private int maximalNumberOfVehicles;
+	private LinkedList<Vehicle> vehicles;
 	private int minimalWaitTime;
 	private int trafficIntensity; //nat�enie ruchu - �rednia ilo�� samochod�w wje�d�aj�cych na ulic� w godzin�
 	private boolean greenLight;
@@ -20,8 +19,7 @@ public class Road implements Serializable{
 	private int endX, endY;
 	
 	
-	public Road(String ID, int maximalNumberOfVehicles, int trafficIntensity){
-		this.ID=ID;
+	public Road(int maximalNumberOfVehicles, int trafficIntensity){
 		vehicles = new LinkedList<Vehicle>();
 		this.maximalNumberOfVehicles=maximalNumberOfVehicles;
 		minimalWaitTime=(int)(maximalNumberOfVehicles*averageTime);
@@ -143,7 +141,6 @@ public class Road implements Serializable{
 	}
 	
 	public void printState(){
-		System.out.print(ID+" has "+vehicles.size()+" vehicles: ");
 		for(Vehicle vehicle: vehicles){
 			System.out.print(vehicle.getWaitTime()+" "+vehicle.isWaiting()+"| ");
 		}
