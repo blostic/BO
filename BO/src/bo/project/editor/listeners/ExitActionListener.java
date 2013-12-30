@@ -1,4 +1,4 @@
-package bo.project.editor;
+package bo.project.editor.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

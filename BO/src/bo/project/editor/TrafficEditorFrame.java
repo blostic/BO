@@ -18,6 +18,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import bo.project.editor.listeners.AddGeneratorButtonMouseListener;
+import bo.project.editor.listeners.AddJunctionButtonMouseListener;
+import bo.project.editor.listeners.AddRoadButtonMouseListener;
+import bo.project.editor.listeners.ClearButtonActionListener;
+import bo.project.editor.listeners.DrawingAreaMouseListener;
+import bo.project.editor.listeners.ExitActionListener;
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
 import bo.project.logic.Simulator;

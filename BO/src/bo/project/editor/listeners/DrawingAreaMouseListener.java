@@ -1,4 +1,4 @@
-package bo.project.editor;
+package bo.project.editor.listeners;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -10,6 +10,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import bo.project.editor.DrawingArea;
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
 import bo.project.logic.Junction;

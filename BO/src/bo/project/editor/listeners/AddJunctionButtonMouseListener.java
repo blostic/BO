@@ -1,9 +1,9 @@
-package bo.project.editor;
+package bo.project.editor.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import bo.project.editor.DrawingAreaMouseListener.DrawingAreaListenerCommand;
+import bo.project.editor.listeners.DrawingAreaMouseListener.DrawingAreaListenerCommand;
 
 public class AddJunctionButtonMouseListener implements ActionListener {
 
