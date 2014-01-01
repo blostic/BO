@@ -42,7 +42,7 @@ public class LoadModel implements ActionListener {
 						"Konfiguracja została pomyślnie wczytana",
 						"Wczytywanie...", JOptionPane.PLAIN_MESSAGE);
 				input.close();
-
+				this.trafficEditorFrame.drawingArea.getParent().repaint();
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {

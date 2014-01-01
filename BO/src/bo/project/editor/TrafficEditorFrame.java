@@ -48,6 +48,14 @@ public class TrafficEditorFrame {
 		
 	}
 
+	public DrawingArea getDrawingArea() {
+		return drawingArea;
+	}
+
+	public void setDrawingArea(DrawingArea drawingArea) {
+		this.drawingArea = drawingArea;
+	}
+
 	@SuppressWarnings("deprecation")
 	public void show() {
 		if (frame != null)
@@ -114,7 +122,7 @@ public class TrafficEditorFrame {
 		panel.add(Box.createRigidArea(new Dimension(0, 5)));
 		
 		button = createButton("Zacznij od nowa");
-		button.addActionListener(new ClearButtonActionListener(simulator,drawingArea));
+		button.addActionListener(new ClearButtonActionListener(this));
 		panel.add(button, cons);
 
 		button = createButton("Zapisz");

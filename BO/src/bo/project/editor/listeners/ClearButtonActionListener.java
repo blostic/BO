@@ -5,46 +5,42 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import bo.project.editor.DrawingArea;
+import bo.project.editor.TrafficEditorFrame;
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
 import bo.project.logic.Road;
-import bo.project.logic.Simulator;
 
 public class ClearButtonActionListener implements ActionListener {
 
-	private Simulator _simulator;
-	private DrawingArea _area;
-	
-	public ClearButtonActionListener(Simulator simulator, DrawingArea area){
-		this._simulator = simulator;
-		this._area = area;
+	private TrafficEditorFrame frame;
+	public ClearButtonActionListener(TrafficEditorFrame frame){
+		this.frame = frame;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(_simulator == null)
+		if(frame.getSimulator() == null)
 			return;
 		
 		clearVehicles();
 		clearRoads();
 		clearJunctions();
-		_area.getParent().repaint();
+		frame.getDrawingArea().getParent().repaint();
 	}
 	
 	private void clearJunctions() {
-		_simulator.setIntersections(new ArrayList<Intersection>());
-		_simulator.setGenerators(new ArrayList<Generator>());
+		frame.getSimulator().setIntersections(new ArrayList<Intersection>());
+		frame.getSimulator().setGenerators(new ArrayList<Generator>());
 	}
 
 	private void clearRoads() {
-		List<Intersection> intersections = _simulator.getIntersections();
+		List<Intersection> intersections = frame.getSimulator().getIntersections();
 		for(Intersection inter : intersections){
 			inter.getEscapeRoads().clear();
 			inter.getEntryRoads().clear();
 		}
 		
-		List<Generator> generators = _simulator.getGenerators();
+		List<Generator> generators = frame.getSimulator().getGenerators();
 		for(Generator inter : generators){
 			inter.getEscapeRoads().clear();
 			inter.getEntryRoads().clear();
@@ -52,14 +48,14 @@ public class ClearButtonActionListener implements ActionListener {
 	}
 
 	private void clearVehicles(){
-		List<Intersection> intersections = _simulator.getIntersections();
+		List<Intersection> intersections = frame.getSimulator().getIntersections();
 		for(Intersection inter : intersections){
 			for(Road r : inter.getEscapeRoads()){
 				r.getVehicles().clear();
 			}
 		}
 		
-		List<Generator> generators = _simulator.getGenerators();
+		List<Generator> generators = frame.getSimulator().getGenerators();
 		for(Generator inter : generators){
 			for(Road r : inter.getEscapeRoads()){
 				r.getVehicles().clear();
