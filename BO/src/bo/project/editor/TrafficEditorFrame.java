@@ -133,6 +133,10 @@ public class TrafficEditorFrame {
 		button.addActionListener(new LoadModel(this));
 		panel.add(button, cons);
 
+		button = createButton("Rozpocznij Symulacje");
+		button.addActionListener(new SimulatorListener(this));
+		panel.add(button, cons);
+		
 		button = createButton("Wyjdz");
 		button.addActionListener(new ExitActionListener());
 		
