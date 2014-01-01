@@ -59,7 +59,7 @@ public class Intersection extends Junction {
 	}
 
 	/*
-	 * funkcja losuj�ca drog� w kt�r� pojedzie samoch�d
+	 * funkcja losujaca droge w ktora pojedzie samochod
 	 * 
 	 * mam 4 natezenia ruchu na ulicach i wiem, z jakiej ulicy wyjezdza samochod
 	 * zapamietuje sobie w talicy traffics natezenia pozostalych, dla tej na
@@ -125,8 +125,8 @@ public class Intersection extends Junction {
 						* road.getNumberOfWaiting());
 			}
 			road.moveVehiclesOnRoad(timeInterval); // aktualizuje czasy
-													// przejazd�w samochod�w,
-													// kt�re pozostaj� na drodze
+													// przejazdow samochodow,
+													// ktore pozostaja na drodze
 		}
 	}
 }

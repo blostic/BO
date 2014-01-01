@@ -11,7 +11,7 @@ public class Road implements Serializable{
 	private int maximalNumberOfVehicles;
 	private LinkedList<Vehicle> vehicles;
 	private int minimalWaitTime;
-	private int trafficIntensity; //nat�enie ruchu - �rednia ilo�� samochod�w wje�d�aj�cych na ulic� w godzin�
+	private int trafficIntensity; //natzenie ruchu - srednia ilosc samochodow wjezdzajacych na ulice w godzine
 	private boolean greenLight;
 	private double averageTime = 1; /*sredni czas przejechania z srednia predkoscia sredniej 
 										   dlugosci samochodu*/
@@ -97,8 +97,8 @@ public class Road implements Serializable{
 	}
 	
 	/*
-	 * zwraca pierwszy samoch�d kt�ry czeka na skrzy�owaniu
-	 * je�li takiego nie ma - zwraca null
+	 * zwraca pierwszy samochod ktory czeka na skrzyzowaniu
+	 * jesli takiego nie ma - zwraca null
 	 */
 	public Vehicle getFirstWaitingVehicle(){
 		if(!vehicles.isEmpty()){
@@ -119,8 +119,8 @@ public class Road implements Serializable{
 	}
 	
 	/*
-	 * przesuwa samochody na ulicy (zwi�ksza czas)
-	 * sprawdza czy samoch�d stoi w kolejce przed skrzy�owaniem, je�li tak - oznacza go
+	 * przesuwa samochody na ulicy (zwieksza czas)
+	 * sprawdza czy samochod stoi w kolejce przed skrzyzowaniem, jesli tak - oznacza go
 	 */
 	public void moveVehiclesOnRoad(int timeInterval){
 		Vehicle vehicle;

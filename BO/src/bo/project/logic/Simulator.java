@@ -67,6 +67,8 @@ public class Simulator implements Serializable{
 
 
 	public int runSimulation(double[] greenLights, double[] redLights) {
+		printState();
+		
 		if (greenLights != null && redLights != null){
 			this.setLights(greenLights, redLights);			
 		}
@@ -79,7 +81,7 @@ public class Simulator implements Serializable{
 				intersection.checkStatus(currentTime);
 				intersection.moveVehicles(timeInterval);
 			}
-			// printState()
+			// printState();
 			
 		}
 		return totalWaitTime;

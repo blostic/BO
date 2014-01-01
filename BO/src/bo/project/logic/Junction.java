@@ -49,9 +49,9 @@ public abstract class Junction implements Serializable {
 	}
 
 	/*
-	 * dodaje na kaï¿½dï¿½ ulicï¿½ staï¿½ï¿½ liczbï¿½ samochodï¿½w, zaleï¿½nï¿½ od natï¿½enia ruchu
-	 * dla uproszczenia dodaje je na poczï¿½tek skrzyï¿½owania wszystkie jak to
-	 * okarze siï¿½ problemem, moï¿½na bï¿½dzie pokombinowaï¿½ coï¿½
+	 * dodaje na kazda ulice stala liczbe½ samochodow, zaleznie od nateenia ruchu
+	 * dla uproszczenia dodaje je na poczatek skrzyzowania wszystkie jak to
+	 * okarze sie problemem, mozna bedzie pokombinowac cos
 	 */
 	
 	public void addRandomVehicles(int timeInterval) {
@@ -75,6 +75,7 @@ public abstract class Junction implements Serializable {
 	}
 
 	public void printState() {
+		System.out.println("eR:"+entryRoads.size()+"aR:"+escapeRoads.size());
 		for (Road road : entryRoads) {
 			road.printState();
 		}

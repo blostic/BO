@@ -133,7 +133,8 @@ public class DrawingAreaMouseListener implements MouseListener,
 					if (endElement == startElement)
 						return;
 
-					Road road = new Road(10, 10);
+					Road road = new Road(10, 1800);
+					Road secondRoad = new Road(10, 1800);
 					road.setStartCoordinates(startElement.getXCoordinate(), startElement.getYCoordinate());
 					road.setEndCoordinates(endElement.getXCoordinate(), endElement.getYCoordinate());
 					
@@ -141,6 +142,12 @@ public class DrawingAreaMouseListener implements MouseListener,
 					roads.add(road);
 					roads = startElement.getEscapeRoads();
 					roads.add(road);
+					
+					roads = endElement.getEscapeRoads();
+					roads.add(secondRoad);
+					roads = startElement.getEntryRoads();
+					roads.add(secondRoad);
+					
 					startElement = null;
 					break;
 				}

@@ -37,8 +37,8 @@ public class Generator extends Junction{
 	}
 
 	/*
-	 * Usuwam z modelu wszystkie samochody, kt�re dojecha�y na jego koniec 
-	 * Dodaje nowe samochody, je�li jest taka potrzeba
+	 * Usuwam z modelu wszystkie samochody, ktoe dojechaly na jego koniec 
+	 * Dodaje nowe samochody, jesli jest taka potrzeba
 	 */
 	public void moveVehicles(int timeInterval) {
 		for(Road road: entryRoads){
