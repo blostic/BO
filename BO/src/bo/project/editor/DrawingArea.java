@@ -104,6 +104,7 @@ public class DrawingArea extends JPanel {
 	}
 
 	private void paintVehicles(Graphics g) {
+		g.setColor(Color.green);
 		for (Vehicle veh : _vehicles) {
 			g.drawRect((int) (veh.getX() - offsetX),
 					(int) (veh.getY() - offsetY), 3, 3);
