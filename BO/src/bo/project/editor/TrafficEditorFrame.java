@@ -47,7 +47,7 @@ public class TrafficEditorFrame {
 
 	public TrafficEditorFrame() {
 		this.simulator = new ViewSimulator(new ArrayList<Intersection>(),
-				new ArrayList<Generator>(), 1);
+				new ArrayList<Generator>(), 1, this);
 		this.createView();
 		
 	}

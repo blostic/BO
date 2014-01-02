@@ -2,20 +2,22 @@ package bo.project.client;
 
 import java.util.List;
 
+import bo.project.editor.TrafficEditorFrame;
 import bo.project.logic.Vehicle;
 
 public class SimulationDrawer extends Thread {
 
-	private ViewSimulator simulator;
+	private TrafficEditorFrame editorFrame;
 	
-	public SimulationDrawer(ViewSimulator simulator) {
-		this.simulator = simulator;
+	public SimulationDrawer(TrafficEditorFrame frame) {
+		this.editorFrame = frame;
 	}
 	
 	@Override
 	public void run() {
 		
 		List<Vehicle> vehicles;
+		ViewSimulator simulator = editorFrame.getSimulator();
 		
 		while (simulator.isSimulationContinued()) {
 			/*TODO
@@ -26,6 +28,7 @@ public class SimulationDrawer extends Thread {
 				/*TODO
 				 * draw car on position (v.getX(), v.getY())
 				 */
+				editorFrame.getDrawingArea().getParent().repaint();
 			}
 			try {
 				/*TODO

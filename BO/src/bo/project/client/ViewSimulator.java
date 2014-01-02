@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import bo.project.editor.TrafficEditorFrame;
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
 import bo.project.logic.Simulator;
@@ -13,10 +14,13 @@ public class ViewSimulator extends Simulator {
 
 	private int currentTime = 0;
 	private boolean continueSimulation = true;
-
+	private TrafficEditorFrame editorFrame;
+	
 	public ViewSimulator(ArrayList<Intersection> intersections,
-			ArrayList<Generator> generators, int simulationTimeInterval) {
+			ArrayList<Generator> generators, int simulationTimeInterval,
+			TrafficEditorFrame editorFrame) {
 		super(intersections,generators,simulationTimeInterval,0);
+		this.editorFrame = editorFrame;
 	}
 
 	private void iterateSimulation() {
@@ -36,7 +40,7 @@ public class ViewSimulator extends Simulator {
 	public int runSimulation() {
 		continueSimulation = true;
 			
-		new SimulationDrawer(this).start();
+		new SimulationDrawer(this.editorFrame).start();
 			
 		return 0;
 	}

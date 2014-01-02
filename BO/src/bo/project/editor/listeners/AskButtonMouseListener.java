@@ -61,6 +61,14 @@ public class AskButtonMouseListener implements ActionListener {
 		} else {
 			JOptionPane.showMessageDialog(area, "Wystapil blad komunikacji z serwerem.",
 					"Wysylanie...", JOptionPane.ERROR_MESSAGE);
+			
+			/*
+			 * TODO - only for debug, remove!!!
+			 */
+			
+			double[] reds = {10.0,10.0,10.0,10.0,10.0,10.0,10.0},
+					leds = {10.0,10.0,10.0,10.0,10.0,10.0,10.0};
+			area.getSimulator().setLights(leds, reds);
 		}
 		
 		
