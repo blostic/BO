@@ -22,6 +22,7 @@ import bo.project.client.ViewSimulator;
 import bo.project.editor.listeners.AddGeneratorButtonMouseListener;
 import bo.project.editor.listeners.AddJunctionButtonMouseListener;
 import bo.project.editor.listeners.AddRoadButtonMouseListener;
+import bo.project.editor.listeners.AskButtonMouseListener;
 import bo.project.editor.listeners.ClearButtonActionListener;
 import bo.project.editor.listeners.DrawingAreaMouseListener;
 import bo.project.editor.listeners.ExitActionListener;
@@ -136,6 +137,10 @@ public class TrafficEditorFrame {
 		
 		button = createButton("Wyslij do serwera");
 		button.addActionListener(new SendButtonMouseListener(drawingArea));
+		panel.add(button, cons);
+		
+		button = createButton("Sprawdz rozwiazanie");
+		button.addActionListener(new AskButtonMouseListener(drawingArea));
 		panel.add(button, cons);
 
 		button = createButton("Rozpocznij Symulacje");
