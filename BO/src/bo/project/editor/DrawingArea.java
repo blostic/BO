@@ -8,10 +8,10 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import bo.project.client.ViewSimulator;
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
 import bo.project.logic.Road;
-import bo.project.logic.Simulator;
 import bo.project.logic.Vehicle;
 
 @SuppressWarnings("serial")
@@ -21,15 +21,15 @@ public class DrawingArea extends JPanel {
 	 * 
 	 */
 
-	private Simulator simulator;
+	private ViewSimulator simulator;
 	private List<Road> _roadsToDraw;
 	private List<Vehicle> _vehicles;
 
-	public Simulator getSimulator() {
+	public ViewSimulator getSimulator() {
 		return simulator;
 	}
 
-	public void setSimulator(Simulator simulator) {
+	public void setSimulator(ViewSimulator simulator) {
 		this.simulator = simulator;
 		
 		this.repaint();
@@ -53,7 +53,7 @@ public class DrawingArea extends JPanel {
 		offsetY += offset.getY();
 	}
 
-	public DrawingArea(Simulator simulator, int parentWidth, int parentHeigth) {
+	public DrawingArea(ViewSimulator simulator, int parentWidth, int parentHeigth) {
 		this.setSize(parentWidth - 200, parentHeigth);
 		this.simulator = simulator;
 		offsetX = 0;

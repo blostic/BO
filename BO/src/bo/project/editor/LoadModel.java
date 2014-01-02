@@ -12,7 +12,7 @@ import java.io.ObjectInputStream;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-import bo.project.logic.Simulator;
+import bo.project.client.ViewSimulator;
 
 public class LoadModel implements ActionListener {
 
@@ -36,7 +36,7 @@ public class LoadModel implements ActionListener {
 				File selectedFile = fc.getSelectedFile();
 				InputStream file = new FileInputStream(selectedFile);
 				ObjectInput input = new ObjectInputStream(file);
-				Simulator simulator = (Simulator) input.readObject();
+				ViewSimulator simulator = (ViewSimulator) input.readObject();
 				this.trafficEditorFrame.setSimulator(simulator);
 				JOptionPane.showMessageDialog(trafficEditorFrame.drawingArea,
 						"Konfiguracja została pomyślnie wczytana",

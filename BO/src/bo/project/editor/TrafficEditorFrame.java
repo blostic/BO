@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import bo.project.client.ViewSimulator;
 import bo.project.editor.listeners.AddGeneratorButtonMouseListener;
 import bo.project.editor.listeners.AddJunctionButtonMouseListener;
 import bo.project.editor.listeners.AddRoadButtonMouseListener;
@@ -39,11 +40,11 @@ public class TrafficEditorFrame {
 
 	public DrawingArea drawingArea;
 	private DrawingAreaMouseListener mouseListener;
-	private Simulator simulator;
+	private ViewSimulator simulator;
 
 	public TrafficEditorFrame() {
-		this.simulator = new Simulator(new ArrayList<Intersection>(),
-				new ArrayList<Generator>(), 1, 100);
+		this.simulator = new ViewSimulator(new ArrayList<Intersection>(),
+				new ArrayList<Generator>(), 1);
 		this.createView();
 		
 	}
@@ -170,11 +171,11 @@ public class TrafficEditorFrame {
 		return button;
 	}
 
-	public Simulator getSimulator() {
+	public ViewSimulator getSimulator() {
 		return simulator;
 	}
 
-	public void setSimulator(Simulator simulator) {
+	public void setSimulator(ViewSimulator simulator) {
 		this.simulator = simulator;
 		this.drawingArea.setSimulator(simulator);
 	}
