@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
-import bo.project.logic.Road;
 
 /**
  * Class used in client - server communication. 
@@ -25,7 +24,6 @@ public class Message implements Serializable {
 
 	private ArrayList<Intersection> intersections;
 	private ArrayList<Generator> generators;
-	private ArrayList<Road> roads;
 
 	private int simulationTimeInterval;
 	private double[] greenLights, redLights;
@@ -35,14 +33,12 @@ public class Message implements Serializable {
 	 * 
 	 * @param intersections 
 	 * @param generators
-	 * @param roads
 	 * @param simulationTimeInterval
 	 */
 	public void setTrafficData(ArrayList<Intersection> intersections, ArrayList<Generator> generators, 
-			ArrayList<Road> roads, int simulationTimeInterval) {
+			 int simulationTimeInterval) {
 		this.intersections = intersections;
 		this.generators = generators;
-		this.roads = roads;
 		this.simulationTimeInterval = simulationTimeInterval;
 	}
 
@@ -87,10 +83,6 @@ public class Message implements Serializable {
 
 	public ArrayList<Generator> getGenerators() {
 		return this.generators;
-	}
-
-	public ArrayList<Road> getRoads() {
-		return this.roads;
 	}
 
 	public int getSimulationTimeInterval() {

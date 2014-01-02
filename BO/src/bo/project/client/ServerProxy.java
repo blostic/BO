@@ -11,15 +11,15 @@ import bo.project.message.MessageType;
 
 public class ServerProxy {
 
-	private Socket socket;
-	private ObjectOutputStream out;
-	private ObjectInputStream in;
-	private String host = "localhost";
-	private int port = 6000;
+	private static Socket socket;
+	private static ObjectOutputStream out;
+	private static ObjectInputStream in;
+	private static String host = "localhost";
+	private static int port = 6000;
 
-	public Message sendMessage(Message message) {
+	public static Message sendMessage(Message message) {
 		try {
-			socket = new Socket(this.host, this.port);
+			socket = new Socket(host, port);
 			out = new ObjectOutputStream(socket.getOutputStream());
 			in  = new ObjectInputStream(socket.getInputStream());
 
@@ -48,26 +48,26 @@ public class ServerProxy {
 		}
 	}
 
-	public Message askForSolution(int id) {
+	public static Message askForSolution(int id) {
 		Message message = new Message();
 		message.setType(MessageType.SOL_ASK);
 		return sendMessage(message);
 	}
 
-	public int getPort() {
+	public static int getPort() {
 		return port;
 	}
 
-	public void setPort(int port) {
-		this.port = port;
+	public static void setPort(int port) {
+		ServerProxy.port = port;
 	}
 
-	public String getHost() {
+	public static String getHost() {
 		return host;
 	}
 
-	public void setHost(String host) {
-		this.host = host;
+	public static void setHost(String host) {
+		ServerProxy.host = host;
 	}
 
 
