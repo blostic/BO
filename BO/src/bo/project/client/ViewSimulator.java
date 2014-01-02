@@ -12,6 +12,7 @@ import bo.project.logic.Vehicle;
 public class ViewSimulator extends Simulator {
 
 	private int currentTime = 0;
+	private boolean continueSimulation = true;
 
 	public ViewSimulator(ArrayList<Intersection> intersections,
 			ArrayList<Generator> generators, int simulationTimeInterval) {
@@ -32,26 +33,22 @@ public class ViewSimulator extends Simulator {
 	}
 
 
-	@Override
-	public int runSimulation(double[] greenLights, double[] redLights) {
-		//		this.setLights(greenLights, redLights);
-		//		//TODO: while (true)? while (flag)?
-		//		for (int currentTime = 0; currentTime < totalTime; currentTime += timeInterval) {
-		//			for (Generator generator : generators) {
-		//				generator.checkStatus(currentTime, timeInterval);
-		//				generator.moveVehicles(timeInterval);
-		//			}
-		//			for (Intersection intersection : intersections) {
-		//				intersection.checkStatus(currentTime);
-		//				intersection.moveVehicles(timeInterval);
-		//			}
-		//			
-		//		}
-		//		return totalWaitTime;
-		return -1;
+	public int runSimulation() {
+		continueSimulation = true;
+			
+		new SimulationDrawer(this).start();
+			
+		return 0;
+	}
+	
+	public boolean isSimulationContinued() {
+		return this.continueSimulation;
 	}
 
-
+	public void stopSimulation() {
+		this.continueSimulation = false;
+	}
+	
 	public List<Vehicle> getVehicles() {
 		iterateSimulation();
 		List<Vehicle> vehicles = new LinkedList<Vehicle>();

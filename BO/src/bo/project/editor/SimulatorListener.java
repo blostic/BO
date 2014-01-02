@@ -16,9 +16,7 @@ public class SimulatorListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		Simulator simulator = trafficEditorFrame.getSimulator();
-		trafficEditorFrame.getSimulator().runSimulation(new double[]{2},new double[]{2});		
-		this.trafficEditorFrame.getDrawingArea().paintComponents(this.trafficEditorFrame.getDrawingArea().getGraphics());
+		trafficEditorFrame.getSimulator().runSimulation();
 	}
 
 }

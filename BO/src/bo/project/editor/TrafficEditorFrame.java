@@ -27,6 +27,7 @@ import bo.project.editor.listeners.ClearButtonActionListener;
 import bo.project.editor.listeners.DrawingAreaMouseListener;
 import bo.project.editor.listeners.ExitActionListener;
 import bo.project.editor.listeners.SendButtonMouseListener;
+import bo.project.editor.listeners.StopButtonMouseListener;
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
 
@@ -42,6 +43,7 @@ public class TrafficEditorFrame {
 	public DrawingArea drawingArea;
 	private DrawingAreaMouseListener mouseListener;
 	private ViewSimulator simulator;
+	
 
 	public TrafficEditorFrame() {
 		this.simulator = new ViewSimulator(new ArrayList<Intersection>(),
@@ -143,8 +145,12 @@ public class TrafficEditorFrame {
 		button.addActionListener(new AskButtonMouseListener(drawingArea));
 		panel.add(button, cons);
 
-		button = createButton("Rozpocznij Symulacje");
+		button = createButton("Rozpocznij symulacje");
 		button.addActionListener(new SimulatorListener(this));
+		panel.add(button, cons);
+		
+		button = createButton("Zakoncz symulacje");
+		button.addActionListener(new StopButtonMouseListener(this));
 		panel.add(button, cons);
 		
 		button = createButton("Wyjdz");
@@ -188,5 +194,6 @@ public class TrafficEditorFrame {
 		this.simulator = simulator;
 		this.drawingArea.setSimulator(simulator);
 	}
+
 
 }
