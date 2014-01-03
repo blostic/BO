@@ -13,7 +13,7 @@ public class Road implements Serializable{
 	private int minimalWaitTime;
 	private int trafficIntensity; //natzenie ruchu - srednia ilosc samochodow wjezdzajacych na ulice w godzine
 	private boolean greenLight;
-	private double averageTime = 1; /*sredni czas przejechania z srednia predkoscia sredniej 
+	private double averageTime = 10; /*sredni czas przejechania z srednia predkoscia sredniej 
 										   dlugosci samochodu*/
 	private int startX, startY;
 	private int endX, endY;
@@ -139,8 +139,8 @@ public class Road implements Serializable{
 		for (int index=0; index<vehicles.size(); ++index) {
 			v = vehicles.get(index);
 			if (v.isWaiting()) {
-				v.setX(Math.round(endX - index*(float)maximalNumberOfVehicles/(endX-startX)));
-				v.setY(Math.round(endY - index*(float)maximalNumberOfVehicles/(endY-startY)));
+				v.setX(Math.round(endX - index*(endX-startX)/(float)maximalNumberOfVehicles));
+				v.setY(Math.round(endY - index*(endY-startY)/(float)maximalNumberOfVehicles));
 			} else {
 				v.setX(Math.round(startX + (endX - startX)*(float)v.getWaitTime()/minimalWaitTime));
 				v.setY(Math.round(startY + (endY - startY)*(float)v.getWaitTime()/minimalWaitTime));
