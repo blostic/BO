@@ -139,8 +139,11 @@ public class Road implements Serializable{
 		for (int index=0; index<vehicles.size(); ++index) {
 			v = vehicles.get(index);
 			if (v.isWaiting()) {
-				v.setX(Math.round(endX - index*(endX-startX)/(float)maximalNumberOfVehicles));
-				v.setY(Math.round(endY - index*(endY-startY)/(float)maximalNumberOfVehicles));
+				//v.setX(Math.round(endX - index*(endX-startX)/(float)maximalNumberOfVehicles));
+				//v.setY(Math.round(endY - index*(endY-startY)/(float)maximalNumberOfVehicles));
+				v.setX(Math.round(startX - index*(startX-endX)/(float)maximalNumberOfVehicles));
+				v.setY(Math.round(startY - index*(startY-endY)/(float)maximalNumberOfVehicles));
+	
 			} else {
 				v.setX(Math.round(startX + (endX - startX)*(float)v.getWaitTime()/minimalWaitTime));
 				v.setY(Math.round(startY + (endY - startY)*(float)v.getWaitTime()/minimalWaitTime));
