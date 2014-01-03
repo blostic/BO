@@ -44,18 +44,23 @@ public class RequestHandler extends Thread {
 			Simulator simulator = new Simulator(request.getIntersections(), request.getGenerators(),
 					Main.SIMULATION_TIME_INTERVAL, Main.SIMULATION_TOTAL_TIME);
 			simulator.initializeVehiclesOnRoads();
-			double redLightsArray[] = {30};
-			double greenLightsArray[] = {30};
+			double redLightsArray[] = new double[request.getIntersections().size()];
+			double greenLightsArray[] = new double[request.getIntersections().size()];
+
+			for (int i = 0; i < request.getIntersections().size(); i++) {
+				redLightsArray[i] = 3;
+				greenLightsArray[i] = 3;
+			}
 
 			simulator.runSimulation(redLightsArray,greenLightsArray);
-
+			
 			Cuckoo cuckoo = new Cuckoo(simulator);
 			Solution solution = cuckoo.cuckooSearch(Main.MAX_GENERATIONS);
 			
 			Main.info("Request processed.");
 			
 			/* Adding result to response queue */
-			request.setResult(solution.greenLightsArray, solution.redLightsArray);
+			request.setResult(solution.getGreenLightsArray(), solution.getRedLightsArray());
 			request.setType(MessageType.SOL_RESPONSE);
 			messageReceiver.addResponse(request);
 			Main.info("Response queue updated.");    

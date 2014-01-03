@@ -34,10 +34,13 @@ public class Nest implements Comparable<Nest> {
 	public static Nest generateRandomNest(Simulator simulator, int problemSize  ) {
 		Nest nest = new Nest();
 		Random rand = new Random();
+		double redLightsArray[] = new double[problemSize];
+		double greenLightsArray[] = new double[problemSize];
 		for (int i = 0; i < problemSize; i++) {
-			nest.solution.greenLightsArray[i] = rand.nextDouble() * 100;
-			nest.solution.redLightsArray[i] = rand.nextDouble() * 100;
+			greenLightsArray[i] = rand.nextDouble() * 100;
+			redLightsArray[i] = rand.nextDouble() * 100;
 		}
+		nest.solution = new Solution(redLightsArray, greenLightsArray);
 		nest.energy = Cuckoo.energy(simulator,nest.solution);
 		return nest;
 	}

@@ -49,7 +49,6 @@ public class LoadModel implements ActionListener {
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
-
 		}
 	}
 }

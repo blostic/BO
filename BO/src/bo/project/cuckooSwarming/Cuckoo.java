@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import bo.project.logic.Intersection;
 import bo.project.logic.Simulator;
 
 public class Cuckoo {
@@ -46,6 +45,7 @@ public class Cuckoo {
 
 	public Solution cuckooSearch(int MaxGenerations) {
 		population = generateInitialPopulationOfNests(100, this.simulationSize);
+		String start = Double.toString(energy(simulator, population.get(0).solution));
 		int t = 0;
 		Solution bestSolution = null;
 		while (t < MaxGenerations) {
@@ -58,6 +58,8 @@ public class Cuckoo {
 			bestSolution = findBestSolution(population);
 			t++;
 		}
+
+		System.out.println("Value at the beginning: "+start+"\nValue at the end: "+ energy(simulator, bestSolution));
 		return bestSolution;
 	}
 
