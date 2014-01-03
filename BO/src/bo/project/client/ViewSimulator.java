@@ -10,12 +10,22 @@ import bo.project.logic.Intersection;
 import bo.project.logic.Simulator;
 import bo.project.logic.Vehicle;
 
+@SuppressWarnings("serial")
 public class ViewSimulator extends Simulator {
 
 	private int currentTime = 0;
 	private boolean continueSimulation = true;
-	private TrafficEditorFrame editorFrame;
+	transient private TrafficEditorFrame editorFrame;
+
 	
+	public TrafficEditorFrame getEditorFrame() {
+		return editorFrame;
+	}
+
+	public void setEditorFrame(TrafficEditorFrame editorFrame) {
+		this.editorFrame = editorFrame;
+	}
+
 	public ViewSimulator(ArrayList<Intersection> intersections,
 			ArrayList<Generator> generators, int simulationTimeInterval,
 			TrafficEditorFrame editorFrame) {

@@ -37,6 +37,7 @@ public class LoadModel implements ActionListener {
 				InputStream file = new FileInputStream(selectedFile);
 				ObjectInput input = new ObjectInputStream(file);
 				ViewSimulator simulator = (ViewSimulator) input.readObject();
+				simulator.setEditorFrame(trafficEditorFrame);
 				this.trafficEditorFrame.setSimulator(simulator);
 				JOptionPane.showMessageDialog(trafficEditorFrame.drawingArea,
 						"Konfiguracja została pomyślnie wczytana",
