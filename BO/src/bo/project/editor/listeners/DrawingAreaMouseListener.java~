@@ -9,8 +9,6 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import bo.project.editor.DrawingArea;
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
@@ -135,30 +133,14 @@ public class DrawingAreaMouseListener implements MouseListener,
 					if (endElement == startElement)
 						return;
 
-					int vehicles;
-					try{
-						vehicles = Integer.parseInt(JOptionPane.showInputDialog(area, "Podaj maksymalną ilosc samochodow"));
-					}catch (NumberFormatException ex){
-						JOptionPane.showMessageDialog(area, "Nie podano liczby samochodow!");
-						return;
-					}
+					Road road = new Road(10, 1800);
+					Road secondRoad = new Road(10, 1800);
 					
-					int trafficIntensity;
-					try{
-						trafficIntensity = Integer.parseInt(JOptionPane.showInputDialog(area, "Podaj intensywnosc zatloczenia"));
-					}catch (NumberFormatException ex){
-						JOptionPane.showMessageDialog(area, "Nie podano intensywnosci zatloczenia");
-						return;
-					}
+					road.setStartCoordinates(startElement.getXCoordinate(), startElement.getYCoordinate()-4);
+					road.setEndCoordinates(endElement.getXCoordinate(), endElement.getYCoordinate()-4);
 					
-					Road road = new Road(vehicles, trafficIntensity);
-					Road secondRoad = new Road(vehicles, trafficIntensity);
-					
-					road.setStartCoordinates(startElement.getXCoordinate()-2, startElement.getYCoordinate()-2);
-					road.setEndCoordinates(endElement.getXCoordinate()-2, endElement.getYCoordinate()-2);
-					
-					secondRoad.setEndCoordinates(startElement.getXCoordinate()+2, startElement.getYCoordinate()+2);
-					secondRoad.setStartCoordinates(endElement.getXCoordinate()+2, endElement.getYCoordinate()+2);
+					secondRoad.setEndCoordinates(startElement.getXCoordinate(), startElement.getYCoordinate()+4);
+					secondRoad.setStartCoordinates(endElement.getXCoordinate(), endElement.getYCoordinate()+4);
 					
 					endElement.getEntryRoads().add(road);
 					endElement.getEscapeRoads().add(secondRoad);
