@@ -6,4 +6,15 @@
 \BOOKMARK [1][-]{section.4}{Opis logiki}{}% 6
 \BOOKMARK [1][-]{section.5}{Algorytm kuku\233ki}{}% 7
 \BOOKMARK [1][-]{section.6}{Obs\233uga aplikacji}{}% 8
-\BOOKMARK [1][-]{section.7}{Rezultaty}{}% 9
+\BOOKMARK [2][-]{subsection.6.1}{Dodaj Generator}{section.6}% 9
+\BOOKMARK [2][-]{subsection.6.2}{Dodaj Skrzyzowanie}{section.6}% 10
+\BOOKMARK [2][-]{subsection.6.3}{Dodaj Droge}{section.6}% 11
+\BOOKMARK [2][-]{subsection.6.4}{Zacznij od nowa}{section.6}% 12
+\BOOKMARK [2][-]{subsection.6.5}{Zapisz}{section.6}% 13
+\BOOKMARK [2][-]{subsection.6.6}{Wczytaj}{section.6}% 14
+\BOOKMARK [2][-]{subsection.6.7}{Wyslij do serwera}{section.6}% 15
+\BOOKMARK [2][-]{subsection.6.8}{Sprawdz rozwiazanie}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.9}{Rozpocznij Symulacje}{section.6}% 17
+\BOOKMARK [2][-]{subsection.6.10}{Zatrzymaj Symulacje}{section.6}% 18
+\BOOKMARK [2][-]{subsection.6.11}{Wyjdz}{section.6}% 19
+\BOOKMARK [1][-]{section.7}{Rezultaty}{}% 20
