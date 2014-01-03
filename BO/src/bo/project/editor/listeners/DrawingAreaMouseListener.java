@@ -135,18 +135,18 @@ public class DrawingAreaMouseListener implements MouseListener,
 
 					Road road = new Road(10, 1800);
 					Road secondRoad = new Road(10, 1800);
-					road.setStartCoordinates(startElement.getXCoordinate(), startElement.getYCoordinate());
-					road.setEndCoordinates(endElement.getXCoordinate(), endElement.getYCoordinate());
 					
-					List<Road> roads = endElement.getEntryRoads();
-					roads.add(road);
-					roads = startElement.getEscapeRoads();
-					roads.add(road);
+					road.setStartCoordinates(startElement.getXCoordinate(), startElement.getYCoordinate()-4);
+					road.setEndCoordinates(endElement.getXCoordinate(), endElement.getYCoordinate()-4);
 					
-					roads = endElement.getEscapeRoads();
-					roads.add(secondRoad);
-					roads = startElement.getEntryRoads();
-					roads.add(secondRoad);
+					secondRoad.setEndCoordinates(startElement.getXCoordinate(), startElement.getYCoordinate()+4);
+					secondRoad.setStartCoordinates(endElement.getXCoordinate(), endElement.getYCoordinate()+4);
+					
+					endElement.getEntryRoads().add(road);
+					endElement.getEscapeRoads().add(secondRoad);
+		
+					startElement.getEscapeRoads().add(road);					
+					startElement.getEntryRoads().add(secondRoad);
 					
 					startElement = null;
 					break;
@@ -156,10 +156,10 @@ public class DrawingAreaMouseListener implements MouseListener,
 	}
 
 	private Boolean checkIfIntersect(Junction junction, Point offset){
-		return junction.getXCoordinate() - 9 <= offset.getX()
-				&& junction.getXCoordinate() + 9 >= offset.getX()
-				&& junction.getYCoordinate() - 9 <= offset.getY()
-				&& junction.getYCoordinate() + 9 >= offset.getY();
+		return junction.getXCoordinate() - 15 <= offset.getX()
+				&& junction.getXCoordinate() + 15 >= offset.getX()
+				&& junction.getYCoordinate() - 15 <= offset.getY()
+				&& junction.getYCoordinate() + 15 >= offset.getY();
 	}
 	
 	@Override
