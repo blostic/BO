@@ -67,10 +67,10 @@ public class ViewSimulator extends Simulator {
 		iterateSimulation();
 		List<Vehicle> vehicles = new LinkedList<Vehicle>();
 		for (Generator g : generators) {
-			vehicles.addAll(g.getWaitingVehicles());
+			vehicles.addAll(g.getEntryVehicles());
 		}
 		for (Intersection i : intersections) {
-			vehicles.addAll(i.getWaitingVehicles());
+			vehicles.addAll(i.getEntryVehicles());
 		}
 		return vehicles;
 	}

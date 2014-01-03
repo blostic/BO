@@ -105,24 +105,26 @@ public class Intersection extends Junction {
 
 	public void moveVehicles(int timeInterval) {
 		for (Road road : entryRoads) {
-			Road awayRoad = chooseRoad(road);
-			if (awayRoad.isFull()) {
-				Simulator.increaseWaitTime(timeInterval
+			if (road.checkGreenLight() && !road.isEmpty()) {
+				Road awayRoad = chooseRoad(road);
+			
+				if (awayRoad.isFull()) {
+					Simulator.increaseWaitTime(timeInterval
 						* road.getNumberOfWaiting());
-			} else {
-				Vehicle first = road.getFirstWaitingVehicle();
-				if (first != null) { // nie ma samochodu ktory juz dojechal do
+				} else {
+					Vehicle first = road.getFirstWaitingVehicle();
+					if (first != null) { // nie ma samochodu ktory juz dojechal do
 										// skrzyzowania - nie robie nic, jest
 										// -przenosze
-					first.resetWaitTime();
-					first.resetWaiting();
-					awayRoad.addVehicle(first);
+						first.resetWaitTime();
+						first.resetWaiting();
+						awayRoad.addVehicle(first);
+					}
 				}
-			}
-			if (road.checkGreenLight() && !road.isEmpty()) {
+			
 			} else {
 				Simulator.increaseWaitTime(timeInterval
-						* road.getNumberOfWaiting());
+					* road.getNumberOfWaiting());
 			}
 			road.moveVehiclesOnRoad(timeInterval); // aktualizuje czasy
 													// przejazdow samochodow,
