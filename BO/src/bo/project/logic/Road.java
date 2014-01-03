@@ -127,7 +127,9 @@ public class Road implements Serializable{
 		for(int i=0;i<vehicles.size();++i){
 			vehicle=vehicles.get(i);
 			vehicle.increaseWaitTime(timeInterval);
-			if(vehicle.getWaitTime()>=minimalWaitTime-i*averageTime){
+			
+			if(i==0 && vehicle.getWaitTime()>=minimalWaitTime
+			|| i>0 && vehicle.getWaitTime()>=minimalWaitTime-i*averageTime && vehicles.get(i-1).isWaiting()){
 				vehicle.markAsWaiting();
 			}
 		}
@@ -139,10 +141,10 @@ public class Road implements Serializable{
 		for (int index=0; index<vehicles.size(); ++index) {
 			v = vehicles.get(index);
 			if (v.isWaiting()) {
-				//v.setX(Math.round(endX - index*(endX-startX)/(float)maximalNumberOfVehicles));
-				//v.setY(Math.round(endY - index*(endY-startY)/(float)maximalNumberOfVehicles));
-				v.setX(Math.round(startX - index*(startX-endX)/(float)maximalNumberOfVehicles));
-				v.setY(Math.round(startY - index*(startY-endY)/(float)maximalNumberOfVehicles));
+				v.setX(Math.round(endX - (endX-startX)/(float)maximalNumberOfVehicles));
+				v.setY(Math.round(endY - (endY-startY)/(float)maximalNumberOfVehicles));
+				//v.setX(Math.round(startX - index*(startX-endX)/(float)maximalNumberOfVehicles));
+				//v.setY(Math.round(startY - index*(startY-endY)/(float)maximalNumberOfVehicles));
 	
 			} else {
 				v.setX(Math.round(startX + (endX - startX)*(float)v.getWaitTime()/minimalWaitTime));

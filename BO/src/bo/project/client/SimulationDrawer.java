@@ -35,7 +35,7 @@ public class SimulationDrawer extends Thread {
 				 * sleep time - speed of simulation
 				 * should be possible to set by user
 				 */
-				Thread.sleep(50);
+				Thread.sleep(25);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

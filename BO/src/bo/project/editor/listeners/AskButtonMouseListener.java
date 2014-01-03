@@ -55,7 +55,11 @@ public class AskButtonMouseListener implements ActionListener {
 				JOptionPane.showMessageDialog(area,
 						"Otrzymano rozwiazanie.",
 						"Wysylanie...", JOptionPane.INFORMATION_MESSAGE);
-				
+//				for (double d : res.getGreenLights())
+//					System.out.println(d);
+//				System.out.println("============");
+//				for (double d : res.getRedLights())
+//					System.out.println(d);
 				area.getParent().repaint();
 			}
 		} else {

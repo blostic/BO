@@ -25,12 +25,12 @@ public abstract class Junction implements Serializable {
 		this.xCoordinate = xCoordinate;
 		this.yCoordinate = yCoordinate;
 		
-		for (Road r : this.entryRoads) {
-			r.setEndCoordinates(xCoordinate, yCoordinate);
-		}
-		for (Road r : this.escapeRoads) {
-			r.setStartCoordinates(xCoordinate, yCoordinate);
-		}
+		//for (Road r : this.entryRoads) {
+		//	r.setEndCoordinates(xCoordinate, yCoordinate);
+		//}
+		//for (Road r : this.escapeRoads) {
+		//	r.setStartCoordinates(xCoordinate, yCoordinate);
+		//}
 	}
 	
 	public int getXCoordinate(){
@@ -65,13 +65,13 @@ public abstract class Junction implements Serializable {
 		}
 	}
 	
-	public List<Vehicle> getWaitingVehicles() {
-		List<Vehicle> waitingVehicles = new LinkedList<Vehicle>();
+	public List<Vehicle> getEntryVehicles() {
+		List<Vehicle> entryVehicles = new LinkedList<Vehicle>();
 		for (Road r : entryRoads) {
 			r.updateVehiclesPositions();
-			waitingVehicles.addAll(r.getVehicles());
+			entryVehicles.addAll(r.getVehicles());
 		}
-		return waitingVehicles;
+		return entryVehicles;
 	}
 
 	public void printState() {
