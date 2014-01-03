@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{cgw06}
+\usepackage{epsf}
+\usepackage{polski}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[all]{hypcap}
+\usepackage{color}
+\usepackage{mdframed}
+\usepackage{titletoc}
+\usepackage{listings}
+\usepackage{mathtools}
+
+\definecolor{dark-red}{rgb}{0.5,0,0}
+\definecolor{dark-green}{rgb}{0,0.5,0}
+\definecolor{dark-blue}{rgb}{0,0,0.5}
+\hypersetup{
+    colorlinks,
+    linkcolor={dark-blue},
+    urlcolor={dark-blue},
+    citecolor={dark-green}
+}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=Pascal,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\lstset{escapechar=@,style=customc}
+\title {Skrzyżowania ++}
+    
+\author{Piotr Skibiak, Tomasz Kwiecień, Marcin Nowak, Ksawery Głaz, Paweł Łabno}
+\institute{AGH, Wydział IEiT, Informatyka}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprzez zastosowanie optymalnego ustawienia czasu świateł. Optymalne (albo prawie optymalne) ustawienie świateł wyznaczane jest poprzez użycie jednego z algorytmów stadnych - algorytmu kukułki.   
+\end{abstract}
+
+\newpage
+\renewcommand*\contentsname{Spis Treści}
+\tableofcontents
+\setcounter{tocdepth}{3}
+
+\newpage
+
+\section{Przedstawienie problemu}
+
+
+
+\section{Cele projektu}
+    Projekt ma na celu umożliwienie użytkownikowi znalezienie optymalnego ustawienia czasów świecenia świateł (światła zielonego i czerwonego) w sieci skrzyżowań ustalonych przez użytkownika. Aplikacja powinna dać użytkownikowi możliwość ręcznego wprowadzenia sieci skrzyżowań, zapisu konfiguracji do pliku, lub wczytania wcześniej zapisanej. 
+
+\section{Wstępne założenia}
+\subsection{Środowisko Implementacji}
+    Aby pogodzić potrzebę szybkiego wykonywania symulacji, oraz zdążyć wykonać projekt w przeznaczonym do tego czasie, językiem wybranym do implementacji jest Java. Ustaliliśmy, że aby zmniejszyć prawdopodobieństwo wystąpienia niespójności związanej z wykorzystywaniem różnych narzędzi, aplikacja będzie pisana przy pomocy Eclipse IDE. 
+
+\subsection{Praca w zespole}
+    Praca grupowa była wspomagana poprzez wykorzystanie sytemu kontroli wersji GIT, oraz poprzez utorzenie Google Doc'a projektu. W trakcie realizacji przeprowadziliśmy również kilka spotkań mających na celu, kontrolę przebiegu prac, wyjaśnienie watpliwości / niejasności wykrytych w trakcie iteracji, a także przydział kolejnych zadań.
+
+\section{Opis logiki}
+
+\section{Algorytm kukułki}
+
+\section{Obsługa aplikacji}
+
+\section{Rezultaty}
+
+
+\begin{itemize}
+
+\end{document} 

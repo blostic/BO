@@ -1,0 +1,10 @@
+\contentsline {section}{\numberline {1}Przedstawienie problemu}{3}{section.1}
+\contentsline {section}{\numberline {2}Cele projektu}{3}{section.2}
+\contentsline {section}{\numberline {3}Wst\IeC {\k e}pne za\IeC {\l }o\IeC {\.z}enia}{3}{section.3}
+\contentsline {subsection}{\numberline {3.1}\IeC {\'S}rodowisko Implementacji}{3}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Praca w zespole}{3}{subsection.3.2}
+\contentsline {section}{\numberline {4}Opis logiki}{3}{section.4}
+\contentsline {section}{\numberline {5}Algorytm kuku\IeC {\l }ki}{3}{section.5}
+\contentsline {section}{\numberline {6}Obs\IeC {\l }uga aplikacji}{3}{section.6}
+\contentsline {section}{\numberline {7}Rezultaty}{3}{section.7}
+\contentsfinish 
