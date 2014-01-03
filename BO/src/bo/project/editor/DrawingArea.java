@@ -70,7 +70,7 @@ public class DrawingArea extends JPanel {
 			double y = generator.getYCoordinate();
 			
 			g.drawRect((int) (x - 1 - offsetX), (int) (y - 1 - offsetY), 3, 3);
-
+			_roadsToDraw.addAll(generator.getEntryRoads());
 		}
 	}
 	
