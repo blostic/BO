@@ -73,6 +73,21 @@ Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprze
     Praca grupowa była wspomagana poprzez wykorzystanie sytemu kontroli wersji GIT, oraz poprzez utorzenie Google Doc'a projektu. W trakcie realizacji przeprowadziliśmy również kilka spotkań mających na celu, kontrolę przebiegu prac, wyjaśnienie watpliwości / niejasności wykrytych w trakcie iteracji, a także przydział kolejnych zadań.
 
 \section{Opis logiki}
+    Nasza logika składa się z kilku klas, za pomocą których możemy tworzyć potrzebne w naszym projekcie obiekty: Generatory, Skrzyżowania, Drogi i Samochody. Obiekty te tworzone są przez GUI, a następnie server wykonuje symulacje za ich pomocą.
+
+\subsection{Klasa Generator}
+    Obiekt, który jest instancją tej klasy jest zakończeniem dróg, których jeden z końców nie jest podłączony do żadnego ze skrzyżowań. Zadaniem tego obiektu jest tworzenie nowych samochodów pojawiających się na mapie oraz usówanie tych wyjeżdżających z mapy. Klasa posiada metodę moveVehicles odpowiedzialną właśnie za pojawianie się i znikanie samochodów na mapie. Posiada także funkcję, która za pomocą losowości decyduje czy obiekt Generator powinien w danym momencie stworzyć obiekt samochód.
+
+\subsection{Klasa Junction}
+    Jest to klasa abstrakcyjna, po której dziedziczy klasa Junction, której instancją jest obiekt Skrzyżowanie. Poza konstruktorem posiada ona głównie gettery, które ułatwiąją dostęp do dróg wejściowych oraz wyjściowych, a także współrzędnych danego skrzyżowania. Posiada także metodę, która dodaje na każdą ulicę wychodzącą z tego skrzyżowania jakąś stałą liczbę samochodów, która jest zależna od ustalonego wcześniej natężenia ruchu na danej drodze.
+
+\subsection{Klasa Intersection}
+
+\subsection{Klasa Road}
+
+\subsection{Klasa Simulator}
+
+\subsection{Klasa Vehicle}
 
 \section{Algorytm kukułki}
 
