@@ -77,6 +77,40 @@ Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprze
 \section{Algorytm kukułki}
 
 \section{Obsługa aplikacji}
+    Uruchamiając nasz program wyświetla się okno, które jest podzielone na 2 seskcje obszar, w którym możemy rysowawać skrzyrzowania i drogi oraz przedstawiana tam sest wizualnie symulacja. W drugim obszarze po prawej stronie znajdują się wszystkie przyciski do obsługi programu.
+
+\subsection{Dodaj Generator}
+    Gdy przycisk ten zostanie naciśnięty możemy za pomocą kliknięcia lewym przyciskiem myszy na obszarze do rysowania stworzyć generator. Zostanie on narysowany w kliknętym miejscu jako czerwone kółko poprzez pobranie współrzednych kursora, a także zostanie stworzony obiekt Generator, który zostanie dodany do listy generatorów.
+
+\subsection{Dodaj Skrzyżowanie}
+    Analogicznie jak w przypadku Generatora zostanie stworzony obiekt Skrzyżowanie oraz w klikniętym miejscu pojawi się czarne kółko.
+
+\subsection{Dodaj Drogę}
+    Po naciśnięciu przycisku "Dodaj Drogę" użytkownik może poprzez kliknięcie na dwóch skrzyżowaniach lub generatorze i skrzyrzowaniu (najpierw jednym, a następnie na drugim), które zostało wcześniej narysowane, stworzyć nowy obiekt Droga. Gdy zostaną kliknięte dwa (wcześniej narysowane) obiekty typu Generator lub skrzyżowanie, pojawi się okno z zapytaniem o to ile samochodów może pomieścić droga, a następnie ile (w ciągu godziny) samochodów może przejechać przez tą drogę czyli intensywaność zatłoczenia. Jeżeli jeden z zapytanych przez program parametrów nie zostanie podany lub będzie podany, ale w złym formacie np. użytkownik wpisze jakąś literę zamiast cyfry to obiekt nie zostanie stworzony. Po poprawnym podaniu wszystkich parametrów zostanie stworzony i narysowany obiekt typu droga. Narysowany jest podwójnie by było lepiej widać poruszające się samochody w obie strony. Jedna linia oznacza drogę w jedną stronę, a druga w drugą.
+
+\subsection{Zacznij od nowa}
+    Czyści całą narysowaną bądź wczytaną mapę.
+
+\subsection{Zapisz}
+    Zapisuje w wybranym przez użytkownika miaejscu na dysku narysowaną wcześniej mapę w postaci rysunku i list stworzonych obiektów.
+
+\subsection{Wczytaj}
+    Wczytuje z dysku wcześniej zapisaną mapę.
+
+\subsection{Wyślij do serwera}
+    Gdy narysujemy już bądź wczytamy mapę, musimy ją wysłać do włączonego wcześniej serwera żądanie, podając IP hosta, na którego komputerze jest włączony serwer, lub wpisując localhost jeśli mamy postawiony serwer lokalnie u siebie. Serwer zwraca nam ID jakie nadał temu żądaniu.
+
+\subsection{Sprawdź rozwiązanie}
+    Klikając ten przycisk, a następnie podając ID żądania, pytamy serwer czy dla danego żądania zostało wyliczone optymalne rozwiązanie. Serwer zwraca nam odpowiednią informację, która zostaje wyświetlna w okienku.
+
+\subsection{Rozpocznij Symulację}
+    Rozpoczęta zostanie symulacja poruszających się samochodów przedstawionych w postaci zielonych kółek. Symulacja jest przedstawiona wizualnie na narysowanej mapie. Współrzędne samochodów są pobierane co jakiś (bardzo króŧki) czas przez co mamy wrażenie, że samochody poruszają się płynnie.
+
+\subsection{Zatrzymaj Symulacje}
+    Wstrzymuje wcześniej uruchomioną symulację.
+
+\subsection{Wyjdź}
+    Przyciśnięcie tego przycisku powoduje całokowite wyjście z programu.
 
 \section{Rezultaty}
 

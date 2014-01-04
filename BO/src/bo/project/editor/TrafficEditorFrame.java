@@ -152,7 +152,7 @@ public class TrafficEditorFrame {
 		button.addActionListener(new SimulatorListener(this));
 		panel.add(button, cons);
 		
-		button = createButton("Zakoncz symulacje");
+		button = createButton("Zatrzymaj symulacje");
 		button.addActionListener(new StopButtonMouseListener(this));
 		panel.add(button, cons);
 		

@@ -1,10 +1,21 @@
-\contentsline {section}{\numberline {1}Przedstawienie problemu}{3}{section.1}
-\contentsline {section}{\numberline {2}Cele projektu}{3}{section.2}
-\contentsline {section}{\numberline {3}Wst\IeC {\k e}pne za\IeC {\l }o\IeC {\.z}enia}{3}{section.3}
-\contentsline {subsection}{\numberline {3.1}\IeC {\'S}rodowisko Implementacji}{3}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Praca w zespole}{3}{subsection.3.2}
-\contentsline {section}{\numberline {4}Opis logiki}{3}{section.4}
-\contentsline {section}{\numberline {5}Algorytm kuku\IeC {\l }ki}{3}{section.5}
-\contentsline {section}{\numberline {6}Obs\IeC {\l }uga aplikacji}{3}{section.6}
-\contentsline {section}{\numberline {7}Rezultaty}{3}{section.7}
+\contentsline {section}{\numberline {1}Przedstawienie problemu}{4}{section.1}
+\contentsline {section}{\numberline {2}Cele projektu}{4}{section.2}
+\contentsline {section}{\numberline {3}Wst\IeC {\k e}pne za\IeC {\l }o\IeC {\.z}enia}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}\IeC {\'S}rodowisko Implementacji}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Praca w zespole}{4}{subsection.3.2}
+\contentsline {section}{\numberline {4}Opis logiki}{4}{section.4}
+\contentsline {section}{\numberline {5}Algorytm kuku\IeC {\l }ki}{4}{section.5}
+\contentsline {section}{\numberline {6}Obs\IeC {\l }uga aplikacji}{4}{section.6}
+\contentsline {subsection}{\numberline {6.1}Dodaj Generator}{4}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Dodaj Skrzy\IeC {\.z}owanie}{5}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Dodaj Drog\IeC {\k e}}{5}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.4}Zacznij od nowa}{5}{subsection.6.4}
+\contentsline {subsection}{\numberline {6.5}Zapisz}{5}{subsection.6.5}
+\contentsline {subsection}{\numberline {6.6}Wczytaj}{5}{subsection.6.6}
+\contentsline {subsection}{\numberline {6.7}Wy\IeC {\'s}lij do serwera}{5}{subsection.6.7}
+\contentsline {subsection}{\numberline {6.8}Sprawd\IeC {\'z} rozwi\IeC {\k a}zanie}{6}{subsection.6.8}
+\contentsline {subsection}{\numberline {6.9}Rozpocznij Symulacj\IeC {\k e}}{6}{subsection.6.9}
+\contentsline {subsection}{\numberline {6.10}Zatrzymaj Symulacje}{6}{subsection.6.10}
+\contentsline {subsection}{\numberline {6.11}Wyjd\IeC {\'z}}{6}{subsection.6.11}
+\contentsline {section}{\numberline {7}Rezultaty}{6}{section.7}
 \contentsfinish 
