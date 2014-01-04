@@ -22,5 +22,4 @@ public class Solution {
 	public void setGreenLightsArray(double[] greenLightsArray) {
 		this.greenLightsArray = greenLightsArray;
 	}
-	
 }

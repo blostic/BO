@@ -7,7 +7,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -154,11 +153,25 @@ public class DrawingAreaMouseListener implements MouseListener,
 					Road road = new Road(vehicles, trafficIntensity);
 					Road secondRoad = new Road(vehicles, trafficIntensity);
 					
-					road.setStartCoordinates(startElement.getXCoordinate()-2, startElement.getYCoordinate()-2);
-					road.setEndCoordinates(endElement.getXCoordinate()-2, endElement.getYCoordinate()-2);
+//					int x_1 = startElement.getXCoordinate();
+//					int x_2 = endElement.getXCoordinate();
+//					int y_1 = startElement.getYCoordinate();
+//					int y_2 = endElement.getXCoordinate();
+//					double sin = (double)(y_2 - y_1) / (Math.sqrt( (y_2 - y_1)*(y_2 - y_1)+(x_2 - x_1)*(x_2 - x_1) ));
+//					double cos = (double)(y_2 - y_1) / (Math.sqrt( (y_2 - y_1)*(y_2 - y_1)+(x_2 - x_1)*(x_2 - x_1) ));
+//					double d = 5;
+//					int x_delta = (int)(d*sin);
+//					int y_delta = (int)(d*cos);
+//					
+					int x_delta = 2;
+					int y_delta = 2;
 					
-					secondRoad.setEndCoordinates(startElement.getXCoordinate()+2, startElement.getYCoordinate()+2);
-					secondRoad.setStartCoordinates(endElement.getXCoordinate()+2, endElement.getYCoordinate()+2);
+					
+					road.setStartCoordinates(startElement.getXCoordinate()-x_delta, startElement.getYCoordinate()-y_delta);
+					road.setEndCoordinates(endElement.getXCoordinate()-x_delta, endElement.getYCoordinate()-y_delta);
+					
+					secondRoad.setEndCoordinates(startElement.getXCoordinate()+x_delta, startElement.getYCoordinate()+y_delta);
+					secondRoad.setStartCoordinates(endElement.getXCoordinate()+x_delta, endElement.getYCoordinate()+y_delta);
 					
 					endElement.getEntryRoads().add(road);
 					endElement.getEscapeRoads().add(secondRoad);

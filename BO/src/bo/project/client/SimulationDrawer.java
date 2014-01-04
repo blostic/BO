@@ -11,7 +11,7 @@ public class SimulationDrawer extends Thread {
 	private static int sleepTime = 50;
 	
 	public static void setSimulationSpeed(int speed) {
-		sleepTime = Math.round(-3f*(float)speed + 200f);
+		sleepTime = Math.round(-2f*(float)speed + 201f);
 	}
 	
 	
