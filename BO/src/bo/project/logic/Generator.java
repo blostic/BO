@@ -47,7 +47,7 @@ public class Generator extends Junction{
 		}
 		if(generateFlag){
 			for(Road road: escapeRoads){
-				if(!road.isFull()){
+				if(!road.isFull() && road.checkLastCarStatus(timeInterval)){
 					road.addVehicle(new Vehicle());
 				}
 			}

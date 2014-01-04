@@ -15,6 +15,7 @@ public class Road implements Serializable{
 	private boolean greenLight;
 	private double averageTime = 10; /*sredni czas przejechania z srednia predkoscia sredniej 
 										   dlugosci samochodu*/
+	private double lastCarTime = averageTime;
 	private int startX, startY;
 	private int endX, endY;
 	
@@ -37,6 +38,16 @@ public class Road implements Serializable{
 		minimalWaitTime=(int)(maximalNumberOfVehicles*averageTime);
 		this.trafficIntensity=trafficIntensity;
 		greenLight=false;
+	}
+	
+	public boolean checkLastCarStatus(double timeInterval) {
+		this.lastCarTime += timeInterval;
+		if (this.lastCarTime >= this.averageTime) {
+			this.lastCarTime = 0;
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public void setStartCoordinates(int x, int y) {
@@ -128,8 +139,8 @@ public class Road implements Serializable{
 			vehicle=vehicles.get(i);
 			vehicle.increaseWaitTime(timeInterval);
 			
-			if(i==0 && vehicle.getWaitTime()>=minimalWaitTime
-			|| i>0 && vehicle.getWaitTime()>=minimalWaitTime-i*averageTime && vehicles.get(i-1).isWaiting()){
+			if((i==0 && vehicle.getWaitTime()>=minimalWaitTime)
+			|| (i>0 && vehicle.getWaitTime()>=minimalWaitTime-i*averageTime && vehicles.get(i-1).isWaiting())){
 				vehicle.markAsWaiting();
 			}
 		}
@@ -141,10 +152,8 @@ public class Road implements Serializable{
 		for (int index=0; index<vehicles.size(); ++index) {
 			v = vehicles.get(index);
 			if (v.isWaiting()) {
-				v.setX(Math.round(endX - (endX-startX)/(float)maximalNumberOfVehicles));
-				v.setY(Math.round(endY - (endY-startY)/(float)maximalNumberOfVehicles));
-				//v.setX(Math.round(startX - index*(startX-endX)/(float)maximalNumberOfVehicles));
-				//v.setY(Math.round(startY - index*(startY-endY)/(float)maximalNumberOfVehicles));
+				v.setX(Math.round(endX - index*(endX-startX)/(float)maximalNumberOfVehicles));
+				v.setY(Math.round(endY - index*(endY-startY)/(float)maximalNumberOfVehicles));
 	
 			} else {
 				v.setX(Math.round(startX + (endX - startX)*(float)v.getWaitTime()/minimalWaitTime));

@@ -8,6 +8,13 @@ import bo.project.logic.Vehicle;
 public class SimulationDrawer extends Thread {
 
 	private TrafficEditorFrame editorFrame;
+	private static int sleepTime = 50;
+	
+	public static void setSimulationSpeed(int speed) {
+		sleepTime = Math.round(-2f*(float)speed + 201f);
+	}
+	
+	
 	
 	public SimulationDrawer(TrafficEditorFrame frame) {
 		this.editorFrame = frame;
@@ -35,7 +42,7 @@ public class SimulationDrawer extends Thread {
 				 * sleep time - speed of simulation
 				 * should be possible to set by user
 				 */
-				Thread.sleep(25);
+				Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

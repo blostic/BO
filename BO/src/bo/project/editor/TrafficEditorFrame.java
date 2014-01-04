@@ -15,7 +15,9 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 import javax.swing.border.Border;
 
 import bo.project.client.ViewSimulator;
@@ -27,6 +29,7 @@ import bo.project.editor.listeners.ClearButtonActionListener;
 import bo.project.editor.listeners.DrawingAreaMouseListener;
 import bo.project.editor.listeners.ExitActionListener;
 import bo.project.editor.listeners.SendButtonMouseListener;
+import bo.project.editor.listeners.SpeedSliderListener;
 import bo.project.editor.listeners.StopButtonMouseListener;
 import bo.project.logic.Generator;
 import bo.project.logic.Intersection;
@@ -155,8 +158,17 @@ public class TrafficEditorFrame {
 		
 		button = createButton("Wyjdz");
 		button.addActionListener(new ExitActionListener());
-		
 		panel.add(button, cons);
+		
+		JLabel sliderLabel = new JLabel("Szybkosc symulacji", JLabel.CENTER);
+		panel.add(sliderLabel, cons);
+		
+		JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 100, 50);
+		slider.setMajorTickSpacing(10);
+		slider.setMinorTickSpacing(2);
+		slider.setPaintTicks(true);
+		slider.addChangeListener(new SpeedSliderListener());
+		panel.add(slider, cons);
 	
 		return panel;
 	}

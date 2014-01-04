@@ -108,7 +108,7 @@ public class Intersection extends Junction {
 			if (road.checkGreenLight() && !road.isEmpty()) {
 				Road awayRoad = chooseRoad(road);
 			
-				if (awayRoad.isFull()) {
+				if (awayRoad.isFull() || !awayRoad.checkLastCarStatus(timeInterval)) {
 					Simulator.increaseWaitTime(timeInterval
 						* road.getNumberOfWaiting());
 				} else {
