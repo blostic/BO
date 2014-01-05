@@ -72,6 +72,9 @@ Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprze
 \subsection{Praca w zespole}
     Praca grupowa była wspomagana poprzez wykorzystanie sytemu kontroli wersji GIT, oraz poprzez utorzenie Google Doc'a projektu. W trakcie realizacji przeprowadziliśmy również kilka spotkań mających na celu, kontrolę przebiegu prac, wyjaśnienie watpliwości / niejasności wykrytych w trakcie iteracji, a także przydział kolejnych zadań.
 
+\subsection{Ogólne założenia}
+    W naszym projekcie musieliśmy podjąć pewne złożenia (uproszczenia) gdyż nie jest możliwe aby zrobić program dla tego problemu (w tak krótkim czasie jaki mieliśmy) rozpatrując wszystkie najdrobniejsze szczegóły. Pomineliśmy przedewszystkim czas świecenia żółtego światła przy zmianie z czerwonego na zielone oraz odwrotnie. Nie są rozpatrywane przypadki gdy samochód na skrzyżowaniu zawraca lub drogi jedno kierunkowe czy tak zwane ślepe uliczki. Pomineliśmy także dość ważny przypadek jakim są przejścia dla pieszych z światłami, które są prawie przy każdym skrzyżowaniu. Wiele osób za pewne znalazłoby jeszcze więcej szczegółów, które można by rozpatrzyć, ale aby to uwzględnić to przy naszym programie trzeba by pewnie spędzić jeszcze kilka miesięcy albo i dłużej. Kolejnym uproszczeniem jest fakt, że program działa tylko dla skrzyżowań, z których wychodzą jedynie cztery drogi. Można stworzyć sytuację dla mniejszej ilości dróg wychodzących ze skrzyżowania jeśli narysujemy drogę połączoną z generatorem, dla której jako parametry podamy 0 - maksymalna ilość samochodów oraz 0 - intensywność.
+
 \section{Opis logiki}
     Nasza logika składa się z kilku klas, za pomocą których możemy tworzyć potrzebne w naszym projekcie obiekty: Generatory, Skrzyżowania, Drogi i Samochody. Obiekty te tworzone są przez GUI, a następnie server wykonuje symulacje za ich pomocą.
 
