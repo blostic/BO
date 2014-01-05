@@ -67,7 +67,7 @@ public class Simulator implements Serializable{
 
 
 	public int runSimulation(double[] greenLights, double[] redLights) {
-		printState();
+		//printState();
 		totalWaitTime=0; 
 		if (greenLights != null && redLights != null){
 			this.setLights(greenLights, redLights);			

@@ -61,6 +61,7 @@ public class Cuckoo {
 			}
 			if (nest.getEnergy() < bestSolution.getEnergy()) {
 				bestSolution = nest;
+				System.out.println("Current best " + bestSolution.getEnergy());
 			}
 			Collections.sort(population);
 			replaceWorstFraction(population, 0.1);
