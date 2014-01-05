@@ -78,7 +78,7 @@ public class TrafficEditorFrame {
 		pane.setBorder(border);
 
 		frame = new JFrame("Badania Operacyjne");
-		frame.setSize(600, 400);
+		frame.setSize(600, 435);
 		// frame.setBackground(Color.cyan);
 		drawingArea = new DrawingArea(this.simulator, ImageObserver.WIDTH,
 				ImageObserver.HEIGHT);

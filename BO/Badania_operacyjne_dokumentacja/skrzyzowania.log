@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.1.3)  5 JAN 2014 17:00
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.1.3)  5 JAN 2014 19:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1042,7 +1042,7 @@ l.142 \end{document}
                     
 ? 
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 142.
-[7]
+[7] [8]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 142.
  (./skrzyzowania.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 142.
@@ -1056,8 +1056,8 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 142.
 ### semi simple group (level 1) entered at line 140 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 14455 strings out of 495024
- 225997 string characters out of 3181155
+ 14456 strings out of 495024
+ 226003 string characters out of 3181155
  340868 words of memory out of 3000000
  17380 multiletter control sequences out of 15000+200000
  17709 words of font info for 42 fonts, out of 3000000 for 9000
@@ -1071,10 +1071,10 @@ ts/pk/ljfour/jknappen/ec/ecbx0900.600pk> </home/xav92/.texmf-var/fonts/pk/ljfou
 r/jknappen/ec/ecrm1200.600pk> </home/xav92/.texmf-var/fonts/pk/ljfour/jknappen/
 ec/ecrm1728.600pk> </home/xav92/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000
 .600pk>
-Output written on skrzyzowania.pdf (7 pages, 101472 bytes).
+Output written on skrzyzowania.pdf (8 pages, 103118 bytes).
 PDF statistics:
- 503 PDF objects out of 1000 (max. 8388607)
- 204 compressed objects within 3 object streams
- 36 named destinations out of 1000 (max. 500000)
+ 512 PDF objects out of 1000 (max. 8388607)
+ 210 compressed objects within 3 object streams
+ 37 named destinations out of 1000 (max. 500000)
  217 words of extra memory for PDF output out of 10000 (max. 10000000)
 
