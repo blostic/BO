@@ -88,7 +88,7 @@ Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprze
     Instancje tej klasy przechowują samochody, które znajdują się na danej drodze. Posiada ograniczenia w postaci maksymalnej liczby samochodów, które mogą się znajdować na tej drodze oraz natęzenie ruchu, które określa ile samochodów wjeżdża na daną drogę w ciągu godziny. Każda droga ma współrzędne początkowe i końcowe. Pojedyńczy obiekt "Droga" odpowiada za drogę jednokierunkową, dlatego gdy rysujemy drogę łaczącą dwa skrzyżowania lub skrzyżowanie i generator to tworzą się dwa obiekty typu "Road" (jeden w jedną stronę i drugi w drugą). Klasa ta posiada metodę getFirstVechicle, która umożliwia przekazanie najbliższego do skrzyżowania / generatora samochodu.
 
 \subsection{Klasa Simulator}
-    
+    W obiekcie typu "Simulator" przechowywane są obiekty, które reprezentują cały model sieci ulic. Zapewnia także wykorzystanie algorytmu kukułki, do której przekazujemy parametry - długość świecenia świateł, dzięki czemu mamy zapewnioną symulację.
 
 \subsection{Klasa Vehicle}
     Posiada metody i pola, które są ułatwiają ruch samochodów czyli gettery i settery dla współrzędnych danego samochodu, oraz czas oczekiwania, bądź informacja o danym samochodzie czy jest w konkretnym momencie w ruchu lub czeka przed skrzyżowaniem.
