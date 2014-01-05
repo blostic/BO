@@ -3,26 +3,27 @@
 \contentsline {section}{\numberline {3}Wst\IeC {\k e}pne za\IeC {\l }o\IeC {\.z}enia}{4}{section.3}
 \contentsline {subsection}{\numberline {3.1}\IeC {\'S}rodowisko Implementacji}{4}{subsection.3.1}
 \contentsline {subsection}{\numberline {3.2}Praca w zespole}{4}{subsection.3.2}
-\contentsline {section}{\numberline {4}Opis logiki}{4}{section.4}
+\contentsline {subsection}{\numberline {3.3}Og\IeC {\'o}lne za\IeC {\l }o\IeC {\.z}enia}{4}{subsection.3.3}
+\contentsline {section}{\numberline {4}Opis logiki}{5}{section.4}
 \contentsline {subsection}{\numberline {4.1}Klasa Generator}{5}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Klasa Junction}{5}{subsection.4.2}
 \contentsline {subsection}{\numberline {4.3}Klasa Intersection}{5}{subsection.4.3}
-\contentsline {subsection}{\numberline {4.4}Klasa Road}{5}{subsection.4.4}
-\contentsline {subsection}{\numberline {4.5}Klasa Simulator}{5}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.4}Klasa Road}{6}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Klasa Simulator}{6}{subsection.4.5}
 \contentsline {subsection}{\numberline {4.6}Klasa Vehicle}{6}{subsection.4.6}
 \contentsline {section}{\numberline {5}Algorytm kuku\IeC {\l }ki}{6}{section.5}
 \contentsline {section}{\numberline {6}Obs\IeC {\l }uga aplikacji}{6}{section.6}
 \contentsline {subsection}{\numberline {6.1}Dodaj Generator}{6}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Dodaj Skrzy\IeC {\.z}owanie}{6}{subsection.6.2}
-\contentsline {subsection}{\numberline {6.3}Dodaj Drog\IeC {\k e}}{6}{subsection.6.3}
+\contentsline {subsection}{\numberline {6.2}Dodaj Skrzy\IeC {\.z}owanie}{7}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Dodaj Drog\IeC {\k e}}{7}{subsection.6.3}
 \contentsline {subsection}{\numberline {6.4}Zacznij od nowa}{7}{subsection.6.4}
 \contentsline {subsection}{\numberline {6.5}Zapisz}{7}{subsection.6.5}
 \contentsline {subsection}{\numberline {6.6}Wczytaj}{7}{subsection.6.6}
 \contentsline {subsection}{\numberline {6.7}Wy\IeC {\'s}lij do serwera}{7}{subsection.6.7}
 \contentsline {subsection}{\numberline {6.8}Sprawd\IeC {\'z} rozwi\IeC {\k a}zanie}{7}{subsection.6.8}
-\contentsline {subsection}{\numberline {6.9}Rozpocznij Symulacj\IeC {\k e}}{7}{subsection.6.9}
-\contentsline {subsection}{\numberline {6.10}Zatrzymaj Symulacje}{7}{subsection.6.10}
-\contentsline {subsection}{\numberline {6.11}Wyjd\IeC {\'z}}{7}{subsection.6.11}
-\contentsline {subsection}{\numberline {6.12}Szybko\IeC {\'s}\IeC {\'c} Symulacji}{7}{subsection.6.12}
+\contentsline {subsection}{\numberline {6.9}Rozpocznij Symulacj\IeC {\k e}}{8}{subsection.6.9}
+\contentsline {subsection}{\numberline {6.10}Zatrzymaj Symulacje}{8}{subsection.6.10}
+\contentsline {subsection}{\numberline {6.11}Wyjd\IeC {\'z}}{8}{subsection.6.11}
+\contentsline {subsection}{\numberline {6.12}Szybko\IeC {\'s}\IeC {\'c} Symulacji}{8}{subsection.6.12}
 \contentsline {section}{\numberline {7}Rezultaty}{8}{section.7}
 \contentsfinish 
