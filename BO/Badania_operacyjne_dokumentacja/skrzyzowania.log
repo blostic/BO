@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.1.3)  4 JAN 2014 23:58
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.1.3)  5 JAN 2014 16:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1019,7 +1019,7 @@ LaTeX Font Info:    External font `plex10' loaded for size
 \tf@toc=\write4
 \openout4 = `skrzyzowania.toc'.
 
- [3] [4] [5]
+ [3] [4] [5] [6]
 
 ! Package inputenc Error: Unicode char \u8:ŧ not set up for use with LaTeX.
 
@@ -1027,47 +1027,39 @@ See the inputenc package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.122 ...�w są pobierane co jakiś (bardzo króŧ
+l.126 ...�w są pobierane co jakiś (bardzo króŧ
                                                   ki) czas przez co mamy wra...
 
 ? 
-[6]
 
-! LaTeX Error: \begin{itemize} on input line 133 ended by \end{document}.
+! LaTeX Error: \begin{itemize} on input line 140 ended by \end{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.135 \end{document}
+l.142 \end{document}
                     
 ? 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 142.
 [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 142.
  (./skrzyzowania.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 135.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 135.
-
-
-Package rerunfilecheck Warning: File `skrzyzowania.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `skrzyzowania.out':
-(rerunfilecheck)             Before: BD1185748108EF208D1463527649ECF3;1201
-(rerunfilecheck)             After:  F48A06C5DCC7C19AB6AE6860FA32CB2C;1586.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 135.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 142.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 142.
+Package rerunfilecheck Info: File `skrzyzowania.out' has not changed.
+(rerunfilecheck)             Checksum: 53B9891A15256FDD578078D82986BB9B;1655.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 142.
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 133 (\begingroup)
+### semi simple group (level 1) entered at line 140 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 14447 strings out of 495024
- 225869 string characters out of 3181155
- 339868 words of memory out of 3000000
- 17373 multiletter control sequences out of 15000+200000
+ 14455 strings out of 495024
+ 225997 string characters out of 3181155
+ 340868 words of memory out of 3000000
+ 17380 multiletter control sequences out of 15000+200000
  17709 words of font info for 42 fonts, out of 3000000 for 9000
  34 hyphenation exceptions out of 8191
  38i,6n,47p,1020b,387s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1079,10 +1071,10 @@ ts/pk/ljfour/jknappen/ec/ecbx0900.600pk> </home/xav92/.texmf-var/fonts/pk/ljfou
 r/jknappen/ec/ecrm1200.600pk> </home/xav92/.texmf-var/fonts/pk/ljfour/jknappen/
 ec/ecrm1728.600pk> </home/xav92/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000
 .600pk>
-Output written on skrzyzowania.pdf (7 pages, 97869 bytes).
+Output written on skrzyzowania.pdf (7 pages, 101279 bytes).
 PDF statistics:
- 469 PDF objects out of 1000 (max. 8388607)
- 175 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
- 161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 503 PDF objects out of 1000 (max. 8388607)
+ 204 compressed objects within 3 object streams
+ 36 named destinations out of 1000 (max. 500000)
+ 217 words of extra memory for PDF output out of 10000 (max. 10000000)
 

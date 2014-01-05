@@ -82,12 +82,16 @@ Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprze
     Jest to klasa abstrakcyjna, po której dziedziczy klasa Junction, której instancją jest obiekt Skrzyżowanie. Poza konstruktorem posiada ona głównie gettery, które ułatwiąją dostęp do dróg wejściowych oraz wyjściowych, a także współrzędnych danego skrzyżowania. Posiada także metodę, która dodaje na każdą ulicę wychodzącą z tego skrzyżowania jakąś stałą liczbę samochodów, która jest zależna od ustalonego wcześniej natężenia ruchu na danej drodze.
 
 \subsection{Klasa Intersection}
+    Klasa ta dziedziczy po abstrakcyjnej klasie Junction. Instancja te klasy odpowiada za obsługę świecenia świateł oraz za decyzję, w którą drogę dany samochód, który wjeżdża na to skrzyżowanie ma skręcić. 
 
 \subsection{Klasa Road}
+    Instancje tej klasy przechowują samochody, które znajdują się na danej drodze. Posiada ograniczenia w postaci maksymalnej liczby samochodów, które mogą się znajdować na tej drodze oraz natęzenie ruchu, które określa ile samochodów wjeżdża na daną drogę w ciągu godziny. Każda droga ma współrzędne początkowe i końcowe. Pojedyńczy obiekt "Droga" odpowiada za drogę jednokierunkową, dlatego gdy rysujemy drogę łaczącą dwa skrzyżowania lub skrzyżowanie i generator to tworzą się dwa obiekty typu "Road" (jeden w jedną stronę i drugi w drugą). Klasa ta posiada metodę getFirstVechicle, która umożliwia przekazanie najbliższego do skrzyżowania / generatora samochodu.
 
 \subsection{Klasa Simulator}
+    
 
 \subsection{Klasa Vehicle}
+    Posiada metody i pola, które są ułatwiają ruch samochodów czyli gettery i settery dla współrzędnych danego samochodu, oraz czas oczekiwania, bądź informacja o danym samochodzie czy jest w konkretnym momencie w ruchu lub czeka przed skrzyżowaniem.
 
 \section{Algorytm kukułki}
 
@@ -122,10 +126,13 @@ Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprze
     Rozpoczęta zostanie symulacja poruszających się samochodów przedstawionych w postaci zielonych kółek. Symulacja jest przedstawiona wizualnie na narysowanej mapie. Współrzędne samochodów są pobierane co jakiś (bardzo króŧki) czas przez co mamy wrażenie, że samochody poruszają się płynnie.
 
 \subsection{Zatrzymaj Symulacje}
-    Wstrzymuje wcześniej uruchomioną symulację.
+    Wstrzymuje wcześniej uruchomioną symulację. Wstrzymaną symulację możemy kontynuoawać po przez ponowne wciśnięcie przycisku "Rozpocznij Symulacje".
 
 \subsection{Wyjdź}
     Przyciśnięcie tego przycisku powoduje całokowite wyjście z programu.
+
+\subsection{Szybkość Symulacji}
+    Jest to suwak umożliwiający nam wybór, jak szybko nasza symulacja ma się wykonywać. Dzięki temu możemy ją zwolnić aby lepiej zobaczyć rezultaty.
 
 \section{Rezultaty}
 
