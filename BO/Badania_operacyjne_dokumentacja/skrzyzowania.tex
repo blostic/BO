@@ -97,6 +97,30 @@ Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprze
     Posiada metody i pola, które są ułatwiają ruch samochodów czyli gettery i settery dla współrzędnych danego samochodu, oraz czas oczekiwania, bądź informacja o danym samochodzie czy jest w konkretnym momencie w ruchu lub czeka przed skrzyżowaniem.
 
 \section{Algorytm kukułki}
+    Optymalizacja ruchu na skrzyżowaniach jest dokonywana poprzez minimalizację funkcji f. Funkcja ta określona jest jako suma czasów oczekiwań samochodów na skrzyżowaniach. Minimalną (właściwie to pseudominimalną, ze względu na niedeterministyczny charakter funkcji f) wartość funkcji f 
+    obliczamy za pomocą algorytmu kukułek. Pseudokod obrazujący działanie algorytmu umieszczony jest poniżej
+
+\begin{lstlisting}
+CuckooSearch(int MaxGenerations)
+    population = generateInitialPopulationOfNests;
+    t = 0;
+    bestSolution = randomSolution;
+    while (t < MaxGenerations)
+        nest = randomNest(population);
+        newSolution = generateRandomLevySolution(nest);
+        if (Energy(nest) -  Energy(newSolution) > 0)
+            nest.setSolution(newSolution)
+        if (Energy(nest)  Energy(bestSolution)
+            bestSolution = nest;
+        sort(population);
+        replaceWorstFraction(0.1);
+        t++;
+    return bestSolution;
+\end{lstlisting}
+
+Rozwiązanie funkcji f zostało określone jako para tablic R i G, takich że: 
+\\*G[i]  - czas świecenia światła zielonego na skrzyżowaniu numer i
+\\*R[i]  - czas świecenia światła czerwonego na skrzyżowaniu numer i
 
 \section{Obsługa aplikacji}
     Uruchamiając nasz program wyświetla się okno, które jest podzielone na 2 seskcje obszar, w którym możemy rysowawać skrzyżowania i drogi oraz przedstawiona tam jest wizualnie symulacja. W drugim obszarze po prawej stronie znajdują się wszystkie przyciski do obsługi programu.
