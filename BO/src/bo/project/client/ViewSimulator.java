@@ -74,18 +74,4 @@ public class ViewSimulator extends Simulator {
 		}
 		return vehicles;
 	}
-
-	//	private void updateVehiclesOnView() {
-	//		//TODO: View.removeAllVehicles();
-	//		for (Generator g: generators) {
-	//			for (Vehicle v : g.getWaitingVehicles()) {
-	//				//TODO: View.draw(v);
-	//			}
-	//		}
-	//		for (Intersection i: intersections) {
-	//			for (Vehicle v : i.getWaitingVehicles()) {
-	//				//TODO: View.draw(v);
-	//			}
-	//		}
-	//	}
 }

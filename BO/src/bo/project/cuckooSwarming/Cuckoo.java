@@ -28,7 +28,9 @@ public class Cuckoo {
 	private ArrayList<Nest> generateInitialPopulationOfNests(
 			int numberOfSolution, int problemSize) {
 		ArrayList<Nest> solutions = new ArrayList<Nest>();
-		solutions.add(Nest.generateRandomNest(simulator, problemSize));
+		for (int i = 0; i < numberOfSolution; i++) {
+			solutions.add(Nest.generateRandomNest(simulator, problemSize));
+		}
 		return solutions;
 	}
 
@@ -45,36 +47,29 @@ public class Cuckoo {
 
 	public Solution cuckooSearch(int MaxGenerations) {
 		population = generateInitialPopulationOfNests(100, this.simulationSize);
-		String start = Double.toString(energy(simulator, population.get(0).solution));
+		String start = Double.toString(energy(simulator, population.get(0)
+				.getSolution()));
 		int t = 0;
-		Solution bestSolution = null;
+		Nest bestSolution = population.get(0);
 		while (t < MaxGenerations) {
 			Nest nest = randomNest(population);
-			Solution solution = generateRandomLevySolution(nest.solution);
-			if (nest.energy - energy(this.simulator, solution) < 0) {
-				nest.solution = solution;
+			Solution solution = generateRandomLevySolution(nest.getSolution());
+			double currentEnergy = energy(this.simulator, solution);
+			if (nest.getEnergy() - currentEnergy > 0) {
+				nest.setSolution(solution);
+				nest.setEnergy(currentEnergy);
 			}
+			if (nest.getEnergy() < bestSolution.getEnergy()) {
+				bestSolution = nest;
+			}
+			Collections.sort(population);
 			replaceWorstFraction(population, 0.1);
-			bestSolution = findBestSolution(population);
 			t++;
 		}
 
-		System.out.println("Value at the beginning: "+start+"\nValue at the end: "+ energy(simulator, bestSolution));
-		return bestSolution;
-	}
-
-	/**
-	 * 
-	 * @param population
-	 * @return
-	 */
-
-	private Solution findBestSolution(ArrayList<Nest> population) {
-		Collections.sort(population);
-		if (population.size() > 0) {
-			return population.get(population.size() - 1).solution;
-		}
-		return null;
+		System.out.println("Value at the beginning: " + start
+				+ "\nValue at the end: " + bestSolution.getEnergy());
+		return bestSolution.getSolution();
 	}
 
 	/**
@@ -88,7 +83,7 @@ public class Cuckoo {
 	private void replaceWorstFraction(ArrayList<Nest> population,
 			double fraction) {
 		for (int i = 0; i < population.size() * fraction; i++) {
-			population.remove(i);
+			population.remove(population.size() - i - 1);
 			population.add(Nest.generateRandomNest(simulator, simulationSize));
 		}
 	}
@@ -116,18 +111,20 @@ public class Cuckoo {
 		Random rand = new Random();
 		return population.get(rand.nextInt(population.size()));
 	}
-	
+
 	/**
 	 * Function which generates a length of levy flight
-	 * @param alpha corresponds to dispersion of drawn numbers.  
+	 * 
+	 * @param alpha
+	 *            corresponds to dispersion of drawn numbers.
 	 * @return
 	 */
-	
+
 	public double levy(double alpha) {
 		Random random = new Random();
 		double ur = random.nextDouble();
 		if (random.nextInt(2) != 1) {
-			return 1/ Math.pow(ur, 1 / alpha);
+			return 1 / Math.pow(ur, 1 / alpha);
 		} else {
 			return -1 / Math.pow(ur, 1 / alpha);
 		}
@@ -143,10 +140,10 @@ public class Cuckoo {
 	 */
 	public Solution generateRandomLevySolution(Solution solution) {
 		for (int i = 0; i < solution.greenLightsArray.length; i++) {
-			solution.greenLightsArray[i] += levy( 1.001);
+			solution.greenLightsArray[i] += levy(1.001);
 			if (solution.greenLightsArray[i] < 0)
 				solution.greenLightsArray[i] = 0.1;
-			solution.redLightsArray[i] += levy( 1.001);
+			solution.redLightsArray[i] += levy(1.001);
 			if (solution.redLightsArray[i] < 0)
 				solution.redLightsArray[i] = 0.1;
 		}

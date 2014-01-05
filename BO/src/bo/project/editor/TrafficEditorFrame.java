@@ -110,6 +110,7 @@ public class TrafficEditorFrame {
 		cons.gridx = 0;
 
 		panel.setMinimumSize(new Dimension(100, 500));
+		frame.setMinimumSize(new Dimension(500, 500));
 		JButton button;
 		panel.add(Box.createRigidArea(new Dimension(0, 5)));
 		button = createButton("Dodaj Generator");

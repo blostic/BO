@@ -11,11 +11,6 @@ public class Generator extends Junction{
 		super(entryRoads,awayRoads, x, y);
 		generateFlag=false;		
 	}
-	
-	public void setUpGenerationArray(int traffic){
-		
-	}
-	
 	/*
 	 * losuje czy powinienem dodawac nowe pojazdy
 	 * 

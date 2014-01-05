@@ -6,8 +6,8 @@ import bo.project.logic.Simulator;
 
 public class Nest implements Comparable<Nest> {
 
-	public Solution solution;
-	public Double energy;
+	private Solution solution;
+	private Double energy;
 
 	@Override
 	public int compareTo(Nest o) {
@@ -19,6 +19,23 @@ public class Nest implements Comparable<Nest> {
 		return solution.redLightsArray.equals(((Solution) obj).redLightsArray)
 				&& solution.greenLightsArray
 						.equals(((Solution) obj).greenLightsArray);
+	}
+
+	public Solution getSolution() {
+		return solution;
+	}
+
+	public void setSolution(Solution solution) {
+		this.solution = solution;
+		
+	}
+
+	public Double getEnergy() {
+		return energy;
+	}
+
+	public void setEnergy(Double energy) {
+		this.energy = energy;
 	}
 
 	@Override
