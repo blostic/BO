@@ -1,0 +1,28 @@
+\BOOKMARK [1][-]{section.1}{Przedstawienie problemu}{}% 1
+\BOOKMARK [1][-]{section.2}{Cele projektu}{}% 2
+\BOOKMARK [1][-]{section.3}{Wstepne za\233ozenia}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Srodowisko Implementacji}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Praca w zespole}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Za\233ozenia projektowe}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{Opis logiki}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Klasa Generator}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Klasa Junction}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{Klasa Intersection}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.4}{Klasa Road}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.5}{Klasa Simulator}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.6}{Klasa Vehicle}{section.4}% 13
+\BOOKMARK [1][-]{section.5}{Algorytm kuku\233ki}{}% 14
+\BOOKMARK [1][-]{section.6}{Obs\233uga aplikacji}{}% 15
+\BOOKMARK [2][-]{subsection.6.1}{Dodaj Generator}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.2}{Dodaj Skrzyzowanie}{section.6}% 17
+\BOOKMARK [2][-]{subsection.6.3}{Dodaj Droge}{section.6}% 18
+\BOOKMARK [2][-]{subsection.6.4}{Zacznij od nowa}{section.6}% 19
+\BOOKMARK [2][-]{subsection.6.5}{Zapisz}{section.6}% 20
+\BOOKMARK [2][-]{subsection.6.6}{Wczytaj}{section.6}% 21
+\BOOKMARK [2][-]{subsection.6.7}{Wyslij do serwera}{section.6}% 22
+\BOOKMARK [2][-]{subsection.6.8}{Sprawdz rozwiazanie}{section.6}% 23
+\BOOKMARK [2][-]{subsection.6.9}{Rozpocznij Symulacje}{section.6}% 24
+\BOOKMARK [2][-]{subsection.6.10}{Zatrzymaj Symulacje}{section.6}% 25
+\BOOKMARK [2][-]{subsection.6.11}{Wyjdz}{section.6}% 26
+\BOOKMARK [2][-]{subsection.6.12}{Szybkosc Symulacji}{section.6}% 27
+\BOOKMARK [1][-]{section.7}{Rezultaty}{}% 28
