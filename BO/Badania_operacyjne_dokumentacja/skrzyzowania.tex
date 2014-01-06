@@ -59,7 +59,7 @@ Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprze
 \newpage
 
 \section{Przedstawienie problemu}
-    W miastach (zwłaszcza tych wielkich) często spotyka się zjawisko jakim są zakorkowane ulice pełne samochodów. Jednak każda ulica ma inne natężenie ilości samochodów w różnych porach dnia, a światła na skrzyżowaniach mają stałe czasy świecenia. W czasie tak zwanych godzin szczytu przez jedne ulice przejeżdża więcej samochodów niż przez inne, co powoduje korki na drogach. Można by jednak upłynnić ten ruch poprzez wydłużenie czasu świecenia świateł zielonych dla bardziej uczęszczanych ulic, a skrócenie go dla tych mniej uczęszczanych. I właśnie tym zajmuje się nasz program. Czyli badaniem w danych godzinach natężenia ruchu na danych ulicach i optymalizowanie czasów świecenia świateł tak aby ten ruch był płynniejszy dla całego wybranego (narysowanego) obszaru. W tym celu korzystamy z algorytmu kukułki, który nam optymailizuje czasy świecenia świateł dla poszczególnych skrzyżowań.
+    W miastach (zwłaszcza tych wielkich) często spotyka się zjawisko jakim są zakorkowane ulice pełne samochodów. Jednak każda ulica ma inne natężenie ilości samochodów w różnych porach dnia, a światła na skrzyżowaniach mają stałe czasy świecenia. W czasie tak zwanych godzin szczytu przez jedne ulice przejeżdża więcej samochodów niż przez inne, co powoduje korki na drogach. Można by jednak upłynnić ten ruch poprzez wydłużenie czasu świecenia świateł zielonych dla bardziej uczęszczanych ulic, a skrócenie go dla tych mniej uczęszczanych. I właśnie tym zajmuje się nasz program. Czyli badaniem w danych godzinach natężenia ruchu na danych ulicach i optymalizowanie czasów świecenia świateł tak aby ten ruch był płynniejszy dla całego wybranego (narysowanego) obszaru. W tym celu korzystamy z algorytmu kukułki, który wyznacza optymalne czasy świecenia świateł dla poszczególnych skrzyżowań.
 
 
 \section{Cele projektu}
@@ -70,35 +70,34 @@ Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprze
     Aby pogodzić potrzebę szybkiego wykonywania symulacji, oraz zdążyć wykonać projekt w przeznaczonym do tego czasie, językiem wybranym do implementacji jest Java. Ustaliliśmy, że aby zmniejszyć prawdopodobieństwo wystąpienia niespójności związanej z wykorzystywaniem różnych narzędzi, aplikacja będzie pisana przy pomocy Eclipse IDE. 
 
 \subsection{Praca w zespole}
-    Praca grupowa była wspomagana poprzez wykorzystanie sytemu kontroli wersji GIT, oraz poprzez utorzenie Google Doc'a projektu. W trakcie realizacji przeprowadziliśmy również kilka spotkań mających na celu, kontrolę przebiegu prac, wyjaśnienie watpliwości / niejasności wykrytych w trakcie iteracji, a także przydział kolejnych zadań.
+    Praca grupowa była wspomagana poprzez wykorzystanie sytemu kontroli wersji GIT, oraz poprzez utworzenie Google Doc'a projektu. W trakcie realizacji przeprowadziliśmy również kilka spotkań mających na celu, kontrolę przebiegu prac, wyjaśnienie wątpliwości / niejasności wykrytych w trakcie iteracji, a także przydział kolejnych zadań.
 
-\subsection{Ogólne założenia}
-    W naszym projekcie musieliśmy podjąć pewne złożenia (uproszczenia) gdyż nie jest możliwe aby zrobić program dla tego problemu (w tak krótkim czasie jaki mieliśmy) rozpatrując wszystkie najdrobniejsze szczegóły. Pomineliśmy przedewszystkim czas świecenia żółtego światła przy zmianie z czerwonego na zielone oraz odwrotnie. Nie są rozpatrywane przypadki gdy samochód na skrzyżowaniu zawraca lub drogi jedno kierunkowe czy tak zwane ślepe uliczki. Pomineliśmy także dość ważny przypadek jakim są przejścia dla pieszych z światłami, które są prawie przy każdym skrzyżowaniu. Wiele osób za pewne znalazłoby jeszcze więcej szczegółów, które można by rozpatrzyć, ale aby to uwzględnić to przy naszym programie trzeba by pewnie spędzić jeszcze kilka miesięcy albo i dłużej. Kolejnym uproszczeniem jest fakt, że program działa tylko dla skrzyżowań, z których wychodzą jedynie cztery drogi. Można stworzyć sytuację dla mniejszej ilości dróg wychodzących ze skrzyżowania jeśli narysujemy drogę połączoną z generatorem, dla której jako parametry podamy 0 - maksymalna ilość samochodów oraz 0 - intensywność.
-
+\subsection{Założenia projektowe}
+    W naszym projekcie zastosowany został szereg uproszczeń. Staraliśmy się, aby przyjęte założenia nie ingerowały znacząco w strukturę problemu i żeby otrzymane rezultaty z powodzeniem mogły zostać zastosowane do realnych problemów. Pominęliśmy przede wszystkim czas świecenia żółtego światła przy zmianie z czerwonego na zielone oraz odwrotnie. Nie są rozpatrywane przypadki, gdy samochód na skrzyżowaniu zawraca lub możliwy jest ruch bezkolizyjny kilku samochodów. Pomnieliśmy także przejścia dla pieszych oraz obecność innych uczestników ruchu niż pojazdy kołowe. Uproszczenie, które również zostało przyjęte w aplikacji, jest istnienie tylko i wyłącznie skrzyżowań 4 wlotowych. Skrzyżowania posiadające mniejszą liczbę dróg wejściowych można jednak z powodzeniem symulować przy pomocy dróg o natężeniu 0.
 \section{Opis logiki}
-    Nasza logika składa się z kilku klas, za pomocą których możemy tworzyć potrzebne w naszym projekcie obiekty: Generatory, Skrzyżowania, Drogi i Samochody. Obiekty te tworzone są przez GUI, a następnie server wykonuje symulacje za ich pomocą.
+  Logika biznesowa aplikacji składa się z kilku klas, które umożliwiają tworzenie obiektów takich jak: Generatory, Skrzyżowania, Drogi i Samochody. 
 
 \subsection{Klasa Generator}
-    Obiekt, który jest instancją tej klasy jest zakończeniem dróg, których jeden z końców nie jest podłączony do żadnego ze skrzyżowań. Zadaniem tego obiektu jest tworzenie nowych samochodów pojawiających się na mapie oraz usówanie tych wyjeżdżających z mapy. Klasa posiada metodę moveVehicles odpowiedzialną właśnie za pojawianie się i znikanie samochodów na mapie. Posiada także funkcję, która za pomocą losowości decyduje czy obiekt Generator powinien w danym momencie stworzyć obiekt samochód.
+    Obiekt, który jest instancją tej klasy jest zakończeniem drogi, których jeden z końców nie jest podłączony do żadnego ze skrzyżowań. Zadaniem tego obiektu jest tworzenie nowych samochodów pojawiających się na mapie oraz usuwanie tych wyjeżdżających z mapy. Klasa posiada metodę moveVehicles odpowiedzialną za pojawianie się i znikanie samochodów na mapie. Klasa posiada  niedeterministyczną metodę, która decyduje, czy obiekt Generator powinien w danym momencie stworzyć obiekt Vehicle.
 
 \subsection{Klasa Junction}
-    Jest to klasa abstrakcyjna, po której dziedziczy klasa Junction, której instancją jest obiekt Skrzyżowanie. Poza konstruktorem posiada ona głównie gettery, które ułatwiąją dostęp do dróg wejściowych oraz wyjściowych, a także współrzędnych danego skrzyżowania. Posiada także metodę, która dodaje na każdą ulicę wychodzącą z tego skrzyżowania jakąś stałą liczbę samochodów, która jest zależna od ustalonego wcześniej natężenia ruchu na danej drodze.
+    Jest to klasa abstrakcyjna dla Klas Intersection i Generator. Posiada pola przechowujące współrzędne tych obiektów na mapie, oraz Listy dróg wejściowych i wyjściowych. Posiada metodę, która dodaje na każdą ulicę wychodzącą z tego skrzyżowania stałą liczbę samochodów. Liczba ta jest zależna od ustalonego wcześniej natężenia ruchu na danej drodze.
 
 \subsection{Klasa Intersection}
-    Klasa ta dziedziczy po abstrakcyjnej klasie Junction. Instancja te klasy odpowiada za obsługę świecenia świateł oraz za decyzję, w którą drogę dany samochód, który wjeżdża na to skrzyżowanie ma skręcić. 
+    Instancja te klasy odpowiada za obsługę świecenia świateł. Klasa decyduje, w którą drogę samochód wjeżdżający na to skrzyżowanie ma skręcić. Prawdopodobieństwo wybrania konkretnej drogi jest zależne od natężenia ruchu przypisanego do tej drogi.
 
 \subsection{Klasa Road}
-    Instancje tej klasy przechowują samochody, które znajdują się na danej drodze. Posiada ograniczenia w postaci maksymalnej liczby samochodów, które mogą się znajdować na tej drodze oraz natęzenie ruchu, które określa ile samochodów wjeżdża na daną drogę w ciągu godziny. Każda droga ma współrzędne początkowe i końcowe. Pojedyńczy obiekt "Droga" odpowiada za drogę jednokierunkową, dlatego gdy rysujemy drogę łaczącą dwa skrzyżowania lub skrzyżowanie i generator to tworzą się dwa obiekty typu "Road" (jeden w jedną stronę i drugi w drugą). Klasa ta posiada metodę getFirstVechicle, która umożliwia przekazanie najbliższego do skrzyżowania / generatora samochodu.
+    Instancje tej klasy przechowują samochody, które znajdują się na danej drodze. Posiada ograniczenia w postaci maksymalnej liczby samochodów, które mogą się znajdować na tej drodze oraz natężenie ruchu określające ile samochodów wjeżdża na daną drogę w ciągu godziny. Każda droga ma współrzędne początkowe i końcowe. Pojedynczy obiekt Road odpowiada za drogę jednokierunkową. Gdy w GUI rysujemy drogę łączącą dwa skrzyżowania lub skrzyżowanie i generator, to tworzone są dwa obiekty typu "Road" (jeden w jedną stronę i drugi w drugą). Klasa ta posiada metodę getFirstVehicle, która umożliwia przekazanie pojazdu najbliższego końca drogi do skrzyżowania / generatora samochodu.
 
 \subsection{Klasa Simulator}
-    W obiekcie typu "Simulator" przechowywane są obiekty, które reprezentują cały model sieci ulic. Zapewnia także wykorzystanie algorytmu kukułki, do której przekazujemy parametry - długość świecenia świateł, dzięki czemu mamy zapewnioną symulację.
+    Obiekt "Simulator" przechowuje obiekty, reprezentujące cały model sieci ulic. Zapewnia także wykorzystanie algorytmu kukułki, do której przekazujemy parametry - długość świecenia świateł, dzięki czemu mamy zapewnioną symulację.
 
 \subsection{Klasa Vehicle}
-    Posiada metody i pola, które są ułatwiają ruch samochodów czyli gettery i settery dla współrzędnych danego samochodu, oraz czas oczekiwania, bądź informacja o danym samochodzie czy jest w konkretnym momencie w ruchu lub czeka przed skrzyżowaniem.
+    Posiada metody i pola, które ułatwiają ruch samochodów czyli gettery i settery dla współrzędnych danego samochodu, oraz czas oczekiwania, bądź informacja o danym samochodzie czy jest w konkretnym momencie w ruchu lub czeka przed skrzyżowaniem.
 
 \section{Algorytm kukułki}
     Optymalizacja ruchu na skrzyżowaniach jest dokonywana poprzez minimalizację funkcji f. Funkcja ta określona jest jako suma czasów oczekiwań samochodów na skrzyżowaniach. Minimalną (właściwie to pseudominimalną, ze względu na niedeterministyczny charakter funkcji f) wartość funkcji f 
-    obliczamy za pomocą algorytmu kukułek. Pseudokod obrazujący działanie algorytmu umieszczony jest poniżej
+obliczamy za pomocą algorytmu kukułek. Pseudokod obrazujący działanie algorytmu umieszczony jest poniżej
 
 \begin{lstlisting}
 CuckooSearch(int MaxGenerations)
@@ -123,16 +122,20 @@ Rozwiązanie funkcji f zostało określone jako para tablic R i G, takich że:
 \\*R[i]  - czas świecenia światła czerwonego na skrzyżowaniu numer i
 
 \section{Obsługa aplikacji}
-    Uruchamiając nasz program wyświetla się okno, które jest podzielone na 2 seskcje obszar, w którym możemy rysowawać skrzyżowania i drogi oraz przedstawiona tam jest wizualnie symulacja. W drugim obszarze po prawej stronie znajdują się wszystkie przyciski do obsługi programu.
+  Stworzony przez nas projekt jest aplikacją Klient-Server. Dzięki takiemu rozdzieleniu możliwe jest uruchomienie servera (który odpowiedzialny jest za obliczenia związane z algorytmem kukułek) na maszynie posiadającej duża moc obliczeniową, a przez to znaczące skrócenie czasu oczekiwania na rezultat funkcji. 
+
+Uruchomienie aplikacji odbywa się w 2 krokach.
+1. Uruchomienie części serwerowej
+2. Uruchomienie części klienta
 
 \subsection{Dodaj Generator}
-    Gdy przycisk ten zostanie naciśnięty możemy za pomocą kliknięcia lewym przyciskiem myszy na obszarze do rysowania stworzyć generator. Zostanie on narysowany w kliknętym miejscu jako czerwone kółko poprzez pobranie współrzednych kursora, a także zostanie stworzony obiekt Generator, który zostanie dodany do listy generatorów.
+    Gdy przycisk ten zostanie naciśnięty możemy za pomocą kliknięcia lewym przyciskiem myszy na obszarze do rysowania stworzyć generator. Zostanie on narysowany w klikniętym miejscu jako czerwone kółko.
 
 \subsection{Dodaj Skrzyżowanie}
-    Analogicznie jak w przypadku Generatora zostanie stworzony obiekt Skrzyżowanie oraz w klikniętym miejscu pojawi się czarne kółko.
+    Analogicznie jak w przypadku Generatora zostanie stworzony obiekt Skrzyżowanie. W klikniętym miejscu pojawi się czarne kółko.
 
 \subsection{Dodaj Drogę}
-    Po naciśnięciu przycisku "Dodaj Drogę" użytkownik może poprzez kliknięcie na dwóch skrzyżowaniach lub generatorze i skrzyrzowaniu (najpierw jednym, a następnie na drugim), które zostało wcześniej narysowane, stworzyć nowy obiekt Droga. Gdy zostaną kliknięte dwa (wcześniej narysowane) obiekty typu Generator lub skrzyżowanie, pojawi się okno z zapytaniem o to ile samochodów może pomieścić droga, a następnie ile (w ciągu godziny) samochodów może przejechać przez tą drogę czyli intensywaność zatłoczenia. Jeżeli jeden z zapytanych przez program parametrów nie zostanie podany lub będzie podany, ale w złym formacie np. użytkownik wpisze jakąś literę zamiast cyfry to obiekt nie zostanie stworzony. Po poprawnym podaniu wszystkich parametrów zostanie stworzony i narysowany obiekt typu droga. Narysowany jest podwójnie by było lepiej widać poruszające się samochody w obie strony. Jedna linia oznacza drogę w jedną stronę, a druga w drugą.
+    Po naciśnięciu przycisku "Dodaj Drogę" użytkownik może poprzez kliknięcie na dwóch skrzyżowaniach lub generatorze i skrzyżowaniu (najpierw jednym, a następnie na drugim), które zostało wcześniej narysowane, stworzyć nowy obiekt Droga. Gdy zostaną kliknięte dwa (wcześniej narysowane) obiekty typu Generator lub skrzyżowanie, pojawi się okno z zapytaniem o to ile samochodów może pomieścić droga, a następnie ile (w ciągu godziny) samochodów może przejechać przez tą drogę czyli intensywność zatłoczenia. Jeżeli jeden z zapytanych przez program parametrów nie zostanie podany lub będzie podany, ale w złym formacie np. użytkownik wpisze jakąś literę zamiast cyfry to obiekt nie zostanie stworzony. Po poprawnym podaniu wszystkich parametrów zostanie stworzony i narysowany obiekt typu droga. Narysowany jest podwójnie by było lepiej widać poruszające się samochody w obie strony. Jedna linia oznacza drogę w jedną stronę, a druga w drugą.
 
 \subsection{Zacznij od nowa}
     Czyści całą narysowaną bądź wczytaną mapę.
@@ -147,16 +150,16 @@ Rozwiązanie funkcji f zostało określone jako para tablic R i G, takich że:
     Gdy narysujemy już bądź wczytamy mapę, musimy ją wysłać do włączonego wcześniej serwera żądanie, podając IP hosta, na którego komputerze jest włączony serwer, lub wpisując localhost jeśli mamy postawiony serwer lokalnie u siebie. Serwer zwraca nam ID jakie nadał temu żądaniu.
 
 \subsection{Sprawdź rozwiązanie}
-    Klikając ten przycisk, a następnie podając ID żądania, pytamy serwer czy dla danego żądania zostało wyliczone optymalne rozwiązanie. Serwer zwraca nam odpowiednią informację, która zostaje wyświetlna w okienku.
+    Klikając ten przycisk, a następnie podając ID żądania, pytamy serwer czy dla danego żądania zostało wyliczone optymalne rozwiązanie. Serwer zwraca nam odpowiednią informację, która zostaje wyświetlona w okienku.
 
 \subsection{Rozpocznij Symulację}
-    Rozpoczęta zostanie symulacja poruszających się samochodów przedstawionych w postaci zielonych kółek. Symulacja jest przedstawiona wizualnie na narysowanej mapie. Współrzędne samochodów są pobierane co jakiś (bardzo króŧki) czas przez co mamy wrażenie, że samochody poruszają się płynnie.
+    Rozpoczęta zostanie symulacja poruszających się samochodów przedstawionych w postaci zielonych kółek. Symulacja jest przedstawiona wizualnie na narysowanej mapie. Współrzędne samochodów są pobierane co jakiś (bardzo krótki) czas przez co mamy wrażenie, że samochody poruszają się płynnie.
 
 \subsection{Zatrzymaj Symulacje}
-    Wstrzymuje wcześniej uruchomioną symulację. Wstrzymaną symulację możemy kontynuoawać po przez ponowne wciśnięcie przycisku "Rozpocznij Symulacje".
+    Wstrzymuje wcześniej uruchomioną symulację. Wstrzymaną symulację możemy kontynuować po przez ponowne wciśnięcie przycisku "Rozpocznij Symulacje".
 
 \subsection{Wyjdź}
-    Przyciśnięcie tego przycisku powoduje całokowite wyjście z programu.
+    Przyciśnięcie tego przycisku powoduje wyjście z programu.
 
 \subsection{Szybkość Symulacji}
     Jest to suwak umożliwiający nam wybór, jak szybko nasza symulacja ma się wykonywać. Dzięki temu możemy ją zwolnić aby lepiej zobaczyć rezultaty.
