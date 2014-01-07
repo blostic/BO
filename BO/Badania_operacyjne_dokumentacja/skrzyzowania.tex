@@ -109,7 +109,7 @@ CuckooSearch(int MaxGenerations)
         newSolution = generateRandomLevySolution(nest);
         if (Energy(nest) -  Energy(newSolution) > 0)
             nest.setSolution(newSolution)
-        if (Energy(nest)  Energy(bestSolution)
+        if (Energy(nest) < Energy(bestSolution)
             bestSolution = nest;
         sort(population);
         replaceWorstFraction(0.1);
