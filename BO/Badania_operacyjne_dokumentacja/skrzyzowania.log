@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.7.2)  5 JAN 2014 22:12
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.7.2)  7 JAN 2014 13:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -855,23 +855,55 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 25.
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 )
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.43 \begin{figure}[ht!]
+                        
+? 
+! Undefined control sequence.
+\set@color ...\@pdfcolorstack push{\current@color 
+                                                  }\aftergroup \reset@color 
+l.43 \begin{figure}[ht!]
+                        
+? 
+<AGH.jpg, id=1, 146.4672pt x 284.7438pt>
+File: AGH.jpg Graphic file (type jpg)
+ <use AGH.jpg>
+Package pdftex.def Info: AGH.jpg used on input line 45.
+(pdftex.def)             Requested size: 256.0748pt x 497.92677pt.
+
+
+! Package hypcap Error: You have forgotten to use \caption.
+
+See the hypcap package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.47 \end{figure}
+                 
+? 
 (./skrzyzowania.aux)
 \openout1 = `skrzyzowania.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -902,7 +934,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box44
-Package hyperref Info: Link coloring ON on input line 47.
+Package hyperref Info: Link coloring ON on input line 52.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
@@ -912,9 +944,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count284
 )
-LaTeX Info: Redefining \ref on input line 47.
-LaTeX Info: Redefining \pageref on input line 47.
-LaTeX Info: Redefining \nameref on input line 47.
+LaTeX Info: Redefining \ref on input line 52.
+LaTeX Info: Redefining \pageref on input line 52.
+LaTeX Info: Redefining \nameref on input line 52.
 
 (./skrzyzowania.out) (./skrzyzowania.out)
 \@outlinefile=\write3
@@ -923,103 +955,91 @@ LaTeX Info: Redefining \nameref on input line 47.
 \c@lstlisting=\count285
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./skrzyzowania.toc)
-\tf@toc=\write4
-\openout4 = `skrzyzowania.toc'.
+ <./AGH.jpg>]
 
- [2]
-Overfull \hbox (8.73767pt too wide) in paragraph at lines 70--71
-[]\T1/cmr/m/n/10 Aby pogodzi¢ potrzeb¦ szy-bkiego wykony-wa-nia symu-lacji, ora
-z zd¡»y¢ wykona¢
- []
-
-
-Overfull \hbox (13.8624pt too wide) in paragraph at lines 76--77
-\T1/cmr/m/n/10 zielone oraz odwrot-nie. Nie s¡ roz-pa-try-wane przy-padki gdy s
-amochód na skrzy»owa-
- []
-
-[3]
-Overfull \hbox (7.7898pt too wide) in paragraph at lines 91--92
-\T1/cmr/m/n/10 ierunk-ow¡, dlat-ego gdy ry-su-jemy drog¦ ªacz¡c¡ dwa skrzy»owa-
-nia lub skrzy»owanie
- []
-
-[4]
-Overfull \hbox (9.25241pt too wide) in paragraph at lines 100--102
-\T1/cmr/m/n/10 chodów na skrzy»owa-ni-ach. Min-i-maln¡ (wªa±-ci-wie to pseu-do-
-min-i-maln¡, ze wzgl¦du
- []
-
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 103.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <8> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 108.
- [5]
-Overfull \hbox (6.20685pt too wide) in paragraph at lines 129--130
-\T1/cmr/m/n/10 narysowany w klikn¦-tym miejscu jako cz-er-wone kóªko poprzez po
--branie wspóªrzed-
- []
-
-
-Overfull \hbox (20.33206pt too wide) in paragraph at lines 132--133
-[]\T1/cmr/m/n/10 Analogicznie jak w przy-padku Gen-er-a-tora zostanie stwor-zon
-y obiekt Skrzy»owanie
- []
-
-[6]
-
-! Package inputenc Error: Unicode char \u8:Å§ not set up for use with LaTeX.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.153 ...³w sÄ… pobierane co jakiÅ› (bardzo krÃ³Å§
-                                                  ki) czas przez co mamy wra...
-
-? 
-
-Overfull \hbox (9.72818pt too wide) in paragraph at lines 156--157
-[]\T1/cmr/m/n/10 Wstrzymuje wcze±niej uru-chomion¡ symu-lacj¦. Wstrzy-man¡ symu
--lacj¦ mo»emy
- []
-
-
-! LaTeX Error: \begin{itemize} on input line 167 ended by \end{document}.
+! LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.169 \end{document}
+l.55 
+     
+? 
+[2{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./skrzyzowania.toc)
+\tf@toc=\write4
+\openout4 = `skrzyzowania.toc'.
+
+
+[3]
+Overfull \hbox (8.73767pt too wide) in paragraph at lines 76--77
+[]\T1/cmr/m/n/10 Aby pogodzi¢ potrzeb¦ szy-bkiego wykony-wa-nia symu-lacji, ora
+z zd¡»y¢ wykona¢
+ []
+
+[4]
+Overfull \hbox (9.00137pt too wide) in paragraph at lines 96--97
+\T1/cmr/m/n/10 ierunk-ow¡. Gdy w GUI ry-su-jemy drog¦ ª¡cz¡c¡ dwa skrzy»owa-nia
+ lub skrzy»owanie
+ []
+
+[5]
+Overfull \hbox (9.25241pt too wide) in paragraph at lines 105--107
+\T1/cmr/m/n/10 chodów na skrzy»owa-ni-ach. Min-i-maln¡ (wªa±-ci-wie to pseu-do-
+min-i-maln¡, ze wzgl¦du
+ []
+
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 108.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <8> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 113.
+ [6]
+Overfull \hbox (23.10916pt too wide) in paragraph at lines 141--142
+[]\T1/cmr/m/n/10 Analogicznie jak w przy-padku Gen-er-a-tora zostanie stwor-zon
+y obiekt Skrzy»owanie.
+ []
+
+[7]
+Overfull \hbox (9.72818pt too wide) in paragraph at lines 165--166
+[]\T1/cmr/m/n/10 Wstrzymuje wcze±niej uru-chomion¡ symu-lacj¦. Wstrzy-man¡ symu
+-lacj¦ mo»emy
+ []
+
+
+! LaTeX Error: \begin{itemize} on input line 176 ended by \end{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.178 \end{document}
                     
 ? 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 169.
-[7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 169.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 178.
+[8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 178.
  (./skrzyzowania.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 169.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 169.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 178.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 178.
 Package rerunfilecheck Info: File `skrzyzowania.out' has not changed.
-(rerunfilecheck)             Checksum: C676068A6E99373C61AF1EBFCFA9D527;1727.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 169.
+(rerunfilecheck)             Checksum: A87CECB8B3C17518CCB66E55994D34F6;1728.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 178.
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 167 (\begingroup)
+### semi simple group (level 1) entered at line 176 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 14626 strings out of 495059
- 226850 string characters out of 3182031
- 408331 words of memory out of 3000000
- 17557 multiletter control sequences out of 15000+200000
+ 14634 strings out of 495059
+ 226927 string characters out of 3182031
+ 409331 words of memory out of 3000000
+ 17561 multiletter control sequences out of 15000+200000
  12886 words of font info for 28 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,6n,47p,1204b,1164s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,6n,47p,1019b,1164s stack positions out of 5000i,500n,10000p,200000b,50000s
  </home/piotr/.texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.6
 00pk> </home/piotr/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </hom
 e/piotr/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/piotr/.te
@@ -1028,10 +1048,10 @@ ts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/piotr/.texmf-var/fonts/pk/ljfou
 r/jknappen/ec/ecbx0900.600pk> </home/piotr/.texmf-var/fonts/pk/ljfour/jknappen/
 ec/ecrm0900.600pk> </home/piotr/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440
 .600pk>
-Output written on skrzyzowania.pdf (7 pages, 110698 bytes).
+Output written on skrzyzowania.pdf (8 pages, 188869 bytes).
 PDF statistics:
- 562 PDF objects out of 1000 (max. 8388607)
- 230 compressed objects within 3 object streams
- 53 named destinations out of 1000 (max. 500000)
- 225 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 574 PDF objects out of 1000 (max. 8388607)
+ 235 compressed objects within 3 object streams
+ 55 named destinations out of 1000 (max. 500000)
+ 230 words of extra memory for PDF output out of 10000 (max. 10000000)
 
