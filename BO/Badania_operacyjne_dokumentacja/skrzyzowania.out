@@ -12,17 +12,18 @@
 \BOOKMARK [2][-]{subsection.4.5}{Klasa Simulator}{section.4}% 12
 \BOOKMARK [2][-]{subsection.4.6}{Klasa Vehicle}{section.4}% 13
 \BOOKMARK [1][-]{section.5}{Algorytm kuku\233ki}{}% 14
-\BOOKMARK [1][-]{section.6}{Obs\233uga aplikacji}{}% 15
-\BOOKMARK [2][-]{subsection.6.1}{Dodaj Generator}{section.6}% 16
-\BOOKMARK [2][-]{subsection.6.2}{Dodaj Skrzyzowanie}{section.6}% 17
-\BOOKMARK [2][-]{subsection.6.3}{Dodaj Droge}{section.6}% 18
-\BOOKMARK [2][-]{subsection.6.4}{Zacznij od nowa}{section.6}% 19
-\BOOKMARK [2][-]{subsection.6.5}{Zapisz}{section.6}% 20
-\BOOKMARK [2][-]{subsection.6.6}{Wczytaj}{section.6}% 21
-\BOOKMARK [2][-]{subsection.6.7}{Wyslij do serwera}{section.6}% 22
-\BOOKMARK [2][-]{subsection.6.8}{Sprawdz rozwiazanie}{section.6}% 23
-\BOOKMARK [2][-]{subsection.6.9}{Rozpocznij Symulacje}{section.6}% 24
-\BOOKMARK [2][-]{subsection.6.10}{Zatrzymaj Symulacje}{section.6}% 25
-\BOOKMARK [2][-]{subsection.6.11}{Wyjdz}{section.6}% 26
-\BOOKMARK [2][-]{subsection.6.12}{Szybkosc Symulacji}{section.6}% 27
-\BOOKMARK [1][-]{section.7}{Rezultaty}{}% 28
+\BOOKMARK [1][-]{section.6}{Struktura aplikacji}{}% 15
+\BOOKMARK [1][-]{section.7}{Obs\233uga aplikacji}{}% 16
+\BOOKMARK [2][-]{subsection.7.1}{Dodaj Generator}{section.7}% 17
+\BOOKMARK [2][-]{subsection.7.2}{Dodaj Skrzyzowanie}{section.7}% 18
+\BOOKMARK [2][-]{subsection.7.3}{Dodaj Droge}{section.7}% 19
+\BOOKMARK [2][-]{subsection.7.4}{Zacznij od nowa}{section.7}% 20
+\BOOKMARK [2][-]{subsection.7.5}{Zapisz}{section.7}% 21
+\BOOKMARK [2][-]{subsection.7.6}{Wczytaj}{section.7}% 22
+\BOOKMARK [2][-]{subsection.7.7}{Wyslij do serwera}{section.7}% 23
+\BOOKMARK [2][-]{subsection.7.8}{Sprawdz rozwiazanie}{section.7}% 24
+\BOOKMARK [2][-]{subsection.7.9}{Rozpocznij Symulacje}{section.7}% 25
+\BOOKMARK [2][-]{subsection.7.10}{Zatrzymaj Symulacje}{section.7}% 26
+\BOOKMARK [2][-]{subsection.7.11}{Wyjdz}{section.7}% 27
+\BOOKMARK [2][-]{subsection.7.12}{Szybkosc Symulacji}{section.7}% 28
+\BOOKMARK [1][-]{section.8}{Rezultaty}{}% 29
