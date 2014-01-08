@@ -14,7 +14,7 @@ public class Main {
 
 	public static int SIMULATION_TIME_INTERVAL = 1;
 	public static int SIMULATION_TOTAL_TIME = 100;
-	public static int MAX_GENERATIONS = 100;
+	public static int MAX_GENERATIONS = 1000;
 	public static boolean VERBOSE = true;
 
 	private static MessageReceiver messageReceiver;
