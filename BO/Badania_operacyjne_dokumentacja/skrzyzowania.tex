@@ -76,7 +76,8 @@ Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprze
     Aby pogodzić potrzebę szybkiego wykonywania symulacji, oraz zdążyć wykonać projekt w przeznaczonym do tego czasie, językiem wybranym do implementacji jest Java. Ustaliliśmy, że aby zmniejszyć prawdopodobieństwo wystąpienia niespójności związanej z wykorzystywaniem różnych narzędzi, aplikacja będzie pisana przy pomocy Eclipse IDE. 
 
 \subsection{Praca w zespole}
-    Praca grupowa była wspomagana poprzez wykorzystanie sytemu kontroli wersji GIT, oraz poprzez utworzenie Google Doc'a projektu. W trakcie realizacji przeprowadziliśmy również kilka spotkań mających na celu, kontrolę przebiegu prac, wyjaśnienie wątpliwości / niejasności wykrytych w trakcie iteracji, a także przydział kolejnych zadań.
+    Praca grupowa była wspomagana poprzez wykorzystanie sytemu kontroli wersji GIT \url{<https://github.com/blostic/BO>}, oraz poprzez utworzenie Google Doc'a projektu. W trakcie realizacji przeprowadziliśmy również kilka spotkań mających na celu, kontrolę przebiegu prac, wyjaśnienie wątpliwości / niejasności wykrytych w trakcie iteracji, a także przydział kolejnych zadań.
+
 
 \subsection{Założenia projektowe}
     W naszym projekcie zastosowany został szereg uproszczeń. Staraliśmy się, aby przyjęte założenia nie ingerowały znacząco w strukturę problemu i żeby otrzymane rezultaty z powodzeniem mogły zostać zastosowane do realnych problemów. Pominęliśmy przede wszystkim czas świecenia żółtego światła przy zmianie z czerwonego na zielone oraz odwrotnie. Nie są rozpatrywane przypadki, gdy samochód na skrzyżowaniu zawraca lub możliwy jest ruch bezkolizyjny kilku samochodów. Pomnieliśmy także przejścia dla pieszych oraz obecność innych uczestników ruchu niż pojazdy kołowe. Uproszczenie, które również zostało przyjęte w aplikacji, jest istnienie tylko i wyłącznie skrzyżowań 4 wlotowych. Skrzyżowania posiadające mniejszą liczbę dróg wejściowych można jednak z powodzeniem symulować przy pomocy dróg o natężeniu 0.
@@ -102,8 +103,7 @@ Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprze
     Posiada metody i pola, które ułatwiają ruch samochodów czyli gettery i settery dla współrzędnych danego samochodu, oraz czas oczekiwania, bądź informacja o danym samochodzie czy jest w konkretnym momencie w ruchu lub czeka przed skrzyżowaniem.
 
 \section{Algorytm kukułki}
-    Optymalizacja ruchu na skrzyżowaniach jest dokonywana poprzez minimalizację funkcji f. Funkcja ta określona jest jako suma czasów oczekiwań samochodów na skrzyżowaniach. Minimalną (właściwie to pseudominimalną, ze względu na niedeterministyczny charakter funkcji f) wartość funkcji f 
-obliczamy za pomocą algorytmu kukułek. Pseudokod obrazujący działanie algorytmu umieszczony jest poniżej
+    Optymalizacja ruchu na skrzyżowaniach jest dokonywana poprzez minimalizację funkcji f. Funkcja ta określona jest jako suma czasów oczekiwań samochodów na skrzyżowaniach. Minimalną (właściwie to pseudominimalną, ze względu na niedeterministyczny charakter funkcji f) wartość funkcji f obliczamy za pomocą algorytmu kukułek. Pseudokod obrazujący działanie algorytmu umieszczony jest poniżej
 
 \begin{lstlisting}
 CuckooSearch(int MaxGenerations)
@@ -126,12 +126,17 @@ CuckooSearch(int MaxGenerations)
 Rozwiązanie funkcji f zostało określone jako para tablic R i G, takich że: 
 \\*G[i]  - czas świecenia światła zielonego na skrzyżowaniu numer i
 \\*R[i]  - czas świecenia światła czerwonego na skrzyżowaniu numer i
+Można zauważyć, że w rozwiązaniu zastał pominięty czas świecenia światła żółtego.
+W celu wyznaczenia dobowych rozkładów świateł zaleca się, aby symulacja była odpalana dla godzinnych odcinków czasowych - ze względu na duża zmienność natężenia ruchu w trakcie dnia. 
 
 \section{Obsługa aplikacji}
-  Stworzony przez nas projekt jest aplikacją Klient-Server. Dzięki takiemu rozdzieleniu możliwe jest uruchomienie servera (który odpowiedzialny jest za obliczenia związane z algorytmem kukułek) na maszynie posiadającej duża moc obliczeniową, a przez to znaczące skrócenie czasu oczekiwania na rezultat funkcji. 
-Uruchomienie aplikacji odbywa się w 2 krokach: \\*
-1. Uruchomienie części serwerowej\\*
-2. Uruchomienie części klienta
+  Stworzony przez nas projekt jest aplikacją Klient-Server. Dzięki takiemu rozdzieleniu możliwe jest uruchomienie serwera (który odpowiedzialny jest za obliczenia związane z algorytmem kukułek) na maszynie posiadającej duża moc obliczeniową, a przez to znaczące skrócenie czasu oczekiwania na rezultat funkcji.
+
+Uruchomienie aplikacji odbywa się w 2 krokach:
+\begin{itemize}
+\item uruchomienie części serwerowej - część serwerową odpala się przy użyciu linii komend (Windows) lub z konsoli za pomocą polecenia : java -jar Server.jar
+\item uruchomienie części klienta - uruchomienie tej częsci odbywa się poprzez naciśnięcie ikony Client.jar
+\end{itemize}
 
 \begin{figure}[ht!]
 \centering

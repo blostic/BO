@@ -14,14 +14,14 @@
 \contentsline {section}{\numberline {5}Algorytm kuku\IeC {\l }ki}{6}{section.5}
 \contentsline {section}{\numberline {6}Obs\IeC {\l }uga aplikacji}{7}{section.6}
 \contentsline {subsection}{\numberline {6.1}Dodaj Generator}{7}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Dodaj Skrzy\IeC {\.z}owanie}{7}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.2}Dodaj Skrzy\IeC {\.z}owanie}{8}{subsection.6.2}
 \contentsline {subsection}{\numberline {6.3}Dodaj Drog\IeC {\k e}}{8}{subsection.6.3}
 \contentsline {subsection}{\numberline {6.4}Zacznij od nowa}{8}{subsection.6.4}
 \contentsline {subsection}{\numberline {6.5}Zapisz}{8}{subsection.6.5}
 \contentsline {subsection}{\numberline {6.6}Wczytaj}{8}{subsection.6.6}
 \contentsline {subsection}{\numberline {6.7}Wy\IeC {\'s}lij do serwera}{8}{subsection.6.7}
 \contentsline {subsection}{\numberline {6.8}Sprawd\IeC {\'z} rozwi\IeC {\k a}zanie}{8}{subsection.6.8}
-\contentsline {subsection}{\numberline {6.9}Rozpocznij Symulacj\IeC {\k e}}{8}{subsection.6.9}
+\contentsline {subsection}{\numberline {6.9}Rozpocznij Symulacj\IeC {\k e}}{9}{subsection.6.9}
 \contentsline {subsection}{\numberline {6.10}Zatrzymaj Symulacje}{9}{subsection.6.10}
 \contentsline {subsection}{\numberline {6.11}Wyjd\IeC {\'z}}{9}{subsection.6.11}
 \contentsline {subsection}{\numberline {6.12}Szybko\IeC {\'s}\IeC {\'c} Symulacji}{9}{subsection.6.12}
