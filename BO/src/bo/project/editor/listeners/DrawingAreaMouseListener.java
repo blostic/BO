@@ -161,7 +161,8 @@ public class DrawingAreaMouseListener implements MouseListener,
 					int x_delta = 0;
 					int y_delta = 2;
 					
-					if (Math.abs(y_1 - y_2)/Math.abs(x_1 - x_2) > 1 ){
+					
+					if ( (x_1 == x_2) || ((Math.abs(y_1 - y_2)/Math.abs(x_1 - x_2) > 1 ))){
 						x_delta = 2;
 						y_delta = 0;
 					}
