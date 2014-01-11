@@ -93,7 +93,7 @@ Projekt ma na celu skrócenie oczekiwania samochodów na skrzyżowaniach, poprze
 \subsection{Klasa Intersection}
     Instancja te klasy odpowiada za obsługę świecenia świateł. Klasa decyduje, w którą drogę samochód wjeżdżający na to skrzyżowanie ma skręcić. Prawdopodobieństwo wybrania konkretnej drogi jest zależne od natężenia ruchu przypisanego do tej drogi.
 \subsection{Klasa Road}
-    Instancje tej klasy przechowują samochody, które znajdują się na danej drodze. Posiada ograniczenia w postaci maksymalnej liczby samochodów, które mogą się znajdować na tej drodze oraz natężenie ruchu określające ile samochodów wjeżdża na daną drogę w ciągu godziny. Każda droga ma współrzędne początkowe i końcowe. Pojedynczy obiekt Road odpowiada za drogę jednokierunkową. Gdy w GUI rysujemy drogę łączącą dwa skrzyżowania lub skrzyżowanie i generator, to tworzone są dwa obiekty typu "Road" (jeden w jedną stronę i drugi w drugą). Klasa ta posiada metodę getFirstVehicle, która umożliwia przekazanie pojazdu najbliższego końca drogi do skrzyżowania / generatora samochodu.
+    Instancje tej klasy przechowują samochody, które znajdują się na danej drodze. Posiada ograniczenia w postaci maksymalnej liczby samochodów, które mogą się znajdować na tej drodze oraz natężenie ruchu określające ile samochodów wjeżdża na daną drogę w ciągu godziny. Każda droga ma współrzędne początkowe i końcowe. Pojedynczy obiekt Road odpowiada za drogę jednokierunkową. Gdy w GUI rysujemy drogę łączącą dwa skrzyżowania lub skrzyżowanie i generator, to tworzone są dwa obiekty typu "Road" (jeden w jedną stronę i drugi w drugą).
 \subsection{Klasa Simulator}
     Obiekt "Simulator" przechowuje obiekty, reprezentujące cały model sieci ulic. Zapewnia także wykorzystanie algorytmu kukułki, do której przekazujemy parametry - długość świecenia świateł, dzięki czemu mamy zapewnioną symulację.
 \subsection{Klasa Vehicle}
@@ -124,6 +124,53 @@ Rozwiązanie funkcji f zostało określone jako para tablic R i G, takich że:
 \\*R[i]  - czas świecenia światła czerwonego na skrzyżowaniu numer i
 Można zauważyć, że w rozwiązaniu zastał pominięty czas świecenia światła żółtego.
 W celu wyznaczenia dobowych rozkładów świateł zaleca się, aby symulacja była odpalana dla godzinnych odcinków czasowych - ze względu na duża zmienność natężenia ruchu w trakcie dnia. 
+
+
+
+\subsection {Opis funkcji użytych w algorytmie kukułek}
+\begin{itemize}
+\item generateInitialPopulationOfNests (int numberOfSolution, int problemSize):
+    Metoda jest odpowiedzialna za generowanie populacji startowej. Jako argument przyjmowana jest ilość początkowych rozwiązań,
+  które mają zostać utworzone, a także rozmiar problemu. Rozmiarem problemu w naszym przypadku jest ilość skrzyżowań w symulowanym układzie.
+
+\item replaceWorstFraction(population, fraction):
+    Metoda jest używana do zastąpienia najgorszych rozwiązań w populacji losowymi rozwiązaniami. Metoda zakłada, że przekazana jej populacja jest posortowaną listą. 
+Jako argument przyjmuje jaką część populacji powinna zastąpić. 
+
+\item energy(Simulator simulator, Solution solution):
+    Metoda odpowiedzialna jest za obliczenia "energii" związanej z konkretnym rozwiązaniem. 
+    Wywoływana jest z 2 argumentami: 
+      Symulatorem - obiektem pamiętającym konfigurację symulowanej sieci  
+      Rozwiązaniem - rozwiązanie, którego energię chcemy policzyć 
+    Funkcja zwraca wartość funkcji, którą mamy zamiar zminimalizować. 
+Należy pamiętać, że metoda obliczająca wartość funkcji NIE jest deterministyczna - podając ten sam zestaw argumentów bardzo prawdopodobne jest uzyskanie różniących się wyników. 
+
+\item randomNest(population):
+    Metoda zwraca losowo wybrane rozwiązanie z populacji podanej jako argument
+
+\item levy(alpha)
+    Metoda odpowiedzialna za generowanie wyników (będącymi długością "kroków" w przypadkowym błądzeniu) zgodnych z dystrybucją "heavy-tailed".
+ Jako argument przyjmowana jest wartości alpha powiązana z "rozproszeniem" wyników
+
+\item generateRandomLevySolution(solution):
+    Metoda jako argument przyjmuje rozwiązanie, którego każda ze współrzędnych zostaje powiększona o wartość wyznaczoną przy użyciu lotu Leviego. Żadna z nowo obliczonych współrzędnych rozwiązania nie może mieć wartości ujemnej.
+W aplikacji parametr alpha został określony jako 1.001.
+
+\item cuckooSearch(MaxGenerations)
+ Główna metoda odpowiedzialna za wykonanie algorytmu kukułek. Jako parametr przekazywana jest jej ilość generacji – korespondująca z ilością przebiegów głównej pętli algorytmu. 
+\end{itemize}
+
+\subsection {Parametry Algorytmu kukułek}
+
+Stworzona przez nas aplikacja nie umożliwia użytkownikowi edycji stałych użytych w algorytmie kukułek z poziomu GUI. Możliwe jest jednak przedefiniowanie interesujących nas zmiennych ingerując w kod aplikacji i ponowne skompilowanie projektu. 
+
+ {Główne parametry użyte w algorytmie}
+\begin{itemize}
+\item Ilość generacji - może być zmieniona poprzez edycję składowej statycznej MAX-GENERATIONS zdefiniowanej w klasie bo.project.server.Main. Zmienna definiuje ilość przebiegów głównej pętli algorytmu. W aplikacji  MAX-GENERATIONS = 1000;
+\item Ilość początkowych rozwiązań - w aplikacji ustawiona na 100. Możliwa zmiana w metodzie cuckooSearch klasy bo.project.cuckooSwarming.Cuckoo.
+\item Część populacji, która ma zostać zastąpiona - w aplikacji ustawiona na 0.1. Możliwa zmiana w metodzie cuckooSearch klasy bo.project.cuckooSwarming.Cuckoo.
+\end{itemize}
+
 
 \section{Struktura aplikacji}
 Czas potrzebny na wykonanie obliczeń algorytmu kukułki w przypadku naszego problemu jest stosunkowo duży. W związku z tym, aby użytkownik nie musiał poświecać swojego cennego czasu procesora, postanowiliśmy podzielić projekt na część serwerową i kliencką. Klient odpowiada za rysowanie schematu dróg oraz wyświetlanie wyniku, natomiast same obliczenia są wykonywane po stronie serwera, który może być dzięki temu uruchomiony np. w chmurze obliczeniowej i stale obsługiwać żądania różnych klientów. 
@@ -209,7 +256,5 @@ W ramach projektu udało się utworzyć aplikacje, która jest w stanie znacząc
 \caption{Wartość początkowa = 723; Wartość końcowa = 64}
 \label{overflow}
 \end{figure}
-
-\begin{itemize}
 
 \end{document} 
